@@ -1,0 +1,24 @@
+---
+import { activityLog, logLevelColors } from "@data/activity-log";
+import SectionHeading from "@components/ui/SectionHeading.astro";
+---
+
+<section
+  aria-live="polite"
+  class="max-w-container-max mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-section-gap"
+  id="projects"
+  role="log"
+>
+  <SectionHeading label="./logs / syslog_activity_stream" className="mb-6 sm:mb-8" />
+  <div class="space-y-2 font-mono text-[11px] sm:text-[12px] border-l border-white/10 pl-3 sm:pl-4">
+    {activityLog.map((entry) => (
+      <div class="flex flex-col sm:flex-row sm:gap-4 py-1.5 sm:py-1 hover:bg-white/5 transition-colors group">
+        <span class="text-secondary/40 sm:w-auto whitespace-nowrap">{entry.timestamp}</span>
+        <div class="flex gap-2 sm:gap-0">
+          <span class={logLevelColors[entry.level]}>[{entry.level}]</span>
+          <span class="text-on-surface ml-0 sm:ml-0">{entry.message}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

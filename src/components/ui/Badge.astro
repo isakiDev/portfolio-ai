@@ -1,0 +1,19 @@
+---
+export interface Props {
+  variant?: "primary" | "tertiary" | "secondary";
+}
+
+const { variant = "primary" } = Astro.props;
+
+const variantStyles: Record<string, string> = {
+  primary: "bg-primary/10 text-primary",
+  tertiary: "bg-tertiary/10 text-tertiary",
+  secondary: "bg-white/5 text-secondary/60",
+};
+
+const variantClass = variantStyles[variant];
+---
+
+<span class={`font-mono text-[10px] px-2 py-0.5 rounded uppercase tracking-wider ${variantClass}`}>
+  <slot />
+</span>

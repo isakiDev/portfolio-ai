@@ -1,0 +1,25 @@
+---
+import { projects } from "@data/projects";
+import SectionHeading from "@components/ui/SectionHeading.astro";
+import BentoCard from "@components/ui/BentoCard.astro";
+---
+
+<section
+  class="max-w-container-max mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-section-gap"
+  id="lab-tecnico"
+>
+  <SectionHeading label="./proyectos / laboratorio_tecnico" />
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {projects.map((project) => (
+      <BentoCard
+        title={project.title}
+        description={project.description}
+        image={project.image}
+        imageAlt={`${project.title} Preview`}
+        statusLabel={project.status.label}
+        statusVariant={project.status.variant}
+        techLabel={project.tech}
+      />
+    ))}
+  </div>
+</section>

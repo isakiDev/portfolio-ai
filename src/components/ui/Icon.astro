@@ -1,0 +1,16 @@
+---
+export interface Props {
+  name: string;
+  size?: string;
+  fill?: boolean;
+  class?: string;
+}
+
+const { name, size = "text-[18px]", fill = false } = Astro.props;
+const iconClass = `material-symbols-outlined ${size} ${Astro.props.class || ""}`;
+const iconStyle = fill ? "font-variation-settings: 'FILL' 1;" : undefined;
+---
+
+<span class={iconClass} style={iconStyle}>
+  {name}
+</span>

@@ -1,0 +1,26 @@
+---
+import { education } from "@data/education";
+import SectionHeading from "@components/ui/SectionHeading.astro";
+import TimelineItem from "@components/common/TimelineItem.astro";
+---
+
+<section
+  class="max-w-container-max mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-section-gap"
+  id="education"
+>
+  <SectionHeading label="v_formacion / educacion_continua" />
+  <div class="space-y-10 lg:space-y-12 ml-3 sm:ml-4 border-l border-white/10">
+    {education.map((entry) => (
+      <TimelineItem
+        period={entry.period}
+        title={entry.title}
+        subtitle={entry.institution}
+        dotColor="bg-secondary-container"
+      >
+        <div class="bg-surface-container-low/30 p-4 sm:p-6 border border-white/5 rounded-lg">
+          <p class="text-secondary text-sm sm:text-base">{entry.description}</p>
+        </div>
+      </TimelineItem>
+    ))}
+  </div>
+</section>

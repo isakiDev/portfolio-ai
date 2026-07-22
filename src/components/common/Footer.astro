@@ -1,0 +1,50 @@
+---
+import Icon from "../ui/Icon.astro";
+---
+
+<footer class="w-full py-6 border-t border-white/10 bg-surface">
+  <div
+    class="flex flex-col md:flex-row justify-between items-center px-4 sm:px-8 md:px-16 max-w-container-max mx-auto gap-6 md:gap-8"
+  >
+    <div class="font-sans text-base text-on-surface">Gaspar.</div>
+    <div class="flex flex-wrap justify-center gap-x-3 gap-y-3 font-mono text-label-mono">
+      <a
+        class="text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center gap-1"
+        href="#"
+      >
+        <Icon name="code" size="text-[14px]" /> GitHub
+      </a>
+      <a
+        class="text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center gap-1"
+        href="#"
+      >
+        <Icon name="person" size="text-[14px]" /> LinkedIn
+      </a>
+      <a
+        class="text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center gap-1"
+        href="#"
+      >
+        <Icon name="terminal" size="text-[14px]" /> DevTalles
+      </a>
+      <span class="mx-2 opacity-20 hidden sm:inline">|</span>
+      <a
+        class="text-secondary hover:text-on-surface transition-colors opacity-80 hover:opacity-100"
+        href="#"
+        >Código</a
+      >
+      <a
+        class="text-secondary hover:text-on-surface transition-colors opacity-80 hover:opacity-100"
+        href="#"
+        >Contacto</a
+      >
+      <a
+        class="text-secondary hover:text-on-surface transition-colors opacity-80 hover:opacity-100"
+        href="#"
+        >RSS</a
+      >
+    </div>
+    <div class="font-mono text-label-mono text-secondary">
+      &copy; 2024 SYSTEM_CORE_V2
+    </div>
+  </div>
+</footer>

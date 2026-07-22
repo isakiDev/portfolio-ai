@@ -1,0 +1,36 @@
+---
+export interface Props {
+  period: string;
+  title: string;
+  subtitle: string;
+  dotColor: string;
+  dotRingColor?: string;
+}
+
+const {
+  period,
+  title,
+  subtitle,
+  dotColor,
+  dotRingColor = "ring-surface",
+} = Astro.props;
+---
+
+<div class="relative pl-5 sm:pl-8">
+  <div
+    class={`absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full ${dotColor} ring-4 ${dotRingColor}`}
+  >
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8">
+    <div class="lg:col-span-3">
+      <span class="font-mono text-label-mono text-primary">{period}</span>
+      <h4 class="font-sans text-xl mt-1">{title}</h4>
+      <p class="text-secondary text-sm font-mono mt-1 sm:mt-2">
+        {subtitle}
+      </p>
+    </div>
+    <div class="lg:col-span-9 space-y-4 lg:space-y-6">
+      <slot />
+    </div>
+  </div>
+</div>

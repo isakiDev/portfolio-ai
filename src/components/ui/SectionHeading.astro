@@ -1,0 +1,13 @@
+---
+export interface Props {
+  label: string;
+  className?: string;
+}
+
+const { label, className } = Astro.props;
+const headingClass = className || "mb-12";
+---
+
+<h3 class={`font-mono text-label-mono text-secondary ${headingClass}`}>
+  {label}
+</h3>
