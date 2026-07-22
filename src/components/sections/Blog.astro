@@ -3,44 +3,44 @@ import { featuredPost, recentPosts } from "@data/blog-posts";
 import SectionHeading from "@components/ui/SectionHeading.astro";
 ---
 
-<section class="max-w-container-max mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-section-gap" id="blog">
+<section class="max-w-5xl mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-32" id="blog">
   <div class="flex justify-between items-end mb-8 lg:mb-12">
     <SectionHeading label="log_stream / notas_de_ingenieria" className="mb-0" />
     <a
-      class="text-primary font-mono text-label-mono hover:underline flex-shrink-0 ml-4"
+      class="text-primary font-mono text-xs tracking-wider leading-none font-medium hover:underline flex-shrink-0 ml-4"
       href="#"
     >
       VER_TODO()
     </a>
   </div>
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
     <div class="lg:col-span-7">
       <div class="group cursor-pointer">
         <div
-          class="aspect-video w-full bg-surface-container-high rounded-lg overflow-hidden mb-4 sm:mb-6 relative border border-white/5"
+          class="aspect-video bg-card rounded-lg overflow-hidden mb-4 sm:mb-6 relative border border-border/30"
         >
           <div
-            class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"
+            class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"
           >
           </div>
           <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
             <span
-              class="px-2 py-1 bg-primary text-on-primary font-mono text-[10px] rounded uppercase mb-2 sm:mb-3 inline-block"
+              class="px-2 py-1 bg-primary text-primary-foreground font-mono text-[10px] rounded uppercase mb-2 sm:mb-3 inline-block"
             >
               {featuredPost.category}
             </span>
             <h4
-              class="font-sans text-2xl lg:text-headline-lg text-on-surface group-hover:text-primary transition-colors"
+              class="text-2xl lg:text-4xl lg:leading-[1.2] lg:tracking-[-0.02em] lg:font-medium text-foreground group-hover:text-primary transition-colors"
             >
               {featuredPost.title}
             </h4>
           </div>
         </div>
-        <p class="text-secondary text-sm sm:text-base mb-3 sm:mb-4 line-clamp-2">
+        <p class="text-muted-foreground text-sm sm:text-base mb-3 sm:mb-4 line-clamp-2">
           {featuredPost.description}
         </p>
         <div
-          class="flex items-center gap-3 sm:gap-4 font-mono text-label-mono text-secondary/60"
+          class="flex items-center gap-3 sm:gap-4 font-mono text-xs tracking-wider leading-none font-medium text-muted-foreground/60"
         >
           <span>{featuredPost.readTime}</span>
           <span>•</span>
@@ -50,7 +50,7 @@ import SectionHeading from "@components/ui/SectionHeading.astro";
     </div>
     <div class="lg:col-span-5 space-y-6 lg:space-y-8">
       {recentPosts.map((post, i) => {
-        const borderClass = i > 0 ? "border-t border-white/5 pt-6 lg:pt-8" : "";
+        const borderClass = i > 0 ? "border-t border-border/30 pt-6 lg:pt-8" : "";
         return (
           <div class={`group cursor-pointer flex gap-3 sm:gap-4 ${borderClass}`}>
             <div class="flex-1 min-w-0">
@@ -58,16 +58,16 @@ import SectionHeading from "@components/ui/SectionHeading.astro";
                 >{post.category}</span
               >
               <h4
-                class="font-sans text-xl group-hover:text-primary transition-colors mb-1 sm:mb-2"
+                class="text-xl group-hover:text-primary transition-colors mb-1 sm:mb-2"
               >
                 {post.title}
               </h4>
-              <div class="font-mono text-[10px] text-secondary/60">
+              <div class="font-mono text-[10px] text-muted-foreground/60">
                 {post.readTime}
               </div>
             </div>
             <div
-              class="w-16 h-16 sm:w-20 sm:h-20 bg-surface-container-high rounded border border-white/5 flex-shrink-0"
+              class="w-16 h-16 sm:w-20 sm:h-20 bg-card rounded border border-border/30 flex-shrink-0"
             >
             </div>
           </div>

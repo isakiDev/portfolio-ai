@@ -4,10 +4,10 @@ import MusicWidget from "./MusicWidget.astro";
 ---
 
 <header
-  class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10"
+  class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border"
 >
   <nav
-    class="flex justify-between items-center px-4 sm:px-8 md:px-16 h-16 max-w-container-max mx-auto"
+    class="flex justify-between items-center px-4 sm:px-8 md:px-16 h-16 max-w-5xl mx-auto"
   >
     <div
       aria-label="Gaspar Castillo Portfolio Home"
@@ -18,77 +18,77 @@ import MusicWidget from "./MusicWidget.astro";
     <div class="hidden md:flex gap-3 items-center">
       <MusicWidget song="Highway to Hell" artist="AC/DC" />
       <a
-        class="text-secondary hover:text-on-surface transition-colors font-sans text-sm"
+        class="text-muted-foreground hover:text-foreground transition-colors text-sm"
         href="#about"
         >Sobre mí</a
       >
       <a
-        class="text-secondary hover:text-on-surface transition-colors font-sans text-sm"
+        class="text-muted-foreground hover:text-foreground transition-colors text-sm"
         href="#experience"
         >Trayectoria</a
       >
       <a
-        class="text-secondary hover:text-on-surface transition-colors font-sans text-sm"
+        class="text-muted-foreground hover:text-foreground transition-colors text-sm"
         href="#projects"
         >Laboratorio</a
       >
       <a
-        class="text-secondary hover:text-on-surface transition-colors font-sans text-sm"
+        class="text-muted-foreground hover:text-foreground transition-colors text-sm"
         href="#blog"
         >Notas</a
       >
       <button
         aria-label="Abrir paleta de comandos"
-        class="flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-white/10 rounded hover:bg-surface-container-high transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+        class="flex items-center gap-2 px-3 py-1.5 bg-card border border-border rounded hover:bg-muted transition-all focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
       >
-        <Icon name="search" size="text-[18px]" class="text-secondary" />
-        <span class="font-mono text-[10px] text-secondary">CMD + K</span>
+        <Icon name="search" size="text-[18px]" class="text-muted-foreground" />
+        <span class="font-mono text-[10px] text-muted-foreground">CMD + K</span>
       </button>
     </div>
     <button
       aria-label="Abrir menú de navegación"
-      class="md:hidden flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-white/10 rounded hover:bg-surface-container-high transition-all"
+      class="md:hidden flex items-center gap-2 px-3 py-1.5 bg-card border border-border rounded hover:bg-muted transition-all"
       data-menu-toggle
     >
-      <Icon name="menu" size="text-[18px]" class="text-secondary" />
+        <Icon name="menu" size="text-[18px]" class="text-muted-foreground" />
     </button>
   </nav>
   <div
-    class="md:hidden hidden px-4 sm:px-8 pb-6 pt-2 bg-surface/95 backdrop-blur-xl border-b border-white/10"
+    class="md:hidden hidden px-4 sm:px-8 pb-6 pt-2 bg-background/95 backdrop-blur-xl border-b border-border"
     data-mobile-menu
   >
     <div class="flex flex-col gap-4 font-mono text-sm">
       <MusicWidget song="Highway to Hell" artist="AC/DC" />
       <a
-        class="text-secondary hover:text-on-surface transition-colors py-2 border-b border-white/5"
+        class="text-muted-foreground hover:text-foreground transition-colors py-2 border-b border-border/30"
         href="#about"
         data-menu-close
         >Sobre mí</a
       >
       <a
-        class="text-secondary hover:text-on-surface transition-colors py-2 border-b border-white/5"
+        class="text-muted-foreground hover:text-foreground transition-colors py-2 border-b border-border/30"
         href="#experience"
         data-menu-close
         >Trayectoria</a
       >
       <a
-        class="text-secondary hover:text-on-surface transition-colors py-2 border-b border-white/5"
+        class="text-muted-foreground hover:text-foreground transition-colors py-2 border-b border-border/30"
         href="#projects"
         data-menu-close
         >Laboratorio</a
       >
       <a
-        class="text-secondary hover:text-on-surface transition-colors py-2 border-b border-white/5"
+        class="text-muted-foreground hover:text-foreground transition-colors py-2 border-b border-border/30"
         href="#blog"
         data-menu-close
         >Notas</a
       >
       <button
         aria-label="Abrir paleta de comandos"
-        class="flex items-center gap-2 px-3 py-2 bg-surface-container border border-white/10 rounded hover:bg-surface-container-high transition-all w-fit"
+        class="flex items-center gap-2 px-3 py-2 bg-card border border-border rounded hover:bg-muted transition-all w-fit"
       >
-        <Icon name="search" size="text-[18px]" class="text-secondary" />
-        <span class="font-mono text-[10px] text-secondary">CMD + K</span>
+        <Icon name="search" size="text-[18px]" class="text-muted-foreground" />
+        <span class="font-mono text-[10px] text-muted-foreground">CMD + K</span>
       </button>
     </div>
   </div>

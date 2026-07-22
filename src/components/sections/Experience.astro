@@ -5,62 +5,60 @@ import TimelineItem from "@components/common/TimelineItem.astro";
 ---
 
 <section
-  class="max-w-container-max mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-section-gap"
+  class="max-w-5xl mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-32"
   id="experience"
 >
   <SectionHeading label="v_historial / evolucion_profesional" />
-  <div class="space-y-10 lg:space-y-12 ml-3 sm:ml-4 border-l border-white/10">
-    {experience.map((entry) => {
-      const tagStyles =
-        entry.tagVariant === "primary"
-          ? "text-primary bg-primary/10"
-          : "text-secondary bg-secondary-container/20";
+  <div class="space-y-10 lg:space-y-12 ml-3 sm:ml-4 border-l border-border">
+    {
+      experience.map((entry) => {
+        const tagStyles =
+          entry.tagVariant === "primary"
+            ? "text-primary bg-primary/10"
+            : "text-muted-foreground bg-secondary/20";
 
-      return (
-        <TimelineItem
-          period={entry.period}
-          title={entry.company}
-          subtitle={entry.role}
-          dotColor={entry.dotColor}
-        >
-          <div
-            class="bg-surface-container-low p-4 sm:p-6 border border-white/5 rounded-lg"
+        return (
+          <TimelineItem
+            period={entry.period}
+            title={entry.company}
+            subtitle={entry.role}
+            dotColor={entry.dotColor}
           >
-            <span
-              class={`font-mono text-[11px] ${tagStyles} px-2 py-1 rounded-full uppercase mb-3 sm:mb-4 inline-block`}
-            >
-              {entry.tag}
-            </span>
-            <p class="text-secondary text-sm sm:text-base mb-3 sm:mb-4">{entry.description}</p>
-            <ul class="space-y-2 sm:space-y-3">
-              {entry.highlights.map((h) => (
-                <li class="flex gap-2 sm:gap-3 text-sm">
-                  <span class="text-primary font-mono flex-shrink-0">›</span>
-                  <span>{h}</span>
-                </li>
-              ))}
-            </ul>
-            {entry.metrics && (
-              <div class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/5 flex flex-col sm:flex-row gap-4 sm:gap-8">
-                {entry.metrics.map((m) => (
-                  <div>
-                    <span
-                      class="block font-mono text-[10px] text-secondary opacity-60 uppercase"
-                    >
-                      {m.label}
-                    </span>
-                    <span
-                      class="text-primary font-mono text-label-mono"
-                    >
-                      {m.value}
-                    </span>
-                  </div>
+            <div class="bg-card p-4 sm:p-6 border border-border/30 rounded-lg">
+              <span
+                class={`font-mono text-[11px] ${tagStyles} px-2 py-1 rounded-full uppercase mb-3 sm:mb-4 inline-block`}
+              >
+                {entry.tag}
+              </span>
+              <p class="text-muted-foreground text-sm sm:text-base mb-3 sm:mb-4">
+                {entry.description}
+              </p>
+              <ul class="space-y-2 sm:space-y-3">
+                {entry.highlights.map((h) => (
+                  <li class="flex gap-2 sm:gap-3 text-sm">
+                    <span class="text-primary font-mono flex-shrink-0">›</span>
+                    <span>{h}</span>
+                  </li>
                 ))}
-              </div>
-            )}
-          </div>
-        </TimelineItem>
-      );
-    })}
+              </ul>
+              {entry.metrics && (
+                <div class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-border/30 flex flex-col sm:flex-row gap-4 sm:gap-8">
+                  {entry.metrics.map((m) => (
+                    <div>
+                      <span class="block font-mono text-[10px] text-muted-foreground opacity-60 uppercase">
+                        {m.label}
+                      </span>
+                      <span class="text-primary font-mono text-xs tracking-wider leading-none font-medium">
+                        {m.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </TimelineItem>
+        );
+      })
+    }
   </div>
 </section>

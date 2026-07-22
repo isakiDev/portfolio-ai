@@ -4,7 +4,7 @@ export interface ProjectEntry {
   image: string;
   status: {
     label: string;
-    variant: "primary" | "tertiary" | "secondary";
+    variant: "primary" | "accent" | "secondary";
   };
   tech: string;
   url?: string;
@@ -26,7 +26,7 @@ export const projects: ProjectEntry[] = [
       "Procesamiento de lenguaje natural local utilizando Whisper.cpp para control de sistemas críticos.",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAMW-PuL-yIktJUDXws9k5YFTApRTz-NRyIK3xefbdJ7fJmSY9zPpiLZlXc7Au8ZK_Vb1GkGya4VDqznhx26n0Sh9yOgcSALmxsl2x-UBOCALNHTnR8SojJuMx2pfjFR9pww4grxzyr6_t_MHiDiF4pO86iY7HcdLX4VgfB15CxZ2iD0jOB4xff03OWyjW_jsScMo_zzWsk8x1eDGW7TQiBXbxdxYLo9v4ynPyDhNaTWvhwOU6zBxXS",
-    status: { label: "Experimental", variant: "tertiary" },
+    status: { label: "Experimental", variant: "accent" },
     tech: "Go / C++",
   },
 ];

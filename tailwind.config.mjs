@@ -5,55 +5,24 @@ export default {
   theme: {
     extend: {
       colors: {
+        background: "#0b141c",
+        foreground: "#dae3ee",
+        card: "#182028",
+        // "card-foreground": "#dae3ee",
         primary: "#7bdb80",
-        "on-primary": "#00390e",
-        "primary-container": "#238636",
-        "on-primary-container": "#f9fff3",
-        secondary: "#c3c6cf",
-        "secondary-container": "#43474e",
-        tertiary: "#ffb1c4",
-        "on-surface": "#dae3ee",
-        surface: "#0b141c",
-        "surface-container": "#182028",
-        "surface-container-low": "#141c24",
-        "surface-container-high": "#222b33",
-        "outline-variant": "#3f4a3d",
+        "primary-foreground": "#00390e",
+        secondary: "#43474e",
+        // "secondary-foreground": "#c3c6cf",
+        accent: "#ffb1c4",
+        // "accent-foreground": "#0b141c",
+        muted: "#141c24",
+        "muted-foreground": "#c3c6cf",
+        border: "#3f4a3d",
+        ring: "#7bdb80",
       },
       fontFamily: {
         sans: ["Geist Sans", "sans-serif"],
         mono: ["Geist Mono", "monospace"],
-      },
-      fontSize: {
-        display: [
-          "48px",
-          {
-            lineHeight: "1.1",
-            letterSpacing: "-0.04em",
-            fontWeight: "600",
-          },
-        ],
-        "headline-lg": [
-          "32px",
-          {
-            lineHeight: "1.2",
-            letterSpacing: "-0.02em",
-            fontWeight: "500",
-          },
-        ],
-        "label-mono": [
-          "12px",
-          {
-            lineHeight: "1",
-            letterSpacing: "0.05em",
-            fontWeight: "500",
-          },
-        ],
-      },
-      spacing: {
-        "section-gap": "8rem",
-      },
-      maxWidth: {
-        "container-max": "1000px",
       },
     },
   },

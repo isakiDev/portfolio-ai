@@ -34,7 +34,7 @@ export const activityLog: LogEntry[] = [
 
 export const logLevelColors: Record<LogLevel, string> = {
   DEPLOY: "text-primary",
-  COMMIT: "text-tertiary",
-  RESEARCH: "text-secondary",
+  COMMIT: "text-accent",
+  RESEARCH: "text-muted-foreground",
   STABLE: "text-primary",
 };

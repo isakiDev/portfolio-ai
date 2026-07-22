@@ -2,12 +2,12 @@
 import Icon from "@components/ui/Icon.astro";
 ---
 
-<section class="max-w-container-max mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-section-gap">
+<section class="max-w-5xl mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-32">
   <div
-    class="bg-surface-container border border-white/10 p-6 sm:p-8 rounded-lg relative overflow-hidden"
+    class="bg-card border border-border p-6 sm:p-8 rounded-lg relative overflow-hidden"
   >
     <div
-      class="absolute top-0 left-0 w-full h-1 bg-primary-container"
+      class="absolute top-0 left-0 w-full h-1 bg-primary"
     ></div>
     <div class="flex items-center gap-3 mb-5 sm:mb-6">
       <Icon name="terminal" class="text-primary" fill />
@@ -16,17 +16,17 @@ import Icon from "@components/ui/Icon.astro";
     <div class="flex flex-col md:flex-row gap-3 sm:gap-4">
       <input
         aria-label="Preguntar al asistente"
-        class="flex-grow bg-transparent border-b border-outline-variant focus:border-primary outline-none py-2 font-mono text-sm text-on-surface transition-all focus-visible:ring-1 focus-visible:ring-primary"
+        class="grow bg-transparent border-b border-border focus:border-primary outline-none py-2 font-mono text-sm text-foreground transition-all focus-visible:ring-1 focus-visible:ring-ring"
         placeholder="Pregunta sobre stack, experiencia o disponibilidad..."
         type="text"
       />
       <button
-        class="px-6 py-2 border border-primary text-primary font-mono text-label-mono hover:bg-primary-container/10 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none w-full sm:w-auto"
+        class="px-6 py-2 border border-primary text-primary font-mono text-xs tracking-wider leading-none font-medium hover:bg-primary/10 transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none w-full sm:w-auto"
       >
         QUERY
       </button>
     </div>
-    <div class="mt-3 sm:mt-4 font-mono text-label-mono text-secondary opacity-60">
+    <div class="mt-3 sm:mt-4 font-mono text-xs tracking-wider leading-none font-medium text-muted-foreground opacity-60">
       Prueba: "¿Cuál es la experiencia de Gaspar con Docker?"
     </div>
   </div>

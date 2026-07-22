@@ -1,14 +1,14 @@
 ---
 export interface Props {
-  variant?: "primary" | "tertiary" | "secondary";
+  variant?: "primary" | "accent" | "secondary";
 }
 
 const { variant = "primary" } = Astro.props;
 
 const variantStyles: Record<string, string> = {
   primary: "bg-primary/10 text-primary",
-  tertiary: "bg-tertiary/10 text-tertiary",
-  secondary: "bg-white/5 text-secondary/60",
+  accent: "bg-accent/10 text-accent",
+  secondary: "bg-muted text-muted-foreground/60",
 };
 
 const variantClass = variantStyles[variant];

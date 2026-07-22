@@ -8,6 +8,6 @@ const { label, className } = Astro.props;
 const headingClass = className || "mb-12";
 ---
 
-<h3 class={`font-mono text-label-mono text-secondary ${headingClass}`}>
+<h3 class={`font-mono text-xs tracking-wider leading-none font-medium text-muted-foreground ${headingClass}`}>
   {label}
 </h3>

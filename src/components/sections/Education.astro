@@ -5,20 +5,20 @@ import TimelineItem from "@components/common/TimelineItem.astro";
 ---
 
 <section
-  class="max-w-container-max mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-section-gap"
+  class="max-w-5xl mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-32"
   id="education"
 >
   <SectionHeading label="v_formacion / educacion_continua" />
-  <div class="space-y-10 lg:space-y-12 ml-3 sm:ml-4 border-l border-white/10">
+  <div class="space-y-10 lg:space-y-12 ml-3 sm:ml-4 border-l border-border">
     {education.map((entry) => (
       <TimelineItem
         period={entry.period}
         title={entry.title}
         subtitle={entry.institution}
-        dotColor="bg-secondary-container"
+        dotColor="bg-secondary"
       >
-        <div class="bg-surface-container-low/30 p-4 sm:p-6 border border-white/5 rounded-lg">
-          <p class="text-secondary text-sm sm:text-base">{entry.description}</p>
+        <div class="bg-card/30 p-4 sm:p-6 border border-border/30 rounded-lg">
+          <p class="text-muted-foreground text-sm sm:text-base">{entry.description}</p>
         </div>
       </TimelineItem>
     ))}
