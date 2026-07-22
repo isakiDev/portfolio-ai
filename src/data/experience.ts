@@ -15,41 +15,63 @@ export interface ExperienceEntry {
 
 export const experience: ExperienceEntry[] = [
   {
-    period: "2022 — PRESENTE",
+    period: "Mar 2026 - Actualidad",
     company: "Accenture",
-    role: "Backend & Automation Lead",
-    tag: "Transición a arquitecturas distribuidas",
+    role: "Custom Software Engineering Associate",
+    tag: "Backend",
     tagVariant: "primary",
-    dotColor: "bg-primary",
     description:
-      "Liderazgo técnico en la modernización de infraestructura para servicios financieros críticos, implementando patrones de alta disponibilidad y observabilidad avanzada.",
+      "Desarrollo soluciones backend para aplicaciones empresariales, enfocándome en la escalabilidad, la mantenibilidad y la entrega continua dentro de equipos ágiles.",
     highlights: [
-      "Orquestación de microservicios en Go bajo entornos Kubernetes multi-region.",
-      "Infraestructura como código (Terraform) para despliegues automatizados de cumplimiento bancario.",
+      "Implementación de servicios y APIs con TypeScript y NestJS.",
+      "Aplicación de buenas prácticas de arquitectura, testing y calidad de código.",
+      "Colaboración con equipos multidisciplinarios durante todo el ciclo de desarrollo.",
     ],
-    metrics: [
-      { label: "Impacto", value: "Despliegues 40% más rápidos" },
-      { label: "Escalabilidad", value: "1M+ Transacciones diarias" },
-    ],
+    dotColor: "bg-primary",
   },
   {
-    period: "2020 — 2022",
-    company: "Zurich Santander",
-    role: "Analista de Sistemas",
-    tag: "Migración Cloud-Native",
+    period: "Sep 2024 - Dic 2025",
+    company: "Zurich Santander Chile",
+    role: "Data Governance Trainee",
+    tag: "Data",
     tagVariant: "secondary",
-    dotColor: "bg-secondary-container",
     description:
-      "Integración de sistemas legacy con arquitecturas de nube AWS, asegurando la integridad de datos en procesos de migración masiva.",
+      "Contribuí a mejorar la calidad y confiabilidad de los datos mediante el desarrollo de procesos ETL, validaciones automatizadas y herramientas de monitoreo en Azure Databricks.",
     highlights: [
-      "Desarrollo de pipelines ETL automatizados con Python y AWS Lambda.",
-      "Optimización de APIs REST para servicios de seguros digitales.",
+      "Desarrollo de pipelines ETL con integración de datos desde APIs.",
+      "Validación de datos utilizando Great Expectations para garantizar su integridad.",
+      "Creación de dashboards para el seguimiento de indicadores de calidad de datos.",
     ],
-    metrics: [
-      {
-        label: "Milestone Técnico",
-        value: "99.99% Uptime mantenido en migración core",
-      },
+    dotColor: "bg-sky-500",
+  },
+  {
+    period: "May 2024 - Mar 2025",
+    company: "No Country",
+    role: "FullStack Developer",
+    tag: "Full Stack",
+    tagVariant: "secondary",
+    description:
+      "Participé en el desarrollo de múltiples proyectos para clientes, colaborando con equipos internacionales bajo metodologías ágiles y contribuyendo tanto al frontend como al backend.",
+    highlights: [
+      "Desarrollo de funcionalidades y APIs para diferentes productos, incluyendo BarberHub.",
+      "Documentación técnica, testing y revisión de código para asegurar la calidad del software.",
+      "Trabajo colaborativo con desarrolladores, diseñadores y QA en un entorno remoto.",
     ],
+    dotColor: "bg-violet-500",
+  },
+  {
+    period: "Ene 2023 - Jul 2023",
+    company: "ColTec Spa",
+    role: "FullStack Developer",
+    tag: "Full Stack",
+    tagVariant: "secondary",
+    description:
+      "Desarrollé funcionalidades para sistemas de gestión empresarial, optimizando procesos operativos en soluciones de punto de venta y autoatención.",
+    highlights: [
+      "Desarrollo de módulos en PHP para sistemas POS y plataformas de autoatención.",
+      "Integración con impresoras y otros dispositivos utilizados en entornos comerciales.",
+      "Implementación de funcionalidades orientadas a la gestión de recursos humanos.",
+    ],
+    dotColor: "bg-emerald-500",
   },
 ];
