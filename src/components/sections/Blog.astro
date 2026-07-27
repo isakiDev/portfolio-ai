@@ -7,15 +7,7 @@ import SectionHeading from "@components/ui/SectionHeading.astro";
   class="max-w-5xl mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-32"
   id="blog"
 >
-  <div class="flex justify-between items-end mb-8 lg:mb-12">
-    <SectionHeading label="blog.md" className="mb-0" />
-    <a
-      class="text-primary font-mono text-xs tracking-wider leading-none font-medium hover:underline flex-shrink-0 ml-4"
-      href="#"
-    >
-      VER_TODO()
-    </a>
-  </div>
+  <SectionHeading label="blog.md" />
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
     <div class="lg:col-span-7">
       <div class="group cursor-pointer">
@@ -75,7 +67,7 @@ import SectionHeading from "@components/ui/SectionHeading.astro";
                   {post.readTime}
                 </div>
               </div>
-              <div class="w-16 h-16 sm:w-20 sm:h-20 bg-card rounded border border-border/30 flex-shrink-0"></div>
+              <div class="w-16 h-16 sm:w-20 sm:h-20 bg-card rounded border border-border/30 flex-shrink-0" />
             </div>
           );
         })
