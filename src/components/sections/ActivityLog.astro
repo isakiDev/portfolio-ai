@@ -35,14 +35,14 @@ function shortHash(url: string): string {
   id="activity"
   class="max-w-5xl mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-32"
 >
-  <SectionHeading label="github.log" className="mb-8" />
+  <SectionHeading label="github.log" />
 
   <div
-    class="border-l border-border pl-4 font-mono text-[11px] sm:text-xs space-y-8"
+    class="border-l border-border ml-3 sm:ml-4 pl-5 sm:pl-8 font-mono text-[11px] sm:text-xs space-y-8"
   >
     {
       repositories.map(({ repo, commits }) => (
-        <article class="space-y-3">
+        <article class="space-y-3 relative">
           <a
             href={`https://github.com/isakidev/${repo}`}
             target="_blank"
