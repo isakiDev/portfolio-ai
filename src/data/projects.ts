@@ -6,27 +6,62 @@ export interface ProjectEntry {
     label: string;
     variant: "primary" | "accent" | "secondary";
   };
-  tech: string;
+  tech: string[];
   url?: string;
+  repoUrl?: string;
 }
 
 export const projects: ProjectEntry[] = [
   {
-    title: "NestJS Boilerplate",
+    title: "Fashion Like",
     description:
-      "Arquitectura limpia para microservicios con soporte nativo para CQRS y Event Sourcing.",
+      "Red social dedicada al mundo de la moda, donde los usuarios pueden exhibir sus estilos más destacados.",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBcbOAFwpVJh4Ka0omUYMuq7uzvNy0gcA7AHctTeyknsfVJAw2zadaKB4iIw73xAHbcPHVdJy9Zi6a8ns_0AHRzgndiNbCZqO1ElYYj_saHMFmq0bXAR5cQwMXeamZQBS7eekpXqGVQLq_hhyja9SgHGBX7g-GPil4FuylkvCJDFsbdZg1Tr4anWlLScL8UazroneWxrB0HA9STGk3feeINMyGLWXvSNilMvhKUlNrRW8H-JjkYo_wt",
-    status: { label: "Stable", variant: "primary" },
-    tech: "TypeScript",
+      "https://res.cloudinary.com/dzn3nempv/image/upload/v1722641869/portfolio/bhppoums61vaagcohi1f.png",
+    status: {
+      label: "Completed",
+      variant: "primary",
+    },
+    tech: ["NestJS", "React", "TypeScript"],
+    url: "https://isakidev-fashion-like.netlify.app",
   },
   {
-    title: "AI Voice Assistant",
+    title: "Calendar",
     description:
-      "Procesamiento de lenguaje natural local utilizando Whisper.cpp para control de sistemas críticos.",
+      "Aplicación web para agendar notas en un calendario atractivo, permitiendo a los usuarios visualizar el flujo y las fechas establecidas.",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAMW-PuL-yIktJUDXws9k5YFTApRTz-NRyIK3xefbdJ7fJmSY9zPpiLZlXc7Au8ZK_Vb1GkGya4VDqznhx26n0Sh9yOgcSALmxsl2x-UBOCALNHTnR8SojJuMx2pfjFR9pww4grxzyr6_t_MHiDiF4pO86iY7HcdLX4VgfB15CxZ2iD0jOB4xff03OWyjW_jsScMo_zzWsk8x1eDGW7TQiBXbxdxYLo9v4ynPyDhNaTWvhwOU6zBxXS",
-    status: { label: "Experimental", variant: "accent" },
-    tech: "Go / C++",
+      "https://res.cloudinary.com/dzn3nempv/image/upload/v1722633286/portfolio/nusbxa2suly7h1n0ctay.png",
+    status: {
+      label: "Completed",
+      variant: "primary",
+    },
+    tech: ["Node.js", "React", "TypeScript"],
+    url: "https://isakidev-calendar.netlify.app/",
+  },
+  {
+    title: "Todo List",
+    description:
+      "Gestor de tareas diarias diseñado para mejorar la eficiencia de los usuarios. Facilita la organización y priorización de actividades.",
+    image:
+      "https://res.cloudinary.com/dzn3nempv/image/upload/v1722633570/portfolio/dn8fqcnuhagjkqpbmrhb.png",
+    status: {
+      label: "Completed",
+      variant: "primary",
+    },
+    tech: ["React", "TypeScript"],
+    url: "https://isakidev-todo.netlify.app/",
+  },
+  {
+    title: "Task Tracker",
+    description:
+      "CLI para gestionar tareas pendientes con soporte para crear, actualizar y eliminar, utilizando almacenamiento local en JSON y pruebas con Jest.",
+    image:
+      "https://res.cloudinary.com/dzn3nempv/image/upload/v1758264381/portfolio/test_image_1_wytt1v.png",
+    status: {
+      label: "Completed",
+      variant: "primary",
+    },
+    tech: ["JavaScript", "Jest"],
+    repoUrl: "https://github.com/isakiDev/task-tracker",
   },
 ];
