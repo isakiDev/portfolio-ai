@@ -1,36 +1,28 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
 <section
   id="about"
   class="max-w-5xl mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-32"
 >
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-    <aside class="lg:col-span-4">
-      <h3
-        class="font-mono text-xs tracking-wider leading-none font-medium text-muted-foreground border-l border-primary pl-4"
+    <SectionHeading label="README.md" className="lg:col-span-4 h-fit" />
+    <div class="lg:col-span-8 space-y-4 sm:space-y-5">
+      <p
+        class="text-base sm:text-lg font-semibold leading-relaxed text-foreground"
       >
-        perfil.info
-      </h3>
-    </aside>
-
-    <div class="lg:col-span-8 space-y-6 leading-relaxed">
-      <p class="text-lg text-foreground">
-        <span class="text-foreground font-semibold">
-          Creo que el mejor código es consecuencia de entender bien el problema.
-        </span>
+        Disfruto resolviendo problemas complejos con soluciones simples.
       </p>
 
-      <p class="text-foreground">
-        Antes de programar prefiero comprender el contexto, cuestionar los
-        requisitos y buscar la solución más simple posible. Me interesa crear
-        software que sea claro, mantenible y fácil de evolucionar.
+      <p class="leading-relaxed text-muted-foreground">
+        Antes de escribir código prefiero entender el problema, cuestionar los
+        requisitos y encontrar la solución más simple posible.
       </p>
 
-      <p class="text-foreground">
-        Aunque disfruto especialmente el desarrollo <span class="text-primary"
-          >backend</span
-        >, también me siento cómodo trabajando en <span class="text-primary"
-          >frontend</span
-        >
-        cuando el proyecto lo necesita.
+      <p class="leading-relaxed text-muted-foreground">
+        Mi objetivo es construir software claro, mantenible y fácil de
+        evolucionar.
       </p>
     </div>
   </div>
