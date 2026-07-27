@@ -6,11 +6,11 @@ export interface ExperienceEntry {
   tagVariant: "primary" | "secondary";
   description: string;
   highlights: string[];
+  dotColor?: string;
   metrics?: {
     label: string;
     value: string;
   }[];
-  dotColor: string;
 }
 
 export const experience: ExperienceEntry[] = [
@@ -21,11 +21,11 @@ export const experience: ExperienceEntry[] = [
     tag: "Backend Engineering",
     tagVariant: "primary",
     description:
-      "Desarrollo de soluciones backend para aplicaciones empresariales, diseñando componentes escalables y mantenibles bajo buenas prácticas de ingeniería.",
+      "Migración de servicios legacy a una arquitectura cloud para modernizar aplicaciones empresariales.",
     highlights: [
-      "APIs y servicios backend.",
-      "Arquitectura escalable.",
-      "Clean Code y buenas prácticas.",
+      "Diseño de diagramas de arquitectura y flujos técnicos.",
+      "Desarrollo y mantenimiento de APIs y servicios backend.",
+      "Colaboración en la migración de aplicaciones a la nube.",
     ],
     dotColor: "bg-primary",
   },
@@ -38,11 +38,10 @@ export const experience: ExperienceEntry[] = [
     description:
       "Implementación de procesos ETL para mejorar la calidad, confiabilidad y monitoreo de datos sobre Azure Databricks.",
     highlights: [
-      "Pipelines ETL desde APIs.",
-      "Validaciones con Great Expectations.",
-      "Dashboards de calidad de datos.",
+      "Desarrollo de pipelines ETL consumiendo APIs.",
+      "Automatización de validaciones con Great Expectations.",
+      "Creación de dashboards para monitoreo de calidad de datos.",
     ],
-    dotColor: "bg-sky-500",
   },
   {
     period: "May 2024 - Mar 2025",
@@ -53,11 +52,10 @@ export const experience: ExperienceEntry[] = [
     description:
       "Desarrollo de productos digitales en equipos internacionales, colaborando durante todo el ciclo de desarrollo bajo metodologías ágiles.",
     highlights: [
-      "Desarrollo frontend y backend.",
-      "APIs REST e integraciones.",
-      "Code reviews y documentación.",
+      "Desarrollo de APIs REST e integraciones.",
+      "Participación en code reviews y documentación técnica.",
+      "Colaboración con equipos multidisciplinarios bajo Scrum.",
     ],
-    dotColor: "bg-violet-500",
   },
   {
     period: "Ene 2023 - Jul 2023",
@@ -68,10 +66,9 @@ export const experience: ExperienceEntry[] = [
     description:
       "Creación de soluciones empresariales para optimizar procesos operativos y herramientas de uso interno.",
     highlights: [
-      "Módulos PHP para sistemas POS.",
+      "Desarrollo de módulos PHP para sistemas POS.",
       "Integración de dispositivos comerciales.",
-      "Sistemas internos de gestión.",
+      "Implementación de herramientas internas de gestión.",
     ],
-    dotColor: "bg-emerald-500",
   },
 ];

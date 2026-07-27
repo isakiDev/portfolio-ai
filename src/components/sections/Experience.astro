@@ -1,7 +1,8 @@
 ---
-import { experience } from "@data/experience";
 import SectionHeading from "@components/ui/SectionHeading.astro";
 import TimelineItem from "@components/common/TimelineItem.astro";
+
+import { experience } from "@data/experience";
 ---
 
 <section
@@ -9,6 +10,7 @@ import TimelineItem from "@components/common/TimelineItem.astro";
   id="experience"
 >
   <SectionHeading label="experiencia.md" />
+
   <div class="space-y-10 lg:space-y-12 ml-3 sm:ml-4 border-l border-border">
     {
       experience.map((entry) => {
@@ -30,17 +32,20 @@ import TimelineItem from "@components/common/TimelineItem.astro";
               >
                 {entry.tag}
               </span>
+
               <p class="text-muted-foreground text-sm sm:text-base mb-3 sm:mb-4">
                 {entry.description}
               </p>
+
               <ul class="space-y-2 sm:space-y-3">
-                {entry.highlights.map((h) => (
+                {entry?.highlights?.map((h) => (
                   <li class="flex gap-2 sm:gap-3 text-sm">
                     <span class="text-primary font-mono flex-shrink-0">›</span>
                     <span>{h}</span>
                   </li>
                 ))}
               </ul>
+
               {entry.metrics && (
                 <div class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-border/30 flex flex-col sm:flex-row gap-4 sm:gap-8">
                   {entry.metrics.map((m) => (
