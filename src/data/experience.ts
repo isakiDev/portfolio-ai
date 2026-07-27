@@ -21,8 +21,12 @@ export const experience: ExperienceEntry[] = [
     tag: "Backend Engineering",
     tagVariant: "primary",
     description:
-      "Desarrollo soluciones backend para aplicaciones empresariales, enfocadas en la escalabilidad, mantenibilidad y calidad del software dentro de equipos ágiles.",
-    highlights: [],
+      "Desarrollo de soluciones backend para aplicaciones empresariales, diseñando componentes escalables y mantenibles bajo buenas prácticas de ingeniería.",
+    highlights: [
+      "APIs y servicios backend.",
+      "Arquitectura escalable.",
+      "Clean Code y buenas prácticas.",
+    ],
     dotColor: "bg-primary",
   },
   {
@@ -32,11 +36,11 @@ export const experience: ExperienceEntry[] = [
     tag: "Data Engineering",
     tagVariant: "secondary",
     description:
-      "Implementé soluciones orientadas a mejorar la calidad y confiabilidad de los datos mediante procesos ETL, validaciones automatizadas y monitoreo sobre Azure Databricks.",
+      "Implementación de procesos ETL para mejorar la calidad, confiabilidad y monitoreo de datos sobre Azure Databricks.",
     highlights: [
-      "Desarrollo de pipelines ETL para integración y transformación de datos provenientes de APIs.",
-      "Implementación de validaciones automatizadas con Great Expectations para asegurar la integridad de la información.",
-      "Creación de dashboards para monitorear métricas e indicadores de calidad de datos.",
+      "Pipelines ETL desde APIs.",
+      "Validaciones con Great Expectations.",
+      "Dashboards de calidad de datos.",
     ],
     dotColor: "bg-sky-500",
   },
@@ -47,11 +51,11 @@ export const experience: ExperienceEntry[] = [
     tag: "Full Stack Development",
     tagVariant: "secondary",
     description:
-      "Participé en el desarrollo de productos digitales colaborando con equipos internacionales bajo metodologías ágiles, integrando soluciones frontend y backend.",
+      "Desarrollo de productos digitales en equipos internacionales, colaborando durante todo el ciclo de desarrollo bajo metodologías ágiles.",
     highlights: [
-      "Desarrollo de funcionalidades y APIs para distintos productos, incluyendo BarberHub.",
-      "Implementación de pruebas, documentación técnica y revisión de código para mantener la calidad del software.",
-      "Trabajo colaborativo con desarrolladores, diseñadores y QA en equipos remotos multidisciplinarios.",
+      "Desarrollo frontend y backend.",
+      "APIs REST e integraciones.",
+      "Code reviews y documentación.",
     ],
     dotColor: "bg-violet-500",
   },
@@ -62,11 +66,11 @@ export const experience: ExperienceEntry[] = [
     tag: "Full Stack Development",
     tagVariant: "secondary",
     description:
-      "Desarrollé soluciones empresariales orientadas a optimizar procesos operativos mediante sistemas POS, plataformas de autoatención y herramientas internas.",
+      "Creación de soluciones empresariales para optimizar procesos operativos y herramientas de uso interno.",
     highlights: [
-      "Desarrollo de módulos en PHP para sistemas POS y soluciones de autoatención.",
-      "Integración con impresoras y dispositivos utilizados en entornos comerciales.",
-      "Implementación de funcionalidades para sistemas de gestión interna y recursos humanos.",
+      "Módulos PHP para sistemas POS.",
+      "Integración de dispositivos comerciales.",
+      "Sistemas internos de gestión.",
     ],
     dotColor: "bg-emerald-500",
   },
