@@ -8,12 +8,19 @@ const { song, artist } = Astro.props;
 ---
 
 <div
-  class="flex items-center gap-2 mr-4 py-1 px-2 bg-muted rounded-full border border-border/30"
+  class="inline-flex items-center gap-2 rounded-full border border-border/50 bg-muted py-1 pl-2.5 pr-3"
 >
-  <span class="material-symbols-outlined text-[14px] text-primary animate-pulse"
-    >graphic_eq</span
+  <svg
+    class="size-3.5 text-primary"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
   >
-  <span class="font-mono text-[10px] text-muted-foreground truncate max-w-[150px]"
+    <rect x="3" y="13" width="3" height="8" rx="1.5" />
+    <rect x="10.5" y="8" width="3" height="13" rx="1.5" />
+    <rect x="18" y="5" width="3" height="16" rx="1.5" />
+  </svg>
+  <span class="truncate font-mono text-[10px] text-muted-foreground max-w-[150px]"
     >{song} — {artist}</span
   >
 </div>

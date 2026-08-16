@@ -1,50 +1,48 @@
----
-import Icon from "../ui/Icon.astro";
----
-
-<footer class="w-full py-6 border-t border-border bg-background">
+<footer class="w-full py-8 border-t border-border">
   <div
-    class="flex flex-col md:flex-row justify-between items-center px-4 sm:px-8 md:px-16 max-w-5xl mx-auto gap-6 md:gap-8"
+    class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between px-4 sm:px-8 md:px-16 max-w-5xl mx-auto"
   >
-    <div class="text-base text-foreground">Gaspar.</div>
-    <div class="flex flex-wrap justify-center gap-x-3 gap-y-3 font-mono text-xs tracking-wider leading-none font-medium">
+    <div>
+      <p class="text-base font-semibold text-foreground">Gaspar.</p>
+      <p class="mt-1 font-mono text-xs text-muted-foreground">
+        &copy; 2026 SYSTEM_CORE_V2
+      </p>
+    </div>
+
+    <div
+      class="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-xs tracking-wider"
+    >
       <a
-        class="text-muted-foreground hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center gap-1"
         href="#"
+        class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >GitHub</a
       >
-        <Icon name="code" size="text-[14px]" /> GitHub
-      </a>
       <a
-        class="text-muted-foreground hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center gap-1"
         href="#"
+        class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >LinkedIn</a
       >
-        <Icon name="person" size="text-[14px]" /> LinkedIn
-      </a>
       <a
-        class="text-muted-foreground hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center gap-1"
         href="#"
+        class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >DevTalles</a
       >
-        <Icon name="terminal" size="text-[14px]" /> DevTalles
-      </a>
-      <span class="mx-2 opacity-20 hidden sm:inline">|</span>
+      <span class="h-4 w-px bg-border hidden sm:inline-block" aria-hidden="true"></span>
       <a
-        class="text-muted-foreground hover:text-foreground transition-colors opacity-80 hover:opacity-100"
         href="#"
+        class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >Código</a
       >
       <a
-        class="text-muted-foreground hover:text-foreground transition-colors opacity-80 hover:opacity-100"
         href="#"
+        class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >Contacto</a
       >
       <a
-        class="text-muted-foreground hover:text-foreground transition-colors opacity-80 hover:opacity-100"
         href="#"
+        class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >RSS</a
       >
-    </div>
-    <div class="font-mono text-xs tracking-wider leading-none font-medium text-muted-foreground">
-      &copy; 2024 SYSTEM_CORE_V2
     </div>
   </div>
 </footer>
