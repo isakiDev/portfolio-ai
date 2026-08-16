@@ -38,7 +38,7 @@ function shortHash(url: string): string {
   <SectionHeading label="github.log" />
 
   <div
-    class="border-l border-border ml-3 sm:ml-4 pl-5 sm:pl-8 font-mono text-[11px] sm:text-xs space-y-8"
+    class="border-l border-border ml-2 sm:ml-3 pl-5 sm:pl-8 font-mono text-[11px] sm:text-xs space-y-8"
   >
     {
       repositories.map(({ repo, commits }) => (
@@ -46,10 +46,10 @@ function shortHash(url: string): string {
           <a
             href={`https://github.com/isakidev/${repo}`}
             target="_blank"
-            class="inline-flex items-center gap-2 text-muted-foreground/70 hover:text-accent transition-colors"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <GitHubIcon />
-
             <span class="font-semibold text-accent">{repo}</span>
           </a>
 
@@ -59,12 +59,10 @@ function shortHash(url: string): string {
                 <a
                   href={commit.url}
                   target="_blank"
-                  class="flex flex-col sm:flex-row sm:items-center sm:gap-4 rounded px-2 py-1 transition-colors hover:bg-muted"
+                  rel="noopener noreferrer"
+                  class="flex flex-col sm:flex-row sm:items-center gap-x-4 gap-y-1 rounded-md px-2 py-1.5 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
-                  <time
-                    datetime={commit.date}
-                    class="shrink-0 text-muted-foreground/40"
-                  >
+                  <time datetime={commit.date} class="shrink-0 text-muted-foreground">
                     {formatDate(commit.date)}
                   </time>
 
@@ -72,7 +70,6 @@ function shortHash(url: string): string {
                     <span class="shrink-0 text-accent">
                       [{shortHash(commit.url)}]
                     </span>
-
                     <span class="truncate text-foreground">
                       {commit.message}
                     </span>

@@ -5,11 +5,11 @@ export interface Props {
 }
 
 const { label, className } = Astro.props;
-const headingClass = className || "mb-12";
+const headingClass = className || "mb-10";
 ---
 
 <h3
-  class={`font-mono text-xs tracking-wider leading-none font-medium text-muted-foreground ${headingClass} border-l border-primary pl-4`}
+  class={`font-mono text-xs tracking-wider leading-none font-medium text-muted-foreground ${headingClass} border-l-2 border-primary pl-4`}
 >
   {label}
 </h3>

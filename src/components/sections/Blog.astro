@@ -1,6 +1,7 @@
 ---
 import { featuredPost, recentPosts } from "@data/blog-posts";
 import SectionHeading from "@components/ui/SectionHeading.astro";
+import ChevronRight from "@components/icons/ChevronRight.astro";
 ---
 
 <section
@@ -8,70 +9,78 @@ import SectionHeading from "@components/ui/SectionHeading.astro";
   id="blog"
 >
   <SectionHeading label="blog.md" />
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
     <div class="lg:col-span-7">
-      <div class="group cursor-pointer">
+      <div class="aspect-video relative overflow-hidden rounded-lg border border-border/60 bg-card mb-4 sm:mb-5">
         <div
-          class="aspect-video bg-card rounded-lg overflow-hidden mb-4 sm:mb-6 relative border border-border/30"
+          class="absolute bottom-4 sm:bottom-5 left-4 sm:left-6 right-4 sm:right-6"
         >
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"
+          <span
+            class="inline-flex px-2.5 py-1 bg-primary text-primary-foreground font-mono text-[10px] rounded-full uppercase tracking-wider mb-3"
           >
-          </div>
-          <div
-            class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6"
-          >
-            <span
-              class="px-2 py-1 bg-primary text-primary-foreground font-mono text-[10px] rounded uppercase mb-2 sm:mb-3 inline-block"
-            >
-              {featuredPost.category}
-            </span>
-            <h4
-              class="text-2xl lg:text-4xl lg:leading-[1.2] lg:tracking-[-0.02em] lg:font-medium text-foreground group-hover:text-primary transition-colors"
-            >
-              {featuredPost.title}
-            </h4>
-          </div>
-        </div>
-        <p
-          class="text-muted-foreground text-sm sm:text-base mb-3 sm:mb-4 line-clamp-2"
-        >
-          {featuredPost.description}
-        </p>
-        <div
-          class="flex items-center gap-3 sm:gap-4 font-mono text-xs tracking-wider leading-none font-medium text-muted-foreground/60"
-        >
-          <span>{featuredPost.readTime}</span>
-          <span>•</span>
-          <span>{featuredPost.date}</span>
+            {featuredPost.category}
+          </span>
         </div>
       </div>
+
+      <h4
+        class="text-xl sm:text-2xl lg:text-[2rem] leading-[1.25] tracking-[-0.02em] text-foreground mb-3 sm:mb-4"
+      >
+        {featuredPost.title}
+      </h4>
+
+      <p class="text-muted-foreground text-sm sm:text-base mb-4 line-clamp-2">
+        {featuredPost.description}
+      </p>
+
+      <div
+        class="flex items-center gap-3 font-mono text-xs tracking-wider text-muted-foreground"
+      >
+        <span>{featuredPost.readTime}</span>
+        <span class="opacity-50" aria-hidden="true">•</span>
+        <span>{featuredPost.date}</span>
+      </div>
     </div>
+
     <div class="lg:col-span-5 space-y-6 lg:space-y-8">
       {
         recentPosts.map((post, i) => {
           const borderClass =
-            i > 0 ? "border-t border-border/30 pt-6 lg:pt-8" : "";
+            i > 0 ? "border-t border-border/60 pt-6 lg:pt-7" : "";
           return (
-            <div
-              class={`group cursor-pointer flex gap-3 sm:gap-4 ${borderClass}`}
-            >
+            <div class={`flex gap-4 ${borderClass}`}>
               <div class="flex-1 min-w-0">
-                <span class="font-mono text-[10px] text-primary mb-1 block uppercase truncate">
+                <span
+                  class="inline-block font-mono text-[10px] text-primary tracking-wider uppercase mb-1 truncate"
+                >
                   {post.category}
                 </span>
-                <h4 class="text-xl group-hover:text-primary transition-colors mb-1 sm:mb-2">
+                <h4
+                  class="text-lg font-medium leading-snug text-foreground mb-1.5"
+                >
                   {post.title}
                 </h4>
-                <div class="font-mono text-[10px] text-muted-foreground/60">
+                <div class="font-mono text-[11px] text-muted-foreground">
                   {post.readTime}
                 </div>
               </div>
-              <div class="w-16 h-16 sm:w-20 sm:h-20 bg-card rounded border border-border/30 flex-shrink-0" />
+              <div
+                class="mt-1 size-16 sm:size-20 shrink-0 rounded-lg bg-card border border-border/60"
+                aria-hidden="true"
+              />
             </div>
           );
         })
       }
+
+      <a
+        href="/blog/page/1"
+        class="inline-flex items-center gap-1.5 rounded-md font-mono text-xs tracking-wider text-primary hover:text-primary/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        VER TODAS LAS NOTAS
+        <ChevronRight class="size-3.5" />
+      </a>
     </div>
   </div>
 </section>

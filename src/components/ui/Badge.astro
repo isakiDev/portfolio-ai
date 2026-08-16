@@ -8,12 +8,14 @@ const { variant = "primary" } = Astro.props;
 const variantStyles: Record<string, string> = {
   primary: "bg-primary/10 text-primary",
   accent: "bg-accent/10 text-accent",
-  secondary: "bg-muted text-muted-foreground/60",
+  secondary: "bg-secondary text-muted-foreground",
 };
 
 const variantClass = variantStyles[variant];
 ---
 
-<span class={`font-mono text-[10px] px-2 py-0.5 rounded uppercase tracking-wider ${variantClass}`}>
+<span
+  class={`inline-flex items-center font-mono text-[11px] px-2.5 py-1 rounded-full tracking-wider font-medium ${variantClass}`}
+>
   <slot />
 </span>
