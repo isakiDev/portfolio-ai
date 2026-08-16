@@ -1,0 +1,90 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+
+import Layout from "@layouts/BaseLayout.astro";
+import ContentWrapper from "@layouts/ContentWrapper.astro";
+import Calendar from "@components/icons/Calendar.astro";
+import Clock from "@components/icons/Clock.astro";
+import Breadcrumb from "@components/ui/Breadcrumb.astro";
+
+import { formatDate } from "@utils/format-date.util";
+import { getReadingTime } from "@utils/reading-time.util";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("blog", ({ data }) => {
+    return data.draft === false;
+  });
+
+  return articles.map((article) => ({
+    params: { slug: article.id },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const article = await getEntry("blog", slug);
+
+if (!article) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await render(article);
+
+const breadcrumbs = [
+  { name: "Inicio", href: "/" },
+  { name: "Blog", href: "/blog/page/1" },
+  { name: article.data.title },
+];
+
+const readingTime = getReadingTime(article.body);
+---
+
+<Layout
+  title={`${article.data.title} | Blog - Gaspar Castillo - Desarrollador de Software`}
+>
+  <ContentWrapper>
+    <Breadcrumb breadcrumbs={breadcrumbs} />
+
+    <article class="mb-8">
+      <header class="mb-8 border-b border-border/60 pb-8">
+        <h1
+          class="text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-foreground mb-5"
+        >
+          {article.data.title}
+        </h1>
+
+        <div
+          class="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted-foreground"
+        >
+          <div class="flex items-center gap-1.5">
+            <Calendar class="size-4" />
+            <time datetime={article.data.date.toISOString()}>
+              {formatDate(article.data.date)}
+            </time>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <Clock class="size-4" />
+            <span>{readingTime}</span>
+          </div>
+
+          {article.data.tags && article.data.tags.length > 0 && (
+            <ul class="flex flex-wrap gap-2">
+              {article.data.tags.map((tag) => (
+                <li
+                  class="rounded-full border border-border/60 bg-muted px-2.5 py-1 text-xs"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </header>
+
+      <div class="prose max-w-none">
+        <Content />
+      </div>
+    </article>
+  </ContentWrapper>
+</Layout>

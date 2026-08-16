@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import BlogCard from "./BlogCard.astro";
+import { formatDate } from "@utils/format-date.util";
+import { getReadingTime } from "@utils/reading-time.util";
+
+interface Props {
+  items: CollectionEntry<"blog">[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="grid gap-4">
+  {
+    items.map(({ data, collection, id, body }) => {
+      const href = collection === "blog" ? `/blog/${id}` : `/${collection}/${id}`;
+
+      return (
+        <li>
+          <BlogCard
+            href={href}
+            title={data.title}
+            date={formatDate(data.date)}
+            description={data.description}
+            readingTime={getReadingTime(body)}
+          />
+        </li>
+      );
+    })
+  }
+</ul>

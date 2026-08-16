@@ -1,0 +1,59 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "@layouts/BaseLayout.astro";
+import ContentWrapper from "@layouts/ContentWrapper.astro";
+
+import BlogContainer from "@components/ui/BlogContainer.astro";
+import Pagination from "@components/ui/Pagination.astro";
+import Breadcrumb from "@components/ui/Breadcrumb.astro";
+
+import { BLOG_ITEMS_PER_PAGE, paginate } from "@utils/pagination.util";
+
+export async function getStaticPaths() {
+  const blog = await getCollection("blog", ({ data }) => !data.draft);
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(blog.length / BLOG_ITEMS_PER_PAGE),
+  );
+
+  return Array.from({ length: totalPages }, (_, index) => ({
+    params: { page: String(index + 1) },
+  }));
+}
+
+const pageNumber = Number(Astro.params.page);
+
+const blog = await getCollection("blog", ({ data }) => !data.draft);
+blog.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const { paginatedItems, currentPage, totalPages } = paginate({
+  items: blog,
+  currentPage: pageNumber,
+  perPage: BLOG_ITEMS_PER_PAGE,
+});
+
+const breadcrumbs = [
+  {
+    name: "Inicio",
+    href: "/",
+  },
+  {
+    name: "Blog",
+  },
+];
+---
+
+<Layout
+  title={`Blog - Página ${currentPage} | Gaspar Castillo - Desarrollador de Software`}
+>
+  <ContentWrapper>
+    <Breadcrumb breadcrumbs={breadcrumbs} />
+
+    <main>
+      <BlogContainer items={paginatedItems} />
+      <Pagination currentPage={currentPage} totalPages={totalPages} />
+    </main>
+  </ContentWrapper>
+</Layout>

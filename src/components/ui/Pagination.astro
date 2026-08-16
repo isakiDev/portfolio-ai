@@ -1,0 +1,54 @@
+---
+import { getPagination, isActivePage } from "@utils/pagination.util";
+
+interface Props {
+  currentPage: number;
+  totalPages: number;
+}
+
+const { currentPage, totalPages } = Astro.props;
+
+const pages = getPagination(currentPage, totalPages);
+---
+
+<nav
+  class="flex items-center justify-center gap-1 w-fit mx-auto mt-12 rounded-lg border border-border/60 bg-card p-1.5"
+  aria-label="Paginación del blog"
+>
+  {
+    pages.map((page) => {
+      if (typeof page === "string") {
+        return (
+          <span
+            class="px-3 py-1.5 text-sm text-muted-foreground select-none"
+            aria-hidden="true"
+          >
+            …
+          </span>
+        );
+      }
+
+      const isCurrentPageActive = isActivePage(page, currentPage);
+
+      if (isCurrentPageActive) {
+        return (
+          <span
+            class="px-3 py-1.5 rounded-md text-sm font-medium bg-primary text-primary-foreground"
+            aria-current="page"
+          >
+            {page}
+          </span>
+        );
+      }
+
+      return (
+        <a
+          href={`${page}`}
+          class="px-3 py-1.5 rounded-md text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          {page}
+        </a>
+      );
+    })
+  }
+</nav>
