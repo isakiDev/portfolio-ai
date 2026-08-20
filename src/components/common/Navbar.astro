@@ -4,9 +4,9 @@ import MusicWidget from "@components/common/MusicWidget.astro";
 
 const navLinks = [
   { href: "#about", label: "Sobre mí" },
-  { href: "#experience", label: "Trayectoria" },
-  { href: "#projects", label: "Laboratorio" },
-  { href: "#blog", label: "Notas" },
+  { href: "#experience", label: "Experiencia" },
+  { href: "#projects", label: "Proyectos" },
+  { href: "#blog", label: "Blog" },
 ];
 ---
 
@@ -28,14 +28,16 @@ const navLinks = [
     <div class="hidden md:flex gap-3 items-center">
       <MusicWidget song="Highway to Hell" artist="AC/DC" />
 
-      {navLinks.map((link) => (
-        <a
-          href={link.href}
-          class="text-muted-foreground hover:text-foreground transition-colors text-sm rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >
-          {link.label}
-        </a>
-      ))}
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-muted-foreground hover:text-foreground transition-colors text-sm rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            {link.label}
+          </a>
+        ))
+      }
 
       <button
         aria-label="Alternar tema"
@@ -159,15 +161,17 @@ const navLinks = [
   >
     <div class="flex flex-col gap-1 font-mono text-sm">
       <MusicWidget song="Highway to Hell" artist="AC/DC" />
-      {navLinks.map((link) => (
-        <a
-          href={link.href}
-          data-menu-close
-          class="text-muted-foreground hover:text-foreground transition-colors py-2.5 border-b border-border/40 focus-visible:outline-none focus-visible:text-foreground"
-        >
-          {link.label}
-        </a>
-      ))}
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            data-menu-close
+            class="text-muted-foreground hover:text-foreground transition-colors py-2.5 border-b border-border/40 focus-visible:outline-none focus-visible:text-foreground"
+          >
+            {link.label}
+          </a>
+        ))
+      }
       <button
         aria-label="Abrir paleta de comandos"
         class="flex items-center gap-2 px-3 py-2.5 mt-2 w-fit rounded-md bg-card border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
