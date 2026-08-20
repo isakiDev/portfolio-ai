@@ -1,3 +1,5 @@
+import { GITHUB_TOKEN } from "astro:env/server";
+
 const username = "isakidev";
 
 export interface GithubRepo {
@@ -125,7 +127,7 @@ interface LatestCommits {
   }[];
 }
 
-const token = import.meta.env.GITHUB_TOKEN;
+const token = GITHUB_TOKEN;
 
 export async function getLatestCommits(): Promise<LatestCommits[]> {
   const repos = await fetch(
