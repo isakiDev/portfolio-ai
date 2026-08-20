@@ -42,14 +42,17 @@ function shortHash(url: string): string {
   >
     {
       repositories.map(({ repo, commits }) => (
-        <article class="space-y-3 relative">
+        <article class="space-y-3 pt-1.5">
           <a
             href={`https://github.com/isakidev/${repo}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            class="relative inline-flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            <GitHubIcon />
+            <div class="absolute bg-background p-0.5 left-[-29.5px] sm:-left-10.25 top-1/2 -translate-y-1/2">
+              <GitHubIcon />
+            </div>
+
             <span class="font-semibold text-accent">{repo}</span>
           </a>
 
@@ -62,7 +65,10 @@ function shortHash(url: string): string {
                   rel="noopener noreferrer"
                   class="flex flex-col sm:flex-row sm:items-center gap-x-4 gap-y-1 rounded-md px-2 py-1.5 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
-                  <time datetime={commit.date} class="shrink-0 text-muted-foreground">
+                  <time
+                    datetime={commit.date}
+                    class="shrink-0 text-muted-foreground"
+                  >
                     {formatDate(commit.date)}
                   </time>
 
