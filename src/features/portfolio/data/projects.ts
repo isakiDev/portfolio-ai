@@ -1,15 +1,4 @@
-export interface ProjectEntry {
-  title: string;
-  description: string;
-  image: string;
-  status: {
-    label: string;
-    variant: "primary" | "accent" | "secondary";
-  };
-  tech: string[];
-  url?: string;
-  repoUrl?: string;
-}
+import type { ProjectEntry } from "../types";
 
 export const projects: ProjectEntry[] = [
   {

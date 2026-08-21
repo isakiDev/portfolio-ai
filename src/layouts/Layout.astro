@@ -1,8 +1,11 @@
 ---
 import { ClientRouter } from "astro:transitions";
 
-import Navbar from "@components/common/Navbar.astro";
-import Footer from "@components/common/Footer.astro";
+import "@fontsource-variable/geist";
+import "@fontsource-variable/geist-mono";
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 import "../styles/global.css";
 
@@ -51,39 +54,25 @@ const { description, author, url, keywords, image, icon } = metadata;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
-    <link
-      rel="preconnect"
-      href="https://cdn.jsdelivr.net"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/font/sans.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/font/mono.css"
-      rel="stylesheet"
-    />
-
     <script is:inline>
-      (() => {
-        const key = "portfolio-theme";
-        let stored = null;
-
-        try {
-          stored = localStorage.getItem(key);
-        } catch (error) {
-          stored = null;
+      const theme = (() => {
+        const localStorageTheme = localStorage?.getItem("theme") ?? "";
+        if (["dark", "light"].includes(localStorageTheme)) {
+          return localStorageTheme;
         }
-
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)",
-        ).matches;
-
-        if (stored === "dark" || (!stored && prefersDark)) {
-          document.documentElement.classList.add("dark");
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
         }
+        return "light";
       })();
+
+      if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+
+      window.localStorage.setItem("theme", theme);
     </script>
 
     <ClientRouter />
@@ -91,10 +80,8 @@ const { description, author, url, keywords, image, icon } = metadata;
     <title>{title}</title>
   </head>
 
-  <body
-    class="bg-background font-sans text-foreground antialiased"
-  >
-    <Navbar />
+  <body class="bg-background font-sans text-foreground antialiased">
+    <Header />
 
     <main class="pt-32">
       <slot />

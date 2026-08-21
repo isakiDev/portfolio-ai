@@ -1,17 +1,4 @@
-export interface ExperienceEntry {
-  period: string;
-  company: string;
-  role: string;
-  tag: string;
-  tagVariant: "primary" | "secondary";
-  description: string;
-  highlights: string[];
-  dotColor?: string;
-  metrics?: {
-    label: string;
-    value: string;
-  }[];
-}
+import type { ExperienceEntry } from "../types";
 
 export const experience: ExperienceEntry[] = [
   {

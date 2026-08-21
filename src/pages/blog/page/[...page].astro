@@ -1,14 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 
-import Layout from "@layouts/BaseLayout.astro";
+import Layout from "@layouts/Layout.astro";
 import ContentWrapper from "@layouts/ContentWrapper.astro";
 
-import BlogContainer from "@components/ui/BlogContainer.astro";
-import Pagination from "@components/ui/Pagination.astro";
-import Breadcrumb from "@components/ui/Breadcrumb.astro";
-
-import { BLOG_ITEMS_PER_PAGE, paginate } from "@utils/pagination.util";
+import {
+  PostList,
+  Pagination,
+  Breadcrumb,
+  paginate,
+  BLOG_ITEMS_PER_PAGE,
+} from "@features/blog";
 
 export async function getStaticPaths() {
   const blog = await getCollection("blog", ({ data }) => !data.draft);
@@ -52,7 +54,7 @@ const breadcrumbs = [
     <Breadcrumb breadcrumbs={breadcrumbs} />
 
     <main>
-      <BlogContainer items={paginatedItems} />
+      <PostList items={paginatedItems} />
       <Pagination currentPage={currentPage} totalPages={totalPages} />
     </main>
   </ContentWrapper>

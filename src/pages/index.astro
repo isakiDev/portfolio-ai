@@ -1,20 +1,24 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Hero from "@components/sections/Hero.astro";
-import About from "@components/sections/About.astro";
-import Experience from "@components/sections/Experience.astro";
-import ActivityLog from "@components/sections/ActivityLog.astro";
-import Projects from "@components/sections/Projects.astro";
-import Blog from "@components/sections/Blog.astro";
-import SearchAssistant from "@components/sections/SearchAssistant.astro";
+import Layout from "@layouts/Layout.astro";
+
+import {
+  Hero,
+  About,
+  ProjectGrid,
+  Experience,
+  ActivityLog,
+  SearchAssistant,
+} from "@features/portfolio";
+
+import { Blog } from "@features/blog";
 ---
 
-<BaseLayout title="Portfolio de Gaspar Castillo | Desarrollador de Software">
+<Layout title="Portfolio de Gaspar Castillo | Desarrollador de Software">
   <Hero />
   <About />
-  <Projects />
+  <ProjectGrid />
   <Experience />
   <ActivityLog />
   <Blog />
   <SearchAssistant />
-</BaseLayout>
+</Layout>

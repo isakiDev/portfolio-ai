@@ -1,8 +1,8 @@
 ---
-import SectionHeading from "@components/ui/SectionHeading.astro";
-import GitHubIcon from "../icons/GitHub.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import GitHubIcon from "@components/icons/GitHub.astro";
 
-import { getLatestCommits } from "@/lib/github";
+import { getLatestCommits } from "../services/github";
 
 const repositories = await getLatestCommits();
 

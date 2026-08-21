@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
-import BlogCard from "./BlogCard.astro";
-import { formatDate } from "@utils/format-date.util";
-import { getReadingTime } from "@utils/reading-time.util";
+import PostCard from "./PostCard.astro";
+import { formatDate } from "@utils/formatDate";
+import { getReadingTime } from "../services/readingTime";
 
 interface Props {
   items: CollectionEntry<"blog">[];
@@ -19,7 +19,7 @@ const { items } = Astro.props;
 
       return (
         <li>
-          <BlogCard
+          <PostCard
             href={href}
             title={data.title}
             date={formatDate(data.date)}

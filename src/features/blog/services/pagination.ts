@@ -1,4 +1,8 @@
-import type { Pagination } from "../types/pagination.type";
+export interface Pagination<T> {
+  items: Array<T>;
+  perPage: number;
+  currentPage?: number;
+}
 
 export const BLOG_ITEMS_PER_PAGE = 4;
 

@@ -1,11 +1,4 @@
-export interface BlogPost {
-  title: string;
-  description?: string;
-  category: string;
-  readTime: string;
-  date?: string;
-  featured?: boolean;
-}
+import type { BlogPost } from "../types";
 
 export const featuredPost: BlogPost = {
   title:
