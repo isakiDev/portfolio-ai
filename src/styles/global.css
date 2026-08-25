@@ -7,7 +7,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth;;
+  scroll-padding-top: 100px;
 }
 
 .dark {
@@ -19,49 +20,50 @@ html {
 }
 
 @theme {
-  /* Light theme tokens */
-  --color-background: #ffffff;
-  --color-foreground: #101828;
+  /* Catppuccin Latte */
 
-  --color-card: #f7f8fa;
+  --color-background: #eff1f5;
+  --color-foreground: #4c4f69;
 
-  --color-secondary: #eceff3;
+  --color-card: #e6e9ef;
+  --color-secondary: #dce0e8;
 
-  --color-muted: #f1f3f6;
-  --color-muted-foreground: #61708c;
+  --color-muted: #e6e9ef;
+  --color-muted-foreground: #6c6f85;
 
-  --color-primary: #157f43;
+  --color-primary: #8839ef;
   --color-primary-foreground: #ffffff;
 
-  --color-accent: #b91c5c;
+  --color-accent: #7287fd;
 
-  --color-border: #e4e7ec;
-  --color-input: #d7dbe2;
-  --color-ring: #157f43;
+  --color-border: #ccd0da;
+  --color-input: #ccd0da;
+  --color-ring: #8839ef;
 
   /* Typography */
+
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono Variable", ui-monospace, "SFMono-Regular", monospace;
 }
 
-/* Dark theme tokens */
+/* Catppuccin Mocha */
+
 .dark {
-  --color-background: #0d1117;
-  --color-foreground: #e6edf3;
+  --color-background: #1e1e2e;
+  --color-foreground: #cdd6f4;
 
-  --color-card: #151b22;
+  --color-card: #181825;
+  --color-secondary: #313244;
 
-  --color-secondary: #21272f;
+  --color-muted: #181825;
+  --color-muted-foreground: #a6adc8;
 
-  --color-muted: #181f27;
-  --color-muted-foreground: #a3aec0;
+  --color-primary: #cba6f7;
+  --color-primary-foreground: #1e1e2e;
 
-  --color-primary: #62c988;
-  --color-primary-foreground: #062e13;
+  --color-accent: #b4befe;
 
-  --color-accent: #f0a2bb;
-
-  --color-border: #232b35;
-  --color-input: #2c3642;
-  --color-ring: #62c988;
+  --color-border: #313244;
+  --color-input: #45475a;
+  --color-ring: #cba6f7;
 }
