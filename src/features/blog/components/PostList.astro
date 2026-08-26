@@ -2,8 +2,8 @@
 import type { CollectionEntry } from "astro:content";
 
 import PostCard from "./PostCard.astro";
-import { formatDate } from "@utils/formatDate";
-import { getReadingTime } from "../services/readingTime";
+import { formatDate } from "../utils/format-date.util";
+import { getReadingTime } from "../utils/reading-time.util";
 
 interface Props {
   items: CollectionEntry<"blog">[];

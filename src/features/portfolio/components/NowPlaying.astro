@@ -5,13 +5,12 @@ import {
   SPOTIFY_REFRESH_TOKEN,
 } from "astro:env/server";
 
-import { getNowPlaying } from "@features/portfolio/services/now-playing";
+import { getNowPlaying } from "../services/now-playing.service";
 
 import Offline from "@components/icons/Offline.astro";
-import Vinyl from "@components/Vinyl.astro";
+import Vinyl from "./Vinyl.astro";
 
-import Spotify from "@components/icons/Spotify.astro";
-import { nowPlayingAdapter } from "@utils/now-playing.adapter";
+import { nowPlayingAdapter } from "../adapters/now-playing.adapter";
 
 const nowPlaying = await getNowPlaying({
   clientId: SPOTIFY_CLIENT_ID,
@@ -49,11 +48,6 @@ const {
   <Vinyl imageUrl={albumImageUrl} isPlaying={!!isPlaying} />
 
   <div class="flex flex-col justify-center min-w-0">
-    <!-- <div class="flex items-center gap-1.5 mb-0.5">
-      <Spotify />
-      <span class="text-[10px] font-medium text-muted-foreground">Spotify</span>
-    </div> -->
-
     <h2
       class="text-sm font-semibold text-foreground max-w-28 truncate leading-tight"
       title={title}

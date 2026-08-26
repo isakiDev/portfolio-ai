@@ -2,12 +2,10 @@
 import { getCollection, getEntry, render } from "astro:content";
 
 import Layout from "@layouts/Layout.astro";
-import ContentWrapper from "@layouts/ContentWrapper.astro";
+import ContentWrapper from "@features/blog/components/ContentWrapper.astro";
 import Calendar from "@components/icons/Calendar.astro";
 import Clock from "@components/icons/Clock.astro";
-import { Breadcrumb, getReadingTime } from "@features/blog";
-
-import { formatDate } from "@utils/formatDate";
+import { Breadcrumb, getReadingTime, formatDate } from "@features/blog";
 
 export async function getStaticPaths() {
   const articles = await getCollection("blog", ({ data }) => {

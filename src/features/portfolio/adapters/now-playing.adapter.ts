@@ -1,7 +1,7 @@
 import type { NowPlayingResponse } from "@features/portfolio/types";
 
 import Pause from "@components/icons/Pause.astro";
-import Sounbar from "@components/icons/Soundbar.astro";
+import Soundbar from "@components/icons/Soundbar.astro";
 
 type AstroComponent = (props: Record<string, any>) => any;
 type PlayingState = "playing" | "paused";
@@ -31,5 +31,5 @@ export const nowPlayingAdapter = (
   timeTotal: data.item.duration_ms,
   title: data.item.name,
   playingState: data.is_playing ? "playing" : "paused",
-  icon: data.is_playing ? Sounbar : Pause,
+  icon: data.is_playing ? Soundbar : Pause,
 });

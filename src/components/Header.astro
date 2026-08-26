@@ -1,7 +1,7 @@
 ---
 import ThemeToggleButton from "@components/ThemeToggleButton.astro";
-import NowPlaying from "./NowPlaying.astro";
-import NowPlayingSkeleton from "./NowPlayingSkeleton.astro";
+import NowPlaying from "@features/portfolio/components/NowPlaying.astro";
+import NowPlayingSkeleton from "@features/portfolio/components/NowPlayingSkeleton.astro";
 
 const navLinks = [
   { href: "#about", label: "Sobre mí" },
@@ -50,7 +50,7 @@ const navLinks = [
         aria-label="Abrir menú de navegación"
         aria-controls="mobile-menu"
         aria-expanded="false"
-        class="sm:hidden size-9 flex items-center justify-center rounded-md text-muted-foreground bg-card border border-border transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        class="sm:hidden size-9 flex items-center justify-center rounded-md text-muted-foreground bg-card border border-border transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring hover:cursor-pointer"
       >
         <svg
           class="size-4"

@@ -43,4 +43,15 @@ const spinAnimationClass = "animate-spin [animation-duration:7s]";
 
     mask-image: radial-gradient(circle, black 0 60%, transparent 61%);
   }
+
+  @media (prefers-color-scheme: light) {
+    .vinyl-lines {
+      background: repeating-radial-gradient(
+        circle,
+        transparent 3px,
+        rgba(0, 0, 0, 0.08) 3.5px,
+        transparent 5px
+      );
+    }
+  }
 </style>
