@@ -13,71 +13,52 @@ import { experience } from "../data/experience";
 
   <div class="space-y-10 lg:space-y-12 ml-2 sm:ml-3 border-l border-border">
     {
-      experience.map((entry) => {
-        const tagStyles =
-          entry.tagVariant === "primary"
-            ? "text-primary bg-primary/10"
-            : "text-muted-foreground bg-secondary/20";
+      experience.map((entry) => (
+        <TimelineItem
+          period={entry.period}
+          title={entry.company}
+          subtitle={entry.role}
+          dotColor={entry.dotColor}
+        >
+          <div class="rounded-lg border border-border/60 bg-card p-4 sm:p-6">
+            <p class="text-muted-foreground text-sm sm:text-base mb-4">
+              {entry.description}
+            </p>
 
-        return (
-          <TimelineItem
-            period={entry.period}
-            title={entry.company}
-            subtitle={entry.role}
-            dotColor={entry.dotColor}
-          >
-            <div class="rounded-lg border border-border/60 bg-card p-4 sm:p-6">
-              <span
-                class={`inline-flex items-center font-mono text-[11px] font-medium ${tagStyles} px-2.5 py-1 rounded-full uppercase tracking-wider mb-4`}
-              >
-                {entry.tag}
-              </span>
+            <ul class="space-y-2 sm:space-y-3">
+              {entry?.highlights?.map((highlight) => (
+                <li class="flex gap-2 sm:gap-3 text-sm">
+                  <span
+                    class="text-primary font-mono shrink-0 leading-relaxed"
+                    aria-hidden="true"
+                  >
+                    ›
+                  </span>
+                  <span class="text-muted-foreground leading-relaxed">
+                    {highlight}
+                  </span>
+                </li>
+              ))}
+            </ul>
 
-              <p class="text-muted-foreground text-sm sm:text-base mb-4">
-                {entry.description}
-              </p>
-
-              <ul class="space-y-2 sm:space-y-3">
-                {entry?.highlights?.map((highlight) => (
-                  <li class="flex gap-2 sm:gap-3 text-sm">
-                    <span
-                      class="text-primary font-mono shrink-0 leading-relaxed"
-                      aria-hidden="true"
-                    >
-                      ›
+            {entry.metrics && (
+              <div class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-border/60 flex flex-col sm:flex-row gap-4 sm:gap-8">
+                {entry.metrics.map((metric) => (
+                  <div>
+                    <span class="block font-mono text-[10px] text-muted-foreground tracking-wider uppercase">
+                      {metric.label}
                     </span>
-                    <span class="text-muted-foreground leading-relaxed">
-                      {highlight}
+
+                    <span class="text-primary font-mono text-xs tracking-wider leading-none font-medium">
+                      {metric.value}
                     </span>
-                  </li>
+                  </div>
                 ))}
-              </ul>
-
-              {entry.metrics && (
-                <div
-                  class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-border/60 flex flex-col sm:flex-row gap-4 sm:gap-8"
-                >
-                  {entry.metrics.map((metric) => (
-                    <div>
-                      <span
-                        class="block font-mono text-[10px] text-muted-foreground tracking-wider uppercase"
-                      >
-                        {metric.label}
-                      </span>
-
-                      <span
-                        class="text-primary font-mono text-xs tracking-wider leading-none font-medium"
-                      >
-                        {metric.value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </TimelineItem>
-        );
-      })
+              </div>
+            )}
+          </div>
+        </TimelineItem>
+      ))
     }
   </div>
 </section>

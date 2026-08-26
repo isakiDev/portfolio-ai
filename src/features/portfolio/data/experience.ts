@@ -5,8 +5,6 @@ export const experience: ExperienceEntry[] = [
     period: "Mar 2026 - Actualidad",
     company: "Accenture",
     role: "Custom Software Engineering Associate",
-    tag: "Backend Engineering",
-    tagVariant: "primary",
     description:
       "Migración de servicios legacy a una arquitectura cloud para modernizar aplicaciones empresariales.",
     highlights: [
@@ -20,8 +18,6 @@ export const experience: ExperienceEntry[] = [
     period: "Sep 2024 - Dic 2025",
     company: "Zurich Santander Chile",
     role: "Data Governance Trainee",
-    tag: "Data Engineering",
-    tagVariant: "secondary",
     description:
       "Implementación de procesos ETL para mejorar la calidad, confiabilidad y monitoreo de datos sobre Azure Databricks.",
     highlights: [
@@ -34,8 +30,6 @@ export const experience: ExperienceEntry[] = [
     period: "May 2024 - Mar 2025",
     company: "No Country",
     role: "FullStack Developer",
-    tag: "Full Stack Development",
-    tagVariant: "secondary",
     description:
       "Desarrollo de productos digitales en equipos internacionales, colaborando durante todo el ciclo de desarrollo bajo metodologías ágiles.",
     highlights: [
@@ -48,8 +42,6 @@ export const experience: ExperienceEntry[] = [
     period: "Ene 2023 - Jul 2023",
     company: "ColTec Spa",
     role: "FullStack Developer",
-    tag: "Full Stack Development",
-    tagVariant: "secondary",
     description:
       "Creación de soluciones empresariales para optimizar procesos operativos y herramientas de uso interno.",
     highlights: [
