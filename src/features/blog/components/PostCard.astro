@@ -32,12 +32,12 @@ const { href, title, date, description, readingTime } = Astro.props;
 
       <div class="flex items-center gap-1.5 text-muted-foreground">
         <Clock class="size-3.5" />
-        <span class="text-xs">{readingTime}</span>
+        <span class="font-mono text-xs">{readingTime}</span>
       </div>
     </div>
 
     <time
-      class="shrink-0 text-xs whitespace-nowrap text-muted-foreground"
+      class="shrink-0 font-mono text-xs whitespace-nowrap text-muted-foreground"
       >{date}</time
     >
   </header>
