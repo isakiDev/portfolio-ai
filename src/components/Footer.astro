@@ -1,48 +1,46 @@
+---
+const year = new Date().getFullYear();
+
+export const socialLinks = [
+  {
+    name: "GitHub",
+    href: "https://github.com/isakiDev",
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/isakidev/",
+  },
+  {
+    name: "TikTok",
+    href: "https://www.tiktok.com/@isakidev",
+  },
+  {
+    name: "Coding Challenges",
+    href: "https://coding-challenges.dev/profile/isakidev",
+  },
+];
+---
+
 <footer class="w-full py-8 border-t border-border">
-  <div
-    class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between px-4 sm:px-8 md:px-16 max-w-5xl mx-auto"
-  >
-    <div>
-      <p class="text-base font-semibold text-foreground">Gaspar.</p>
-      <p class="mt-1 font-mono text-xs text-muted-foreground">
-        &copy; 2026 SYSTEM_CORE_V2
-      </p>
+  <div class="flex flex-col gap-4 items-center max-w-5xl mx-auto">
+    <div class="flex items-center gap-3 text-xs tracking-wider">
+      {
+        socialLinks?.map(({ href, name }) => (
+          <a
+            href={href}
+            class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {name}
+          </a>
+        ))
+      }
     </div>
 
-    <div
-      class="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs tracking-wider"
-    >
-      <a
-        href="#"
-        class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >GitHub</a
-      >
-      <a
-        href="#"
-        class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >LinkedIn</a
-      >
-      <a
-        href="#"
-        class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >DevTalles</a
-      >
-      <span class="h-4 w-px bg-border hidden sm:inline-block" aria-hidden="true"></span>
-      <a
-        href="#"
-        class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >Código</a
-      >
-      <a
-        href="#"
-        class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >Contacto</a
-      >
-      <a
-        href="#"
-        class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >RSS</a
-      >
-    </div>
+    <p class="mt-1 font-mono text-xs text-muted-foreground">
+      &copy; {year}
+      <span class="font-bold"> isakidev</span>
+    </p>
   </div>
 </footer>
