@@ -1,5 +1,5 @@
 ---
-import { featuredPost, recentPosts } from "../data/posts";
+import { featuredPost, recentPosts } from "../data/posts.data";
 import SectionHeading from "@components/SectionHeading.astro";
 import ChevronRight from "@components/icons/ChevronRight.astro";
 ---
@@ -12,7 +12,9 @@ import ChevronRight from "@components/icons/ChevronRight.astro";
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
     <div class="lg:col-span-7">
-      <div class="aspect-video relative overflow-hidden rounded-lg border border-border/60 bg-card mb-4 sm:mb-5">
+      <div
+        class="aspect-video relative overflow-hidden rounded-lg border border-border/60 bg-card mb-4 sm:mb-5"
+      >
         <div
           class="absolute bottom-4 sm:bottom-5 left-4 sm:left-6 right-4 sm:right-6"
         >
@@ -51,14 +53,10 @@ import ChevronRight from "@components/icons/ChevronRight.astro";
           return (
             <div class={`flex gap-4 ${borderClass}`}>
               <div class="flex-1 min-w-0">
-                <span
-                  class="inline-block font-mono text-[10px] text-primary tracking-wider uppercase mb-1 truncate"
-                >
+                <span class="inline-block font-mono text-[10px] text-primary tracking-wider uppercase mb-1 truncate">
                   {post.category}
                 </span>
-                <h4
-                  class="text-lg font-medium leading-snug text-foreground mb-1.5"
-                >
+                <h4 class="text-lg font-medium leading-snug text-foreground mb-1.5">
                   {post.title}
                 </h4>
                 <div class="font-mono text-[11px] text-muted-foreground">
