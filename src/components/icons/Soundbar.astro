@@ -1,0 +1,61 @@
+---
+const bars = [
+  { delay: 0, duration: 1200 },
+  { delay: 150, duration: 1000 },
+  { delay: 80, duration: 1100 },
+  { delay: 200, duration: 950 },
+  { delay: 100, duration: 1150 },
+  { delay: 50, duration: 1200 },
+];
+---
+
+<div class="flex items-end gap-1 h-8">
+  {
+    bars.map((bar) => (
+      <span
+        class="w-1 h-full bg-primary rounded-full animate-eq"
+        style={`
+          animation-delay: ${bar.delay}ms;
+          animation-duration: ${bar.duration}ms;
+        `}
+      />
+    ))
+  }
+</div>
+
+<style>
+  @keyframes eq {
+    0% {
+      transform: scaleY(0.3);
+    }
+    10% {
+      transform: scaleY(0.6);
+    }
+    25% {
+      transform: scaleY(0.9);
+    }
+    40% {
+      transform: scaleY(0.5);
+    }
+    55% {
+      transform: scaleY(0.8);
+    }
+    70% {
+      transform: scaleY(0.4);
+    }
+    85% {
+      transform: scaleY(0.7);
+    }
+    100% {
+      transform: scaleY(0.5);
+    }
+  }
+
+  .animate-eq {
+    transform-origin: bottom;
+    animation-name: eq;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+</style>

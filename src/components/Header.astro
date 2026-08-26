@@ -1,5 +1,7 @@
 ---
 import ThemeToggleButton from "@components/ThemeToggleButton.astro";
+import NowPlaying from "./NowPlaying.astro";
+import NowPlayingSkeleton from "./NowPlayingSkeleton.astro";
 
 const navLinks = [
   { href: "#about", label: "Sobre mí" },
@@ -17,6 +19,10 @@ const navLinks = [
     class="flex items-center px-4 sm:px-8 md:px-16 h-16"
     aria-label="Navegación principal"
   >
+    <NowPlaying server:defer>
+      <NowPlayingSkeleton slot="fallback" />
+    </NowPlaying>
+
     <!-- Desktop navigation -->
     <ul class="hidden sm:flex items-center gap-3 ml-auto">
       {
@@ -72,13 +78,13 @@ const navLinks = [
     class="hidden px-4 sm:px-8 bg-background/95 backdrop-blur-xl"
     inert
   >
-    <ul class="flex flex-col text-sm">
+    <ul class="flex flex-col text-sm text-center">
       {
         navLinks.map((link) => (
-          <li>
+          <li class="border-b border-border/40 last:pb-2">
             <a
               href={link.href}
-              class="block text-muted-foreground hover:text-foreground transition-colors py-2.5 border-b border-border/40 focus-visible:outline-none focus-visible:text-foreground"
+              class="block text-muted-foreground hover:text-foreground transition-colors py-2.5 focus-visible:outline-none focus-visible:text-foreground"
             >
               {link.label}
             </a>
