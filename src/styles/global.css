@@ -19,6 +19,12 @@ html {
   background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
 }
 
+@layer base {
+  * {
+    @apply scrollbar-thumb-primary scrollbar-track-secondary;
+  }
+}
+
 @theme {
   /* Catppuccin Latte */
 
@@ -46,6 +52,7 @@ html {
   --font-mono: "Geist Mono Variable", ui-monospace, "SFMono-Regular", monospace;
 }
 
+
 /* Catppuccin Mocha */
 
 .dark {
@@ -62,8 +69,8 @@ html {
   --color-primary-foreground: #1e1e2e;
 
   --color-accent: #b4befe;
-
-  --color-border: #313244;
+  --color-border: #585b70;
+  /* --color-border: #313244; */
   --color-input: #45475a;
   --color-ring: #cba6f7;
 }
