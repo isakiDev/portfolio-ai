@@ -1,17 +1,94 @@
-<section class="max-w-5xl mx-auto px-4 sm:px-8 md:px-16 mb-16 lg:mb-32">
-  <p
-    class="font-mono text-xs leading-none font-medium text-primary mb-4 sm:mb-5 tracking-widest uppercase"
-  >
-    Inicialización del Sistema
-  </p>
+---
+import OpenCode from "@components/icons/OpenCode.astro";
+import Linux from "@components/icons/Linux.astro";
+import GitHub from "@components/icons/GitHub.astro";
 
-  <h1
-    class="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-[1.1] text-foreground mb-4 sm:mb-5"
-  >
-    Gaspar Castillo Catrifol
-  </h1>
+const PORTRAIT_ALT = "Gaspar Castillo Catrifol";
+const PORTRAIT_SIZE = { width: 1024, height: 1024 };
 
-  <p class="text-lg sm:text-2xl font-medium text-primary">
-    Desarrollador de Software
-  </p>
+const portrait = {
+  light:
+    "https://res.cloudinary.com/dzn3nempv/image/upload/v1787864719/portfolio/me_ye89in.png",
+  dark: "https://res.cloudinary.com/dzn3nempv/image/upload/v1787864719/portfolio/me-dark_st06ti.png",
+};
+---
+
+<section
+  class="max-w-5xl mx-auto px-4 sm:px-8 md:px-16 mb-10 lg:mb-24 flex flex-col sm:flex-row items-center justify-between gap-10 sm:gap-6"
+>
+  <div class="text-center sm:text-left">
+    <h1
+      class="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-[1.1] text-foreground mb-4 sm:mb-5"
+    >
+      Gaspar Castillo Catrifol
+    </h1>
+
+    <p class="text-lg sm:text-2xl font-medium text-primary">
+      Desarrollador de Software
+    </p>
+  </div>
+
+  <div class="relative shrink-0">
+    <img
+      src={portrait.dark}
+      alt={PORTRAIT_ALT}
+      width={PORTRAIT_SIZE.width}
+      height={PORTRAIT_SIZE.height}
+      decoding="async"
+      class="hidden dark:block w-36 sm:w-44 lg:w-[180px] h-auto rounded-full p-3 outline-2 outline-dashed outline-border"
+    />
+
+    <img
+      src={portrait.light}
+      alt={PORTRAIT_ALT}
+      width={PORTRAIT_SIZE.width}
+      height={PORTRAIT_SIZE.height}
+      decoding="async"
+      class="block dark:hidden w-36 sm:w-44 lg:w-[180px] h-auto rounded-full p-3 outline-2 outline-dashed outline-border"
+    />
+
+    <span
+      class="absolute -top-2 -right-2 sm:-right-3 rounded-full bg-card p-1.5 sm:p-2 outline-1 outline-border animate-float"
+      role="img"
+      aria-label="OpenCode"
+      title="OpenCode"
+    >
+      <OpenCode class="size-6 sm:size-7" aria-hidden="true" />
+    </span>
+
+    <span
+      class="absolute -bottom-2 -left-3 sm:-left-4 rounded-full bg-card p-1.5 sm:p-2 outline-1 outline-border animate-float [animation-delay:1s] [animation-duration:3.5s]"
+      role="img"
+      aria-label="Linux"
+      title="Linux"
+    >
+      <Linux class="size-6 sm:size-7" aria-hidden="true" />
+    </span>
+
+    <span
+      class="absolute bottom-3 right-[-1rem] sm:right-[-1.25rem] rounded-full bg-card p-1.5 sm:p-2 outline-1 outline-border animate-float [animation-delay:0.5s] [animation-duration:4s]"
+      role="img"
+      aria-label="GitHub"
+      title="GitHub"
+    >
+      <GitHub class="size-6 sm:size-7" aria-hidden="true" />
+    </span>
+  </div>
 </section>
+
+<style>
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+</style>
