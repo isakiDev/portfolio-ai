@@ -2,6 +2,7 @@
 import OpenCode from "@components/icons/OpenCode.astro";
 import Linux from "@components/icons/Linux.astro";
 import GitHub from "@components/icons/GitHub.astro";
+import DownloadCV from "../components/DownloadCV.astro";
 
 const PORTRAIT_ALT = "Gaspar Castillo Catrifol";
 const PORTRAIT_SIZE = { width: 1024, height: 1024 };
@@ -16,6 +17,7 @@ const portrait = {
 <section
   class="max-w-5xl mx-auto px-4 sm:px-8 md:px-16 mb-10 lg:mb-24 flex flex-col sm:flex-row items-center justify-between gap-10 sm:gap-6"
 >
+  <!-- Text -->
   <div class="text-center sm:text-left">
     <h1
       class="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-[1.1] text-foreground mb-4 sm:mb-5"
@@ -23,11 +25,14 @@ const portrait = {
       Gaspar Castillo Catrifol
     </h1>
 
-    <p class="text-lg sm:text-2xl font-medium text-primary">
+    <p class="text-lg sm:text-2xl font-medium text-primary mb-5">
       Desarrollador de Software
     </p>
+
+    <DownloadCV />
   </div>
 
+  <!-- Portrait -->
   <div class="relative shrink-0">
     <img
       src={portrait.dark}
@@ -47,6 +52,7 @@ const portrait = {
       class="block dark:hidden w-36 sm:w-44 lg:w-[180px] h-auto rounded-full p-3 outline-2 outline-dashed outline-border"
     />
 
+    <!-- OpenCode -->
     <span
       class="absolute -top-2 -right-2 sm:-right-3 rounded-full bg-card p-1.5 sm:p-2 outline-1 outline-border animate-float"
       role="img"
@@ -56,6 +62,7 @@ const portrait = {
       <OpenCode class="size-6 sm:size-7" aria-hidden="true" />
     </span>
 
+    <!-- Linux -->
     <span
       class="absolute -bottom-2 -left-3 sm:-left-4 rounded-full bg-card p-1.5 sm:p-2 outline-1 outline-border animate-float [animation-delay:1s] [animation-duration:3.5s]"
       role="img"
@@ -65,6 +72,7 @@ const portrait = {
       <Linux class="size-6 sm:size-7" aria-hidden="true" />
     </span>
 
+    <!-- GitHub -->
     <span
       class="absolute bottom-3 right-[-1rem] sm:right-[-1.25rem] rounded-full bg-card p-1.5 sm:p-2 outline-1 outline-border animate-float [animation-delay:0.5s] [animation-duration:4s]"
       role="img"
