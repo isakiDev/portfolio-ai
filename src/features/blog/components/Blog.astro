@@ -1,7 +1,17 @@
 ---
-import { featuredPost, recentPosts } from "../data/posts.data";
+import { getCollection } from "astro:content";
+
 import SectionHeading from "@components/SectionHeading.astro";
 import ChevronRight from "@components/icons/ChevronRight.astro";
+import { formatDate } from "../utils/format-date.util";
+import { getReadingTime } from "../utils/reading-time.util";
+
+const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
+
+blogPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const featuredPost = blogPosts[0]!;
+const recentPosts = blogPosts.slice(1, 3);
 ---
 
 <section
@@ -12,69 +22,64 @@ import ChevronRight from "@components/icons/ChevronRight.astro";
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
     <div class="lg:col-span-7">
-      <div
-        class="aspect-video relative overflow-hidden rounded-lg border border-border/60 bg-card mb-4 sm:mb-5"
+      <a
+        href={`/blog/${featuredPost.id}`}
+        class="group relative block h-full rounded-lg border border-border/60 bg-card p-5 sm:p-7 transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
-        <div
-          class="absolute bottom-4 sm:bottom-5 left-4 sm:left-6 right-4 sm:right-6"
+        <span
+          class="inline-block px-2.5 py-1 bg-primary text-primary-foreground font-mono text-[10px] rounded-full uppercase tracking-wider mb-4"
         >
-          <span
-            class="inline-flex px-2.5 py-1 bg-primary text-primary-foreground font-mono text-[10px] rounded-full uppercase tracking-wider mb-3"
-          >
-            {featuredPost.category}
-          </span>
+          {featuredPost.data.tags?.[0] ?? "Blog"}
+        </span>
+
+        <h4
+          class="text-xl sm:text-2xl lg:text-[1.875rem] leading-[1.25] tracking-[-0.02em] text-foreground mb-3 sm:mb-4 group-hover:text-primary transition-colors"
+        >
+          {featuredPost.data.title}
+        </h4>
+
+        <p class="text-muted-foreground text-sm sm:text-base mb-6 line-clamp-2">
+          {featuredPost.data.description}
+        </p>
+
+        <div
+          class="flex items-center gap-3 border-t border-border/60 pt-4 font-mono text-xs tracking-wider text-muted-foreground"
+        >
+          <span>{getReadingTime(featuredPost.body!)}</span>
+          <span class="opacity-50" aria-hidden="true">•</span>
+          <span>{formatDate(featuredPost.data.date)}</span>
         </div>
-      </div>
-
-      <h4
-        class="text-xl sm:text-2xl lg:text-[2rem] leading-[1.25] tracking-[-0.02em] text-foreground mb-3 sm:mb-4"
-      >
-        {featuredPost.title}
-      </h4>
-
-      <p class="text-muted-foreground text-sm sm:text-base mb-4 line-clamp-2">
-        {featuredPost.description}
-      </p>
-
-      <div
-        class="flex items-center gap-3 font-mono text-xs tracking-wider text-muted-foreground"
-      >
-        <span>{featuredPost.readTime}</span>
-        <span class="opacity-50" aria-hidden="true">•</span>
-        <span>{featuredPost.date}</span>
-      </div>
+      </a>
     </div>
 
-    <div class="lg:col-span-5 space-y-6 lg:space-y-8">
+    <div class="lg:col-span-5 flex flex-col gap-4 sm:gap-5">
       {
-        recentPosts.map((post, i) => {
-          const borderClass =
-            i > 0 ? "border-t border-border/60 pt-6 lg:pt-7" : "";
-          return (
-            <div class={`flex gap-4 ${borderClass}`}>
-              <div class="flex-1 min-w-0">
-                <span class="inline-block font-mono text-[10px] text-primary tracking-wider uppercase mb-1 truncate">
-                  {post.category}
-                </span>
-                <h4 class="text-lg font-medium leading-snug text-foreground mb-1.5">
-                  {post.title}
-                </h4>
-                <div class="font-mono text-[11px] text-muted-foreground">
-                  {post.readTime}
-                </div>
-              </div>
-              <div
-                class="mt-1 size-16 sm:size-20 shrink-0 rounded-lg bg-card border border-border/60"
-                aria-hidden="true"
-              />
+        recentPosts.map((post) => (
+          <a
+            href={`/blog/${post.id}`}
+            class="group rounded-lg border border-border/60 bg-card p-5 transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <div class="flex items-center justify-between gap-4">
+              <span class="inline-flex max-w-[55%] truncate font-mono text-[10px] text-primary tracking-wider uppercase">
+                {post.data.tags?.[0] ?? "Blog"}
+              </span>
+              <time class="shrink-0 font-mono text-[11px] text-muted-foreground">
+                {formatDate(post.data.date)}
+              </time>
             </div>
-          );
-        })
+            <h4 class="text-lg font-medium leading-snug text-foreground mt-2 mb-1.5 group-hover:text-primary transition-colors">
+              {post.data.title}
+            </h4>
+            <div class="font-mono text-[11px] text-muted-foreground">
+              {getReadingTime(post.body!)}
+            </div>
+          </a>
+        ))
       }
 
       <a
         href="/blog/page/1"
-        class="inline-flex items-center gap-1.5 rounded-md text-xs tracking-wider text-primary hover:text-primary/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        class="inline-flex items-center gap-1.5 rounded-md self-start text-xs tracking-wider text-primary hover:text-primary/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring mt-auto"
       >
         VER TODAS LAS NOTAS
         <ChevronRight class="size-3.5" />
