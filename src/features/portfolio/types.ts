@@ -14,9 +14,9 @@ export interface ExperienceEntry {
 export interface ProjectEntry {
   title: string;
   description: string;
-  image: string;
+  imageUrl: string;
   tech: string[];
-  url?: string;
+  deployUrl?: string;
   repoUrl?: string;
 }
 

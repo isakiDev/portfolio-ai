@@ -16,26 +16,13 @@ import ProjectCard from "@features/portfolio/components/ProjectCard.astro";
         <ProjectCard
           title={project.title}
           description={project.description}
-          image={project.image}
+          image={project.imageUrl}
           imageAlt={`${project.title} Preview`}
           tech={project.tech}
-          url={project.url}
+          url={project.deployUrl}
           repoUrl={project.repoUrl}
         />
       ))
     }
   </div>
-
-  <!-- <div class="w-full py-2 mt-4 flex justify-center items-center">
-    <a
-      href="https://github.com/isakiDev?tab=repositories"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Ver proyectos creados"
-      title="Ver proyectos"
-      class="text-muted-foreground hover:bg-muted hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-    >
-      Ver mas proyectos
-    </a>
-  </div> -->
 </section>
