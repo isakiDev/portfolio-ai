@@ -14,20 +14,16 @@ const { items } = Astro.props;
 
 <ul class="grid gap-4">
   {
-    items.map(({ data, collection, id, body }) => {
-      const href = collection === "blog" ? `/blog/${id}` : `/${collection}/${id}`;
-
-      return (
-        <li>
-          <PostCard
-            href={href}
-            title={data.title}
-            date={formatDate(data.date)}
-            description={data.description}
-            readingTime={getReadingTime(body)}
-          />
-        </li>
-      );
-    })
+    items.map(({ data, id, body }) => (
+      <li>
+        <PostCard
+          href={`/blog/${id}`}
+          title={data.title}
+          date={formatDate(data.date)}
+          description={data.description}
+          readingTime={getReadingTime(body!)}
+        />
+      </li>
+    ))
   }
 </ul>

@@ -46,13 +46,14 @@ const breadcrumbs = [
 
 <Layout
   title={`Blog - Página ${currentPage} | Gaspar Castillo - Desarrollador de Software`}
+  url={`https://isakidev.vercel.app/blog/page/${currentPage}/`}
 >
   <ContentWrapper>
     <Breadcrumb breadcrumbs={breadcrumbs} />
 
-    <main>
+    <div>
       <PostList items={paginatedItems} />
       <Pagination currentPage={currentPage} totalPages={totalPages} />
-    </main>
+    </div>
   </ContentWrapper>
 </Layout>
