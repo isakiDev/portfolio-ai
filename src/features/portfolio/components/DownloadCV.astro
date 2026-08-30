@@ -2,12 +2,15 @@
 import Download from "@components/icons/Download.astro";
 ---
 
-<button
-  type="button"
+<a
   class="group inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 font-medium text-primary-foreground ring-offset-background transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 cursor-pointer"
+  href="cv-gaspar-castillo.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  title="Descargar CV"
 >
   Descargar CV
   <Download
     class="size-4 transition-transform duration-200 group-hover:translate-y-0.5"
   />
-</button>
+</a>
