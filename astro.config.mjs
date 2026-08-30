@@ -1,7 +1,9 @@
+import node from '@astrojs/node';
 import { defineConfig, envField } from 'astro/config';
+
 import tailwindcss from '@tailwindcss/vite';
 
-import node from '@astrojs/node';
+import expressiveCode from 'astro-expressive-code';
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,5 +26,7 @@ export default defineConfig({
 
   adapter: node({
     mode: 'standalone'
-  })
+  }),
+
+  integrations: [expressiveCode({ themes: ['dracula'] })],
 });
