@@ -81,10 +81,10 @@ const navLinks = [
     <ul class="flex flex-col text-sm text-center">
       {
         navLinks.map((link) => (
-          <li class="border-b border-border/40 last:pb-2">
+          <li class="border-b border-border/40">
             <a
               href={link.href}
-              class="block text-muted-foreground hover:text-foreground transition-colors py-2.5 focus-visible:outline-none focus-visible:text-foreground"
+              class="block text-muted-foreground hover:text-foreground transition-colors py-4 focus-visible:outline-none focus-visible:text-foreground"
             >
               {link.label}
             </a>
