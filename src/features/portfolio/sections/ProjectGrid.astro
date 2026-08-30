@@ -1,4 +1,5 @@
 ---
+import ChevronRight from "@/components/icons/ChevronRight.astro";
 import { projects } from "../data/projects.data";
 import SectionHeading from "@components/SectionHeading.astro";
 import ProjectCard from "@features/portfolio/components/ProjectCard.astro";
@@ -25,4 +26,14 @@ import ProjectCard from "@features/portfolio/components/ProjectCard.astro";
       ))
     }
   </div>
+
+  <a
+    target="_blank"
+    rel="noopener noreferrer"
+    href="https://github.com/isakiDev?tab=repositories"
+    class="flex items-center gap-1.5 text-xs tracking-wider text-primary hover:text-primary/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group mt-8 w-fit mx-auto"
+  >
+    VER MÁS PROYECTOS
+    <ChevronRight class="size-3.5 group-hover:translate-x-1 duration-150" />
+  </a>
 </section>
