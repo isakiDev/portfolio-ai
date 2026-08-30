@@ -15,10 +15,7 @@ import {
 export async function getStaticPaths() {
   const blog = await getCollection("blog", ({ data }) => !data.draft);
 
-  const totalPages = Math.max(
-    1,
-    Math.ceil(blog.length / BLOG_ITEMS_PER_PAGE),
-  );
+  const totalPages = Math.max(1, Math.ceil(blog.length / BLOG_ITEMS_PER_PAGE));
 
   return Array.from({ length: totalPages }, (_, index) => ({
     params: { page: String(index + 1) },

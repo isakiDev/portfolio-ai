@@ -1,11 +1,14 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
 
-import Layout from "@layouts/Layout.astro";
-import ContentWrapper from "@features/blog/components/ContentWrapper.astro";
 import Calendar from "@components/icons/Calendar.astro";
 import Clock from "@components/icons/Clock.astro";
-import { Breadcrumb, getReadingTime, formatDate } from "@features/blog";
+import Breadcrumb from "@features/blog/components/Breadcrumb.astro";
+import ContentWrapper from "@features/blog/components/ContentWrapper.astro";
+import Layout from "@layouts/Layout.astro";
+
+import { formatDate } from "@features/blog/utils/format-date.util";
+import { getReadingTime } from "@features/blog/utils/reading-time.util";
 
 export async function getStaticPaths() {
   const articles = await getCollection("blog", ({ data }) => {
@@ -33,7 +36,7 @@ const breadcrumbs = [
   { name: article.data.title },
 ];
 
-const readingTime = getReadingTime(article.body);
+const readingTime = getReadingTime(article.body!);
 ---
 
 <Layout
@@ -43,43 +46,41 @@ const readingTime = getReadingTime(article.body);
     <Breadcrumb breadcrumbs={breadcrumbs} />
 
     <article class="mb-8">
-      <header class="mb-8 border-b border-border/60 pb-8">
-        <h1
-          class="text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-foreground mb-5"
-        >
+      <header class="mb-6 pb-6 border-b border-border">
+        <h1 class="text-3xl sm:text-4xl font-bold mb-4">
           {article.data.title}
         </h1>
 
         <div
-          class="flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-sm text-muted-foreground"
+          class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground"
         >
-          <div class="flex items-center gap-1.5">
-            <Calendar class="size-4" />
+          <div class="flex gap-1 items-center">
+            <Calendar class={"size-4"} />
             <time datetime={article.data.date.toISOString()}>
               {formatDate(article.data.date)}
             </time>
           </div>
 
-          <div class="flex items-center gap-1.5">
-            <Clock class="size-4" />
+          <div class="flex gap-1 items-center">
+            <Clock class={"size-4"} />
             <span>{readingTime}</span>
           </div>
 
-          {article.data.tags && article.data.tags.length > 0 && (
-            <ul class="flex flex-wrap gap-2">
-              {article.data.tags.map((tag) => (
-                <li
-                  class="rounded-full border border-border/60 bg-muted px-2.5 py-1 text-xs"
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
-          )}
+          {
+            article.data.tags && article.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2">
+                {article.data.tags.map((tag) => (
+                  <span class="px-2 py-1 bg-muted rounded-md text-xs border border-border">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )
+          }
         </div>
       </header>
 
-      <div class="prose max-w-none">
+      <div class="prose dark:prose-invert max-w-none">
         <Content />
       </div>
     </article>

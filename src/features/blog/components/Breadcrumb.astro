@@ -31,7 +31,7 @@ const { breadcrumbs } = Astro.props;
             ) : (
               <span
                 class:list={[
-                  "font-medium",
+                  "font-medium truncate w-50 sm:w-fit",
                   isLastChild ? "text-foreground" : "text-muted-foreground",
                 ]}
                 aria-current={isLastChild ? "page" : undefined}
