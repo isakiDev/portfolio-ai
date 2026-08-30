@@ -1,14 +1,6 @@
----
-import type { JSX } from "astro/jsx-runtime";
-
-type Props = JSX.IntrinsicElements["svg"];
-
-const { class: className } = Astro.props;
----
-
 <svg
-  class:list={[className, "mt-0.5"]}
   xmlns="http://www.w3.org/2000/svg"
+  {...Astro.props}
   width="20"
   height="20"
   aria-hidden="true"
