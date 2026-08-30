@@ -1,5 +1,6 @@
-import node from '@astrojs/node';
 import { defineConfig, envField } from 'astro/config';
+
+import vercelAdapter from '@astrojs/vercel';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -24,9 +25,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  adapter: node({
-    mode: 'standalone'
-  }),
+  adapter: vercelAdapter(),
 
-  integrations: [expressiveCode({ themes: ['dracula'] })],
+  integrations: [expressiveCode({ themes: ['tokyo-night'] })],
 });
