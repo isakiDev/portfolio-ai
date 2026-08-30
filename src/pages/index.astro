@@ -9,6 +9,8 @@ import {
   ActivityLog,
 } from "@features/portfolio";
 
+import ActivityLogSkeleton from "@features/portfolio/components/ActivityLogSkeleton.astro";
+
 import { Blog } from "@features/blog";
 ---
 
@@ -17,6 +19,8 @@ import { Blog } from "@features/blog";
   <About />
   <ProjectGrid />
   <Experience />
-  <ActivityLog />
+  <ActivityLog server:defer>
+    <ActivityLogSkeleton slot="fallback" />
+  </ActivityLog>
   <Blog />
 </Layout>
