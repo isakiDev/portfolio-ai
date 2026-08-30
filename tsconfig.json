@@ -14,9 +14,7 @@
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@layouts/*": ["./src/layouts/*"],
-      "@features/*": ["./src/features/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@assets/*": ["./src/assets/*"]
+      "@features/*": ["./src/features/*"]
     }
   },
   "include": ["src/**/*", "env.d.ts"]
