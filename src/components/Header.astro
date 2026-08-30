@@ -4,14 +4,15 @@ import NowPlaying from "@features/portfolio/components/NowPlaying.astro";
 import NowPlayingSkeleton from "@features/portfolio/components/NowPlayingSkeleton.astro";
 
 const navLinks = [
-  { href: "#about", label: "Sobre mí" },
-  { href: "#experience", label: "Experiencia" },
-  { href: "#projects", label: "Proyectos" },
-  { href: "#blog", label: "Blog" },
+  { href: "/#about", label: "Sobre mí" },
+  { href: "/#experience", label: "Experiencia" },
+  { href: "/#projects", label: "Proyectos" },
+  { href: "/#blog", label: "Blog" },
 ];
 ---
 
 <header
+  transition:persist
   class="fixed top-0 left-0 right-0 max-w-5xl mx-auto z-50 bg-background/80 backdrop-blur-xl border-b border-border"
 >
   <!-- Desktop / Mobile header -->

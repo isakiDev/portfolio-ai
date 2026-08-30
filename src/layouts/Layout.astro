@@ -55,24 +55,25 @@ const { description, author, url, keywords, image, icon } = metadata;
     <meta name="generator" content={Astro.generator} />
 
     <script is:inline>
-      const theme = (() => {
+      const applyTheme = () => {
         const localStorageTheme = localStorage?.getItem("theme") ?? "";
-        if (["dark", "light"].includes(localStorageTheme)) {
-          return localStorageTheme;
-        }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
-        return "light";
-      })();
+        const theme =
+          localStorageTheme === "dark" || localStorageTheme === "light"
+            ? localStorageTheme
+            : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
 
-      if (theme === "light") {
-        document.documentElement.classList.remove("dark");
-      } else {
-        document.documentElement.classList.add("dark");
+        document.documentElement.classList.toggle("dark", theme === "dark");
+        window.localStorage.setItem("theme", theme);
+      };
+
+      applyTheme();
+
+      if (!window.__themeAfterSwapBound) {
+        window.__themeAfterSwapBound = true;
+        document.addEventListener("astro:after-swap", applyTheme);
       }
-
-      window.localStorage.setItem("theme", theme);
     </script>
 
     <ClientRouter />
@@ -83,7 +84,7 @@ const { description, author, url, keywords, image, icon } = metadata;
   <body class="bg-background font-sans text-foreground antialiased">
     <Header />
 
-    <main class="pt-32">
+    <main class="pt-24">
       <slot />
     </main>
 
