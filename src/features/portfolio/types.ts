@@ -11,15 +11,6 @@ export interface ExperienceEntry {
   }[];
 }
 
-export interface ProjectEntry {
-  title: string;
-  description: string;
-  imageUrl: string;
-  tech: string[];
-  deployUrl?: string;
-  repoUrl?: string;
-}
-
 // Now Playing
 export interface InputAccessToken {
   clientId: string;

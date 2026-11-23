@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "@layouts/Layout.astro";
+import ContentContainer from "@components/ContentContainer.astro";
+
+import { PostList } from "@features/blog";
+
+const blog = await getCollection("blog", ({ data }) => !data.draft);
+blog.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout
+  title={`Blog | Gaspar Castillo - Desarrollador de Software`}
+  url={`https://isakidev.vercel.app/blog`}
+>
+  <ContentContainer>
+    <PostList items={blog} />
+  </ContentContainer>
+</Layout>

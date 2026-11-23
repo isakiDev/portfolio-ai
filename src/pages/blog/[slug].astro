@@ -3,12 +3,11 @@ import { getCollection, getEntry, render } from "astro:content";
 
 import Calendar from "@components/icons/Calendar.astro";
 import Clock from "@components/icons/Clock.astro";
-import Breadcrumb from "@features/blog/components/Breadcrumb.astro";
-import ContentWrapper from "@features/blog/components/ContentWrapper.astro";
+import ContentContainer from "@/components/ContentContainer.astro";
 import Layout from "@layouts/Layout.astro";
 
-import { formatDate } from "@features/blog/utils/format-date.util";
-import { getReadingTime } from "@features/blog/utils/reading-time.util";
+import { formatDate } from "@/utils/format-date.util";
+import { getReadingTime } from "@/utils/reading-time.util";
 
 export async function getStaticPaths() {
   const articles = await getCollection("blog", ({ data }) => {
@@ -29,13 +28,6 @@ if (!article) {
 }
 
 const { Content } = await render(article);
-
-const breadcrumbs = [
-  { name: "Inicio", href: "/" },
-  { name: "Blog", href: "/blog/page/1" },
-  { name: article.data.title },
-];
-
 const readingTime = getReadingTime(article.body!);
 ---
 
@@ -43,18 +35,14 @@ const readingTime = getReadingTime(article.body!);
   title={`${article.data.title} | Blog - Gaspar Castillo - Desarrollador de Software`}
   url={`https://isakidev.vercel.app/blog/${slug}/`}
 >
-  <ContentWrapper>
-    <Breadcrumb breadcrumbs={breadcrumbs} />
-
+  <ContentContainer>
     <article class="mb-8">
       <header class="mb-6 pb-6 border-b border-border">
         <h1 class="text-3xl sm:text-4xl font-bold mb-4">
           {article.data.title}
         </h1>
 
-        <div
-          class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground"
-        >
+        <div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
           <div class="flex gap-1 items-center">
             <Calendar class={"size-4"} />
             <time datetime={article.data.date.toISOString()}>
@@ -67,17 +55,15 @@ const readingTime = getReadingTime(article.body!);
             <span>{readingTime}</span>
           </div>
 
-          {
-            article.data.tags && article.data.tags.length > 0 && (
-              <div class="flex flex-wrap gap-2">
-                {article.data.tags.map((tag) => (
-                  <span class="px-2 py-1 bg-muted rounded-md text-xs border border-border">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )
-          }
+          {article.data.tags && article.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              {article.data.tags.map((tag) => (
+                <span class="px-2 py-1 bg-muted rounded-md text-xs border border-border">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </header>
 
@@ -85,5 +71,5 @@ const readingTime = getReadingTime(article.body!);
         <Content />
       </div>
     </article>
-  </ContentWrapper>
+  </ContentContainer>
 </Layout>

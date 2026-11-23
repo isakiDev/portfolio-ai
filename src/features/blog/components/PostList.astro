@@ -2,8 +2,8 @@
 import type { CollectionEntry } from "astro:content";
 
 import PostCard from "./PostCard.astro";
-import { formatDate } from "../utils/format-date.util";
-import { getReadingTime } from "../utils/reading-time.util";
+import { formatDate } from "../../../utils/format-date.util";
+import { getReadingTime } from "../../../utils/reading-time.util";
 
 interface Props {
   items: CollectionEntry<"blog">[];
@@ -13,17 +13,15 @@ const { items } = Astro.props;
 ---
 
 <ul class="grid gap-4">
-  {
-    items.map(({ data, id, body }) => (
-      <li>
-        <PostCard
-          href={`/blog/${id}`}
-          title={data.title}
-          date={formatDate(data.date)}
-          description={data.description}
-          readingTime={getReadingTime(body!)}
-        />
-      </li>
-    ))
-  }
+  {items.map(({ data, id, body }) => (
+    <li>
+      <PostCard
+        href={`/blog/${id}`}
+        title={data.title}
+        date={formatDate(data.date)}
+        description={data.description}
+        readingTime={getReadingTime(body!)}
+      />
+    </li>
+  ))}
 </ul>
