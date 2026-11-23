@@ -27,51 +27,46 @@ html {
 }
 
 @theme {
-  /* Catppuccin Latte */
+  --color-background: #f5f5f5;
+  --color-foreground: #404040;
 
-  --color-background: #eff1f5;
-  --color-foreground: #4c4f69;
+  --color-card: #e5e5e5;
+  --color-secondary: #e5e5e5;
 
-  --color-card: #e6e9ef;
-  --color-secondary: #dce0e8;
+  --color-muted: #e5e5e5;
+  --color-muted-foreground: #525252;
 
-  --color-muted: #e6e9ef;
-  --color-muted-foreground: #6c6f85;
-
-  --color-primary: #8839ef;
+  --color-primary: #166534;
   --color-primary-foreground: #ffffff;
 
-  --color-accent: #7287fd;
+  --color-accent: #0369a1;
 
-  --color-border: #ccd0da;
-  --color-input: #ccd0da;
-  --color-ring: #8839ef;
+  --color-border: #d4d4d4;
+  --color-input: #d4d4d4;
+  --color-ring: #166534;
 
   /* Typography */
 
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono Variable", ui-monospace, "SFMono-Regular", monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-
-/* Catppuccin Mocha */
-
 .dark {
-  --color-background: #1e1e2e;
-  --color-foreground: #cdd6f4;
+  --color-background: #171717;
+  --color-foreground: #d4d4d4;
 
-  --color-card: #181825;
-  --color-secondary: #313244;
+  --color-card: #262626;
+  --color-secondary: #262626;
 
-  --color-muted: #181825;
-  --color-muted-foreground: #a6adc8;
+  --color-muted: #262626;
+  --color-muted-foreground: #a3a3a3;
 
-  --color-primary: #cba6f7;
-  --color-primary-foreground: #1e1e2e;
+  --color-primary: #4ade80;
+  --color-primary-foreground: #171717;
 
-  --color-accent: #b4befe;
-  --color-border: #585b70;
-  /* --color-border: #313244; */
-  --color-input: #45475a;
-  --color-ring: #cba6f7;
+  --color-accent: #38bdf8;
+
+  --color-border: #404040;
+  --color-input: #404040;
+  --color-ring: #4ade80;
 }
