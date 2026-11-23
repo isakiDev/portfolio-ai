@@ -3,8 +3,8 @@ import { getCollection } from "astro:content";
 
 import SectionHeading from "@components/SectionHeading.astro";
 import ChevronRight from "@components/icons/ChevronRight.astro";
-import { formatDate } from "../../../utils/format-date.util";
-import { getReadingTime } from "../../../utils/reading-time.util";
+import { formatDate } from "@/utils/format-date";
+import { getReadingTime } from "@/utils/reading-time";
 
 const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
 

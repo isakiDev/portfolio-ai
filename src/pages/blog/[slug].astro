@@ -6,8 +6,8 @@ import Clock from "@components/icons/Clock.astro";
 import ContentContainer from "@/components/ContentContainer.astro";
 import Layout from "@layouts/Layout.astro";
 
-import { formatDate } from "@/utils/format-date.util";
-import { getReadingTime } from "@/utils/reading-time.util";
+import { formatDate } from "@/utils/format-date";
+import { getReadingTime } from "@/utils/reading-time";
 
 export async function getStaticPaths() {
   const articles = await getCollection("blog", ({ data }) => {

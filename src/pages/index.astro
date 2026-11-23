@@ -5,8 +5,8 @@ import { Hero, About, Experience, ActivityLog } from "@features/portfolio";
 
 import ActivityLogSkeleton from "@features/portfolio/components/ActivityLogSkeleton.astro";
 
-import BlogSection from "@features/blog/components/BlogSection.astro";
-import RecentProjectsSection from "@/features/portfolio/components/RecentProjectsSection.astro";
+import { Blog } from "@features/blog";
+import { RecentProjects } from "@features/projects";
 ---
 
 <Layout title="Portfolio de Gaspar Castillo | Desarrollador de Software">
@@ -14,7 +14,7 @@ import RecentProjectsSection from "@/features/portfolio/components/RecentProject
 
   <About />
 
-  <RecentProjectsSection />
+  <RecentProjects />
 
   <Experience />
 
@@ -22,5 +22,5 @@ import RecentProjectsSection from "@/features/portfolio/components/RecentProject
     <ActivityLogSkeleton slot="fallback" />
   </ActivityLog>
 
-  <BlogSection />
+  <Blog />
 </Layout>

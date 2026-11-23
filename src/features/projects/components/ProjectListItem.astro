@@ -6,33 +6,28 @@ import ExternalLink from "@components/icons/ExternalLink.astro";
 import GitHubIcon from "@components/icons/GitHub.astro";
 
 type Props = {
-  entry: CollectionEntry<"blog"> | CollectionEntry<"projects">;
+  entry: CollectionEntry<"projects">;
   class?: string;
   showMeta?: boolean;
 };
 
 const { entry, class: className, showMeta = true } = Astro.props;
 
-const href = `/${entry.collection}/${entry.id}/`;
-const data = entry.data;
+const {
+  title,
+  description,
+  cover,
+  coverAlt,
+  technologies,
+  repoURL,
+  websiteURL,
+  caseStudyURL,
+} = entry.data;
 
-const cover = "cover" in data ? data.cover : undefined;
+const imageAlt = coverAlt ?? `${title} cover image`;
+const href = caseStudyURL ? `/projects/${entry.id}/` : null;
 
-const coverAlt =
-  "coverAlt" in data && data.coverAlt
-    ? data.coverAlt
-    : `${data.title} cover image`;
-
-const tags =
-  "technologies" in data
-    ? data.technologies
-    : "tags" in data
-      ? data.tags
-      : undefined;
-
-const repoURL = "repoURL" in data ? data.repoURL : undefined;
-const websiteURL = "websiteURL" in data ? data.websiteURL : undefined;
-const isProject = entry.collection === "projects";
+console.log(cover);
 ---
 
 <article
@@ -45,39 +40,39 @@ const isProject = entry.collection === "projects";
     <a
       href={href}
       class="block w-full shrink-0 overflow-hidden rounded-md border border-border bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-52 m-auto"
-      aria-label={`Leer sobre ${data.title}`}
+      aria-label={`Leer sobre ${title}`}
     >
       <img
         src={cover}
-        alt={coverAlt}
+        alt={imageAlt}
         loading="lazy"
         decoding="async"
-        class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] opacity-80"
+        class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
       />
     </a>
   )}
 
-  <div class="min-w-0 flex-1">
+  <div class="min-w-0 flex-1 p-4 md:p-0">
     <div class="flex items-start justify-between gap-3">
       <h3 class="text-sm font-semibold tracking-tight text-foreground sm:text-base">
         <a
           href={href}
           class="transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          {data.title}
+          {title}
         </a>
       </h3>
     </div>
 
-    {showMeta && data.description && (
+    {showMeta && description && (
       <p class="mt-2 text-sm leading-relaxed text-muted-foreground line-clamp-2 sm:mt-1.5">
-        {data.description}
+        {description}
       </p>
     )}
 
-    {showMeta && tags && tags.length > 0 && (
+    {showMeta && technologies && technologies.length > 0 && (
       <div class="mt-4 flex flex-wrap gap-1.5 sm:mt-3">
-        {tags.map((tag) => (
+        {technologies.map((tag) => (
           <Badge variant="secondary">{tag}</Badge>
         ))}
       </div>
@@ -85,23 +80,25 @@ const isProject = entry.collection === "projects";
 
     <nav
       class="mt-5 flex flex-wrap items-center gap-2.5 sm:mt-4 sm:gap-2"
-      aria-label={`Acciones para ${data.title}`}
+      aria-label={`Acciones para ${title}`}
     >
-      <a
-        href={href}
-        class="inline-flex items-center gap-1.5 rounded-md border border-border/60 px-3 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-1.5"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          class="size-3.5 fill-none stroke-current stroke-2"
+      {caseStudyURL && (
+        <a
+          href={href}
+          class="inline-flex items-center gap-1.5 rounded-md border border-border/60 px-3 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-1.5"
         >
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-        </svg>
-        {isProject ? "Cómo lo hice" : "Leer"}
-      </a>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            class="size-3.5 fill-none stroke-current stroke-2"
+          >
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>
+          Cómo lo hice
+        </a>
+      )}
 
       {websiteURL && (
         <a
