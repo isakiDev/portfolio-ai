@@ -4,7 +4,7 @@ import NowPlaying from "@features/portfolio/components/NowPlaying.astro";
 import NowPlayingSkeleton from "@features/portfolio/components/NowPlayingSkeleton.astro";
 
 const navLinks = [
-  { href: "/#about", label: "Sobre mí" },
+  { href: "/#hero", label: "Inicio" },
   { href: "/#projects", label: "Proyectos" },
   { href: "/#experience", label: "Experiencia" },
   { href: "/#activity", label: "Actividad" },
@@ -14,11 +14,11 @@ const navLinks = [
 
 <header
   transition:persist
-  class="fixed top-0 left-0 right-0 max-w-5xl mx-auto z-50 bg-background/80 backdrop-blur-xl"
+  class="fixed top-0 left-0 right-0 px-4 lg:px-0 z-50 bg-background/80 backdrop-blur-xl"
 >
   <!-- Desktop / Mobile header -->
   <nav
-    class="flex items-center px-4 sm:px-8 md:px-16 h-16"
+    class="flex items-center h-16 max-w-5xl mx-auto"
     aria-label="Navegación principal"
   >
     <NowPlaying server:defer>
