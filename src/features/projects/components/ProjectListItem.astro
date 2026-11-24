@@ -26,8 +26,6 @@ const {
 
 const imageAlt = coverAlt ?? `${title} cover image`;
 const href = caseStudyURL ? `/projects/${entry.id}/` : null;
-
-console.log(cover);
 ---
 
 <article
@@ -39,7 +37,7 @@ console.log(cover);
   {cover && (
     <a
       href={href}
-      class="block w-full shrink-0 overflow-hidden rounded-md border border-border bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-52 m-auto"
+      class="block w-full shrink-0 overflow-hidden rounded-md border border-border bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-70"
       aria-label={`Leer sobre ${title}`}
     >
       <img
@@ -73,7 +71,7 @@ console.log(cover);
     {showMeta && technologies && technologies.length > 0 && (
       <div class="mt-4 flex flex-wrap gap-1.5 sm:mt-3">
         {technologies.map((tag) => (
-          <Badge variant="secondary">{tag}</Badge>
+          <Badge variant="primary">{tag}</Badge>
         ))}
       </div>
     )}
