@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
+import { ExternalLink, FolderGit, Book } from "@lucide/astro";
+
 import Badge from "@/components/Badge.astro";
-import ExternalLink from "@components/icons/ExternalLink.astro";
-import GitHubIcon from "@components/icons/GitHub.astro";
 
 type Props = {
   entry: CollectionEntry<"projects">;
@@ -85,15 +85,7 @@ const href = caseStudyURL ? `/projects/${entry.id}/` : null;
           href={href}
           class="inline-flex items-center gap-1.5 rounded-md border border-border/60 px-3 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-1.5"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            class="size-3.5 fill-none stroke-current stroke-2"
-          >
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-          </svg>
+          <Book size={14} />
           Cómo lo hice
         </a>
       )}
@@ -105,7 +97,7 @@ const href = caseStudyURL ? `/projects/${entry.id}/` : null;
           rel="noopener noreferrer"
           class="inline-flex items-center gap-1.5 rounded-md border border-border/60 px-3 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-1.5"
         >
-          <ExternalLink class="size-3.5" />
+          <ExternalLink size={14} />
           Ver deploy
         </a>
       )}
@@ -117,7 +109,7 @@ const href = caseStudyURL ? `/projects/${entry.id}/` : null;
           rel="noopener noreferrer"
           class="inline-flex items-center gap-1.5 rounded-md border border-border/60 px-3 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-1.5"
         >
-          <GitHubIcon class="size-3.5" />
+          <FolderGit size={14} />
           Ver código
         </a>
       )}
