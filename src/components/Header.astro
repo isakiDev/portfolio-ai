@@ -5,15 +5,16 @@ import NowPlayingSkeleton from "@features/portfolio/components/NowPlayingSkeleto
 
 const navLinks = [
   { href: "/#about", label: "Sobre mí" },
-  { href: "/#experience", label: "Experiencia" },
   { href: "/#projects", label: "Proyectos" },
+  { href: "/#experience", label: "Experiencia" },
+  { href: "/#activity", label: "Actividad" },
   { href: "/#blog", label: "Blog" },
 ];
 ---
 
 <header
   transition:persist
-  class="fixed top-0 left-0 right-0 max-w-5xl mx-auto z-50 bg-background/80 backdrop-blur-xl border-b border-border"
+  class="fixed top-0 left-0 right-0 max-w-5xl mx-auto z-50 bg-background/80 backdrop-blur-xl"
 >
   <!-- Desktop / Mobile header -->
   <nav
@@ -25,19 +26,27 @@ const navLinks = [
     </NowPlaying>
 
     <!-- Desktop navigation -->
-    <ul class="hidden sm:flex items-center gap-3 ml-auto">
-      {
-        navLinks.map((link) => (
-          <li>
+    <ul class="hidden sm:flex items-center ml-auto">
+      {navLinks.map((link, index) => {
+        const isLastLink = navLinks.length === index + 1;
+
+        return (
+          <li class="flex items-center">
             <a
               href={link.href}
-              class="text-muted-foreground hover:text-foreground transition-colors text-sm rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              class="text-muted-foreground hover:text-primary transition-colors text-sm rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {link.label}
             </a>
+
+            {!isLastLink && (
+              <p class="px-1.5 font-bold text-muted-foreground/40 text-sm select-none">
+                /
+              </p>
+            )}
           </li>
-        ))
-      }
+        );
+      })}
     </ul>
 
     <!-- Controls -->
@@ -80,18 +89,16 @@ const navLinks = [
     inert
   >
     <ul class="flex flex-col text-sm text-center">
-      {
-        navLinks.map((link) => (
-          <li class="border-b border-border/40">
-            <a
-              href={link.href}
-              class="block text-muted-foreground hover:text-foreground transition-colors py-4 focus-visible:outline-none focus-visible:text-foreground"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))
-      }
+      {navLinks.map((link) => (
+        <li class="border-b border-border/40">
+          <a
+            href={link.href}
+            class="block text-muted-foreground hover:text-foreground transition-colors py-4 focus-visible:outline-none focus-visible:text-foreground"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
     </ul>
   </nav>
 </header>
