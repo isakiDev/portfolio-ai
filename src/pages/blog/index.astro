@@ -1,13 +1,21 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
-import Layout from "@layouts/Layout.astro";
+import PostList from "@/features/blog/components/PostList.astro";
 import ContentContainer from "@components/ContentContainer.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
 
-import { PostList } from "@features/blog";
+const data = await getCollection("blog", ({ data }) => !data.draft);
+data.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const blog = await getCollection("blog", ({ data }) => !data.draft);
-blog.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const entriesByYear = new Map<string, CollectionEntry<"blog">[]>();
+
+data.forEach((entry) => {
+  const year = entry.data.date.getFullYear().toString();
+  entriesByYear.set(year, [...(entriesByYear.get(year) ?? []), entry]);
+});
 ---
 
 <Layout
@@ -15,6 +23,23 @@ blog.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
   url={`https://isakidev.vercel.app/blog`}
 >
   <ContentContainer>
-    <PostList items={blog} />
+    <main>
+      <section>
+        <SectionHeading label="Notas" />
+
+        {entriesByYear.keys().map((year) => (
+          <>
+            <div class="mb-2 flex items-center gap-3">
+              <span class="font-mono text-xs" aria-hidden="true">
+                {year}
+              </span>
+              <hr class="border-border/40 flex-1" />
+            </div>
+
+            <PostList items={entriesByYear.get(year)!} />
+          </>
+        ))}
+      </section>
+    </main>
   </ContentContainer>
 </Layout>
