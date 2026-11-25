@@ -1,10 +1,11 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
 
-import Calendar from "@components/icons/Calendar.astro";
-import Clock from "@components/icons/Clock.astro";
+import { Calendar, Clock } from "@lucide/astro";
+
 import ContentContainer from "@/components/ContentContainer.astro";
 import Layout from "@layouts/Layout.astro";
+import Badge from "@/components/Badge.astro";
 
 import { formatDate } from "@/utils/format-date";
 import { getReadingTime } from "@/utils/reading-time";
@@ -36,7 +37,7 @@ const readingTime = getReadingTime(article.body!);
   url={`https://isakidev.vercel.app/blog/${slug}/`}
 >
   <ContentContainer>
-    <article class="mb-8">
+    <article>
       <header class="mb-6 pb-6 border-b border-border">
         <h1 class="text-3xl sm:text-4xl font-bold mb-4">
           {article.data.title}
@@ -44,23 +45,21 @@ const readingTime = getReadingTime(article.body!);
 
         <div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
           <div class="flex gap-1 items-center">
-            <Calendar class={"size-4"} />
+            <Calendar size={14} />
             <time datetime={article.data.date.toISOString()}>
               {formatDate(article.data.date)}
             </time>
           </div>
 
           <div class="flex gap-1 items-center">
-            <Clock class={"size-4"} />
+            <Clock size={14} />
             <span>{readingTime}</span>
           </div>
 
           {article.data.tags && article.data.tags.length > 0 && (
-            <div class="flex flex-wrap gap-2">
+            <div class="mt-4 flex flex-wrap gap-1.5 sm:mt-3">
               {article.data.tags.map((tag) => (
-                <span class="px-2 py-1 bg-muted rounded-md text-xs border border-border">
-                  {tag}
-                </span>
+                <Badge variant="primary">{tag}</Badge>
               ))}
             </div>
           )}
