@@ -10,17 +10,15 @@ const bars = [
 ---
 
 <div class="flex items-end gap-1 h-8">
-  {
-    bars.map((bar) => (
-      <span
-        class="w-1 h-full bg-primary rounded-full animate-eq"
-        style={`
+  {bars.map((bar) => (
+    <span
+      class="w-1 h-full bg-primary rounded-full animate-eq"
+      style={`
           animation-delay: ${bar.delay}ms;
           animation-duration: ${bar.duration}ms;
         `}
-      />
-    ))
-  }
+    />
+  ))}
 </div>
 
 <style>
