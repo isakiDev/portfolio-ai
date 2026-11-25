@@ -73,10 +73,6 @@ html {
   scroll-padding-top: 90px;
 }
 
-body {
-  @apply mx-auto max-w-5xl bg-background font-sans text-foreground antialiased;
-}
-
 /* --------------------------------
    Base styles
 --------------------------------- */
@@ -95,7 +91,10 @@ body {
   background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
 }
 
-/* Mermaid diagrams dark mode (rendered at build time, inverted via CSS) */
+/* --------------------------------
+   Mermaid styles
+--------------------------------- */
+
 html.dark svg[id^="mermaid"] {
 	filter: invert(1) hue-rotate(180deg);
 }
