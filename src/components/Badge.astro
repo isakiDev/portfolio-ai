@@ -8,16 +8,18 @@ export interface Props {
 const { variant = "primary" } = Astro.props;
 
 const variantStyles: Record<Variant, string> = {
-  primary: "bg-primary/10 text-primary",
-  accent: "bg-accent/10 text-accent",
-  secondary: "bg-secondary text-muted-foreground",
+  primary: "border-primary/20 bg-primary/5 text-primary",
+  accent: "border-accent/20 bg-accent/5 text-accent",
+  secondary: "border-border bg-muted/50 text-muted-foreground",
 };
-
-const variantClass = variantStyles[variant];
 ---
 
 <span
-  class={`inline-flex items-center font-mono text-[11px] px-2.5 py-1 rounded-full tracking-wider font-medium ${variantClass}`}
+  class:list={[
+    "inline-flex items-center rounded-md border px-2 py-0.5",
+    "font-mono text-xs leading-5",
+    variantStyles[variant],
+  ]}
 >
   <slot />
 </span>
