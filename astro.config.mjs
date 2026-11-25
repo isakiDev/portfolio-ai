@@ -44,7 +44,7 @@ export default defineConfig({
 
   integrations: [
     mermaid({
-      theme: "neutral",
+      theme: "default",
     }),
     expressiveCode({
       themes: ["vitesse-dark"],
