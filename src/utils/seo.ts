@@ -4,7 +4,8 @@ export function absoluteUrl(path = "/"): string {
   return new URL(path, site.url).toString();
 }
 
-export function buildPageTitle(title?: string): string {
+export function buildPageTitle(title?: string, section?: string): string {
   if (!title) return site.title;
-  return `${title} | ${site.shortName} - Desarrollador de Software`;
+  if (section) return `${title} | ${section} | ${site.shortName}`;
+  return `${title} | ${site.shortName}`;
 }
