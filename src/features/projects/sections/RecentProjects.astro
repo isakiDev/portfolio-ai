@@ -2,13 +2,19 @@
 import SectionHeading from "@/components/SectionHeading.astro";
 import ProjectListItem from "@/features/projects/components/ProjectListItem.astro";
 import { getPublishedProjects } from "../utils/get-published-projects";
+import LinkButton from "@/components/ui/LinkButton.astro";
 
 const projects = await getPublishedProjects();
 const recentProjects = projects.slice(0, 4);
 ---
 
 <section id="projects">
-  <SectionHeading label="Proyectos" />
+  <div class="flex items-center justify-between">
+    <SectionHeading label="Proyectos" class="mb-0" />
+    <LinkButton href="/projects" variant="link">
+      Ver más proyectos
+    </LinkButton>
+  </div>
 
   <div>
     {recentProjects.map((project) => (
