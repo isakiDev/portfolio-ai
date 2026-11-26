@@ -21,6 +21,7 @@ const { items } = Astro.props;
         date={formatDate(data.date)}
         description={data.description}
         readingTime={getReadingTime(body!)}
+        tag={data.tags?.[0]}
       />
     </li>
   ))}
