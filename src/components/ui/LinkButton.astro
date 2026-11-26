@@ -1,5 +1,5 @@
 ---
-type Variant = "primary" | "secondary" | "outline";
+type Variant = "primary" | "secondary" | "outline" | "link";
 type Size = "sm" | "md";
 
 interface Props {
@@ -18,7 +18,7 @@ const {
   variant = "primary",
   size = "md",
   external = false,
-  class: classProp,
+  class: className,
   title,
   ariaLabel,
   download,
@@ -31,6 +31,7 @@ const variantStyles: Record<Variant, string> = {
     "border border-border bg-card text-foreground hover:bg-muted hover:text-primary",
   outline:
     "border border-border/60 text-foreground hover:border-primary/40 hover:bg-primary/5 hover:text-primary",
+  link: "text-foreground hover:text-primary underline underline-offset-3",
 };
 
 const sizeStyles: Record<Size, string> = {
@@ -52,7 +53,7 @@ const externalAttrs = external
     "inline-flex items-center rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background",
     variantStyles[variant],
     sizeStyles[size],
-    classProp,
+    className,
   ]}
   {...externalAttrs}
 >
