@@ -34,7 +34,7 @@ const href = caseStudyURL ? `/projects/${entry.id}/` : null;
     className,
   ]}
 >
-  {cover && (
+  {showMeta && cover && (
     <a
       href={href}
       class="block w-full shrink-0 overflow-hidden rounded-md border border-border bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-70"
@@ -62,7 +62,7 @@ const href = caseStudyURL ? `/projects/${entry.id}/` : null;
       </h3>
     </div>
 
-    {showMeta && description && (
+    {description && (
       <p class="mt-2 text-sm leading-relaxed text-muted-foreground line-clamp-2 sm:mt-1.5">
         {description}
       </p>
@@ -76,43 +76,45 @@ const href = caseStudyURL ? `/projects/${entry.id}/` : null;
       </div>
     )}
 
-    <nav
-      class="mt-5 flex flex-wrap items-center gap-2.5 sm:mt-4 sm:gap-2"
-      aria-label={`Acciones para ${title}`}
-    >
-      {caseStudyURL && (
-        <a
-          href={href}
-          class="inline-flex items-center gap-1.5 rounded-md border border-border/60 px-3 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-1.5"
-        >
-          <Book size={14} />
-          Cómo lo hice
-        </a>
-      )}
+    {showMeta && (
+      <nav
+        class="mt-5 flex flex-wrap items-center gap-2.5 sm:mt-4 sm:gap-2"
+        aria-label={`Acciones para ${title}`}
+      >
+        {caseStudyURL && (
+          <a
+            href={href}
+            class="inline-flex items-center gap-1.5 rounded-md border border-border/60 px-3 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-1.5"
+          >
+            <Book size={14} />
+            Cómo lo hice
+          </a>
+        )}
 
-      {websiteURL && (
-        <a
-          href={websiteURL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 rounded-md border border-border/60 px-3 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-1.5"
-        >
-          <ExternalLink size={14} />
-          Ver deploy
-        </a>
-      )}
+        {websiteURL && (
+          <a
+            href={websiteURL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 rounded-md border border-border/60 px-3 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-1.5"
+          >
+            <ExternalLink size={14} />
+            Ver deploy
+          </a>
+        )}
 
-      {repoURL && (
-        <a
-          href={repoURL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 rounded-md border border-border/60 px-3 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-1.5"
-        >
-          <FolderGit size={14} />
-          Ver código
-        </a>
-      )}
-    </nav>
+        {repoURL && (
+          <a
+            href={repoURL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 rounded-md border border-border/60 px-3 py-2 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-1.5"
+          >
+            <FolderGit size={14} />
+            Ver código
+          </a>
+        )}
+      </nav>
+    )}
   </div>
 </article>
