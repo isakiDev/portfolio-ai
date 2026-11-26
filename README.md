@@ -39,7 +39,7 @@
 ## Features
 
 - **Landing page** — hero, about, projects and experience sections
-- **Activity log** — a `github.log` section that lists your latest commits from GitHub
+- **Activity log** — an activity section that lists your latest commits from GitHub
 - **Now Playing** — shows what you're currently listening to on Spotify
 - **Blog** — Markdown posts with tags, reading time and pagination
 - **Dark / light theme** with a toggle, Geist font, Tailwind styling
@@ -71,15 +71,19 @@ SPOTIFY_REFRESH_TOKEN=
 
 ```
 src/
+├── config/                 # site metadata, social links, navigation
+├── components/             # shared UI and layout components
+│   └── ui/                 # reusable primitives (LinkButton, Skeleton, etc.)
 ├── features/
-│   ├── blog/               # blog section, post list, pagination
-│   └── portfolio/          # portfolio sections, services, data, types
+│   ├── portfolio/          # hero, experience, activity, now playing
+│   ├── projects/           # project listing, detail helpers, sections
+│   └── blog/               # blog feature (excluded from this refactor scope)
 ├── layouts/                # Layout.astro (HTML shell, theme & metadata)
-├── components/             # shared components (Header, Footer, icons)
-├── pages/                  # routes (/, /blog, ..., 404)
-├── content/                # Markdown blog posts
-├── styles/                 # global styles
+├── pages/                  # routes (/, /projects, /blog, 404)
+├── content/                # Markdown content collections
+├── styles/                 # global styles and theme tokens
+├── utils/                  # shared utilities (dates, seo, github helpers)
 └── content.config.ts       # content collection schema
 ```
 
-The portfolio is organized into features, each with its own sections, components and services. Content lives in `src/content/blog` as Markdown; projects and experience are defined as typed data in `src/features/portfolio/data`.
+The portfolio is organized by feature, with shared config/components/utilities for cross-cutting concerns. Experience is defined as typed data in `src/features/portfolio/data`, and projects live in `src/content/projects` as Markdown content.
