@@ -12,9 +12,7 @@ import BackToPrev from "@components/BackToPrev.astro";
 
 import { formatDate } from "@/utils/format-date";
 import { getReadingTime } from "@/utils/reading-time";
-import { absoluteUrl } from "@/utils/seo";
-
-import { site } from "@/config/site";
+import { absoluteUrl, buildPageTitle } from "@/utils/seo";
 
 export async function getStaticPaths() {
   const articles = await getCollection("blog", ({ data }) => !data.draft);
@@ -38,7 +36,7 @@ const readingTime = getReadingTime(article.body!);
 ---
 
 <Layout
-  title={`${article.data.title} | Blog | ${site.shortName}`}
+  title={buildPageTitle(article.data.title, "Blog")}
   url={absoluteUrl(`/blog/${slug}/`)}
 >
   <ContentContainer>

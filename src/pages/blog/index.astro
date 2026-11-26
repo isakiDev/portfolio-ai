@@ -21,26 +21,24 @@ data.forEach((entry) => {
 
 <Layout title={buildPageTitle("Blog")} url={absoluteUrl("/blog")}>
   <ContentContainer>
-    <main>
-      <section>
-        <SectionHeading label="Notas" />
+    <section>
+      <SectionHeading label="Notas" />
 
-        {entriesByYear.keys().map((year) => (
-          <>
-            <div class="my-2 flex items-center gap-3">
-              <span
-                class="font-mono text-xs text-muted-foreground"
-                aria-hidden="true"
-              >
-                {year}
-              </span>
-              <hr class="border-border/40 flex-1" />
-            </div>
+      {Array.from(entriesByYear.keys()).map((year) => (
+        <>
+          <div class="my-2 flex items-center gap-3">
+            <span
+              class="font-mono text-xs text-muted-foreground"
+              aria-hidden="true"
+            >
+              {year}
+            </span>
+            <hr class="border-border/40 flex-1" />
+          </div>
 
-            <PostList items={entriesByYear.get(year)!} showMeta={false} />
-          </>
-        ))}
-      </section>
-    </main>
+          <PostList items={entriesByYear.get(year)!} showMeta={false} />
+        </>
+      ))}
+    </section>
   </ContentContainer>
 </Layout>

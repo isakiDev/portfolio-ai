@@ -1,14 +1,12 @@
 ---
-import { getCollection } from "astro:content";
-
 import SectionHeading from "@components/SectionHeading.astro";
 import { formatDate } from "@/utils/format-date";
 import { getReadingTime } from "@/utils/reading-time";
 import Badge from "@/components/Badge.astro";
 import LinkButton from "@/components/ui/LinkButton.astro";
+import { getPublishedEntries } from "@/utils/get-published-entries";
 
-const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
-blogPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const blogPosts = await getPublishedEntries("blog");
 
 const [featuredPost, ...restPosts] = blogPosts;
 const recentPosts = restPosts.slice(0, 2);
