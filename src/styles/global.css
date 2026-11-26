@@ -73,6 +73,12 @@ html {
   scroll-padding-top: 128px;
 }
 
+@layer base {
+  * {
+    @apply scrollbar-thumb-primary scrollbar-track-secondary;
+  }
+}
+
 /* --------------------------------
    Selection
 --------------------------------- */
