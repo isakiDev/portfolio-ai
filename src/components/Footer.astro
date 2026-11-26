@@ -1,25 +1,20 @@
 ---
-import { site, socialLinks as siteSocialLinks } from "@/config/site";
+import { site, socialLinks } from "@/config/site";
 
 const year = new Date().getFullYear();
-
-export const socialLinks = siteSocialLinks.map(({ label, url }) => ({
-  name: label,
-  href: url,
-}));
 ---
 
 <footer class="w-full py-8 border-t border-border">
   <div class="flex flex-col gap-4 items-center max-w-5xl mx-auto">
     <div class="flex items-center gap-3 text-xs tracking-wider">
-      {socialLinks?.map(({ href, name }) => (
+      {socialLinks.map(({ label, url }) => (
         <a
-          href={href}
+          href={url}
           class="text-muted-foreground hover:text-foreground transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           target="_blank"
           rel="noopener noreferrer"
         >
-          {name}
+          {label}
         </a>
       ))}
     </div>

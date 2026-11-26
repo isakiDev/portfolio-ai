@@ -3,10 +3,10 @@ interface Props {
   class?: string;
 }
 
-const { class: classProp } = Astro.props;
+const { class: className } = Astro.props;
 ---
 
 <span
-  class:list={["block rounded bg-secondary animate-pulse", classProp]}
+  class:list={["block rounded bg-secondary animate-pulse", className]}
   aria-hidden="true"
 />

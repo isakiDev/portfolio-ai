@@ -4,14 +4,14 @@ interface Props {
   class?: string;
 }
 
-const { href, class: classProp } = Astro.props;
+const { href, class: className } = Astro.props;
 ---
 
 <a
   href={href}
   class:list={[
     "group relative flex w-fit flex-nowrap rounded-sm border border-border py-1.5 pr-3 pl-7 text-muted-foreground no-underline transition-all duration-100 ease-in-out hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:translate-y-0.5",
-    classProp,
+    className,
   ]}
 >
   <svg
