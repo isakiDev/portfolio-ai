@@ -2,16 +2,15 @@
 interface Props {
   label: string;
   class?: string;
-  className?: string;
 }
 
-const { label, class: classProp, className } = Astro.props;
+const { label, class: className } = Astro.props;
 ---
 
 <h2
   class:list={[
     "font-mono text-base lg:text-lg tracking-wider leading-none font-semibold text-muted-foreground border-l-2 border-primary pl-3",
-    classProp ?? className ?? "mb-10",
+    className ?? "mb-10",
   ]}
 >
   {label}
