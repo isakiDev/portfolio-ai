@@ -2,10 +2,10 @@
 import { getCollection } from "astro:content";
 
 import SectionHeading from "@components/SectionHeading.astro";
-import ChevronRight from "@components/icons/ChevronRight.astro";
 import { formatDate } from "@/utils/format-date";
 import { getReadingTime } from "@/utils/reading-time";
 import Badge from "@/components/Badge.astro";
+import LinkButton from "@/components/ui/LinkButton.astro";
 
 const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
 blogPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -16,9 +16,14 @@ const recentPosts = restPosts.slice(0, 2);
 
 {featuredPost && (
   <section id="blog">
-    <SectionHeading label="Blog" />
+    <div class="flex items-center justify-between">
+      <SectionHeading label="Blog" class="mb-0" />
+      <LinkButton href="/blog" variant="link">
+        Ver todas las notas
+      </LinkButton>
+    </div>
 
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10 mt-10">
       <div class="lg:col-span-7">
         <a
           href={`/blog/${featuredPost.id}`}
@@ -72,14 +77,6 @@ const recentPosts = restPosts.slice(0, 2);
             </div>
           </a>
         ))}
-
-        <a
-          href="/blog"
-          class="group mx-auto mt-auto flex w-fit items-center gap-1.5 pt-4 text-xs tracking-wider text-primary transition-colors hover:text-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >
-          VER TODAS LAS NOTAS
-          <ChevronRight class="size-3.5 transition-transform duration-150 group-hover:translate-x-1" />
-        </a>
       </div>
     </div>
   </section>

@@ -2,27 +2,18 @@
 import type { CollectionEntry } from "astro:content";
 
 import PostCard from "./PostCard.astro";
-import { formatDate } from "@/utils/format-date";
-import { getReadingTime } from "@/utils/reading-time";
 
 interface Props {
   items: CollectionEntry<"blog">[];
+  class?: string;
+  showMeta?: boolean;
 }
 
-const { items } = Astro.props;
+const { items, class: className, showMeta = true } = Astro.props;
 ---
 
-<ul class="grid gap-4">
-  {items.map(({ data, id, body }) => (
-    <li>
-      <PostCard
-        href={`/blog/${id}`}
-        title={data.title}
-        date={formatDate(data.date)}
-        description={data.description}
-        readingTime={getReadingTime(body!)}
-        tag={data.tags?.[0]}
-      />
-    </li>
+<div class:list={["flex flex-col", className]}>
+  {items.map((entry) => (
+    <PostCard entry={entry} showMeta={showMeta} />
   ))}
-</ul>
+</div>

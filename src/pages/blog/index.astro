@@ -27,14 +27,17 @@ data.forEach((entry) => {
 
         {entriesByYear.keys().map((year) => (
           <>
-            <div class="mb-2 flex items-center gap-3">
-              <span class="font-mono text-xs" aria-hidden="true">
+            <div class="my-2 flex items-center gap-3">
+              <span
+                class="font-mono text-xs text-muted-foreground"
+                aria-hidden="true"
+              >
                 {year}
               </span>
               <hr class="border-border/40 flex-1" />
             </div>
 
-            <PostList items={entriesByYear.get(year)!} />
+            <PostList items={entriesByYear.get(year)!} showMeta={false} />
           </>
         ))}
       </section>
