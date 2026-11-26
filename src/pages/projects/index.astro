@@ -15,13 +15,11 @@ const projectsWithCaseStudy = projects.filter(
 
 <Layout title={buildPageTitle("Proyectos")} url={absoluteUrl("/projects")}>
   <ContentContainer>
-    <main>
-      <section>
-        <SectionHeading label="Proyectos" />
-        {projectsWithCaseStudy.map((project) => (
-          <ProjectListItem entry={project} showMeta={false} class="py-3" />
-        ))}
-      </section>
-    </main>
+    <section>
+      <SectionHeading label="Proyectos" />
+      {projectsWithCaseStudy.map((project) => (
+        <ProjectListItem entry={project} showMeta={false} class="py-3" />
+      ))}
+    </section>
   </ContentContainer>
 </Layout>
