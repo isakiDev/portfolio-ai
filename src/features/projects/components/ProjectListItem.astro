@@ -12,7 +12,7 @@ interface Props {
   showMeta?: boolean;
 }
 
-const { entry, class: classProp, showMeta = true } = Astro.props;
+const { entry, class: className, showMeta = true } = Astro.props;
 
 const {
   title,
@@ -39,7 +39,7 @@ const caseStudyHref = caseStudyURL ? `/projects/${entry.id}/` : undefined;
           "transition-[padding-left,border-color,background-color] duration-200 ease-in-out",
           "hover:border-l-primary hover:bg-surface/30 hover:pl-2",
         ],
-    classProp,
+    className,
   ]}
 >
   {showMeta &&
@@ -119,7 +119,6 @@ const caseStudyHref = caseStudyURL ? `/projects/${entry.id}/` : undefined;
       )}
     </div>
   ) : (
-    // caseStudyHref && (
     <a
       href={caseStudyHref}
       class="group/link relative block min-w-0 flex-1 pr-8 pl-0 no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -141,6 +140,5 @@ const caseStudyHref = caseStudyURL ? `/projects/${entry.id}/` : undefined;
         class="absolute top-1/2 right-0 -translate-y-1/2 text-muted-foreground opacity-0 transition-[opacity,transform,color] duration-300 ease-in-out group-hover/link:translate-x-0 group-hover/link:text-primary group-hover/link:opacity-100"
       />
     </a>
-    // )
   )}
 </article>
