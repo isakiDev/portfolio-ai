@@ -1,10 +1,10 @@
 ---
 import SectionHeading from "@/components/SectionHeading.astro";
 import ProjectListItem from "@/features/projects/components/ProjectListItem.astro";
-import { getPublishedProjects } from "../utils/get-published-projects";
+import { getPublishedEntries } from "@/utils/get-published-entries";
 import LinkButton from "@/components/ui/LinkButton.astro";
 
-const projects = await getPublishedProjects();
+const projects = await getPublishedEntries("projects");
 const recentProjects = projects.slice(0, 4);
 ---
 
