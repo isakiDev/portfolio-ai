@@ -7,20 +7,18 @@ import Skeleton from "@/components/ui/Skeleton.astro";
   <SectionHeading label="Actividad" />
 
   <div class="border-l border-border pl-5 sm:pl-8 font-mono text-[11px] sm:text-xs space-y-8">
-    {
-      Array.from({ length: 3 }).map(() => (
-        <div class="space-y-3 pt-1.5">
-          <Skeleton class="h-3 w-40" />
-          <ul class="space-y-2">
-            {Array.from({ length: 2 }).map(() => (
-              <li class="flex items-center gap-x-4 gap-y-1">
-                <Skeleton class="h-3 w-14 shrink-0" />
-                <Skeleton class="h-3 w-48" />
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))
-    }
+    {Array.from({ length: 3 }).map(() => (
+      <div class="space-y-3 pt-1.5">
+        <Skeleton class="h-3 w-40" />
+        <ul class="space-y-2">
+          {Array.from({ length: 2 }).map(() => (
+            <li class="flex items-center gap-x-4 gap-y-1">
+              <Skeleton class="h-3 w-full shrink-0" />
+              <Skeleton class="h-3 w-full" />
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </div>
 </section>

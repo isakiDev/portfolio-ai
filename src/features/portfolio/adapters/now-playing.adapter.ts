@@ -4,8 +4,6 @@ import type {
 } from "@/features/portfolio/types/spotify";
 
 export type { NowPlayingTrack } from "@/features/portfolio/types/spotify";
-/** @deprecated Use NowPlayingTrack */
-export type NowPlayingAdapter = NowPlayingTrack;
 
 export const nowPlayingAdapter = (
   data: NowPlayingResponse,
