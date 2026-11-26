@@ -9,6 +9,8 @@ import Layout from "@layouts/Layout.astro";
 
 import { formatDate } from "@/utils/format-date";
 import Badge from "@/components/Badge.astro";
+import TableOfContents from "@/components/TableOfContents.astro";
+import BackToPrev from "@components/BackToPrev.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects", ({ data }) => !data.draft);
@@ -26,7 +28,7 @@ if (!project) {
   return Astro.redirect("/404");
 }
 
-const { Content } = await render(project);
+const { Content, headings } = await render(project);
 ---
 
 <Layout
@@ -34,81 +36,90 @@ const { Content } = await render(project);
   url={`https://isakidev.vercel.app/projects/${slug}/`}
 >
   <ContentContainer>
-    <article class="mb-8">
-      <header class="mb-8 border-b border-border pb-8">
-        <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
-          {project.data.title}
-        </h1>
+    <div class="xl:grid xl:grid-cols-[11rem_1fr] xl:gap-8">
+      <aside class="hidden xl:block">
+        <div class="sticky top-20 flex flex-col gap-6">
+          <BackToPrev href="/projects">Volver a proyectos</BackToPrev>
+          <TableOfContents headings={headings} />
+        </div>
+      </aside>
 
-        <p class="mb-5 max-w-3xl text-base leading-relaxed text-muted-foreground">
-          {project.data.description}
-        </p>
+      <article class="mb-8">
+        <header class="mb-8 border-b border-border pb-8">
+          <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
+            {project.data.title}
+          </h1>
 
-        <div class="flex flex-wrap items-center gap-x-4 gap-y-3 text-sm text-muted-foreground">
-          <div class="flex items-center gap-1.5">
-            <Calendar size={14} />
-            <time datetime={project.data.date.toISOString()}>
-              {formatDate(project.data.date)}
-            </time>
+          <p class="mb-5 max-w-3xl text-base leading-relaxed text-muted-foreground">
+            {project.data.description}
+          </p>
+
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-3 text-sm text-muted-foreground">
+            <div class="flex items-center gap-1.5">
+              <Calendar size={14} />
+              <time datetime={project.data.date.toISOString()}>
+                {formatDate(project.data.date)}
+              </time>
+            </div>
+
+            {project.data.technologies &&
+              project.data.technologies.length > 0 && (
+                <div class="flex flex-wrap gap-1.5">
+                  {project.data.technologies.map((tag) => (
+                    <Badge variant="primary">{tag}</Badge>
+                  ))}
+                </div>
+              )}
           </div>
 
-          {project.data.technologies &&
-            project.data.technologies.length > 0 && (
-              <div class="flex flex-wrap gap-1.5">
-                {project.data.technologies.map((tag) => (
-                  <Badge variant="primary">{tag}</Badge>
-                ))}
-              </div>
-            )}
-        </div>
+          {(project.data.repoURL || project.data.websiteURL) && (
+            <nav
+              class="mt-6 flex flex-wrap gap-3"
+              aria-label={`Enlaces de ${project.data.title}`}
+            >
+              {project.data.websiteURL && (
+                <a
+                  href={project.data.websiteURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <ExternalLink size={14} />
+                  Ver deploy
+                </a>
+              )}
 
-        {(project.data.repoURL || project.data.websiteURL) && (
-          <nav
-            class="mt-6 flex flex-wrap gap-3"
-            aria-label={`Enlaces de ${project.data.title}`}
-          >
-            {project.data.websiteURL && (
-              <a
-                href={project.data.websiteURL}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <ExternalLink size={14} />
-                Ver deploy
-              </a>
-            )}
+              {project.data.repoURL && (
+                <a
+                  href={project.data.repoURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 rounded-md border border-border/60 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <GitHubIcon class="size-4" />
+                  Ver código
+                </a>
+              )}
+            </nav>
+          )}
+        </header>
 
-            {project.data.repoURL && (
-              <a
-                href={project.data.repoURL}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-md border border-border/60 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <GitHubIcon class="size-4" />
-                Ver código
-              </a>
-            )}
-          </nav>
+        {project.data.cover && (
+          <figure class="mb-8 overflow-hidden rounded-lg border border-border/60 bg-background">
+            <img
+              src={project.data.cover}
+              alt={project.data.coverAlt ?? `${project.data.title} cover image`}
+              loading="eager"
+              decoding="async"
+              class="aspect-video w-full object-cover"
+            />
+          </figure>
         )}
-      </header>
 
-      {project.data.cover && (
-        <figure class="mb-8 overflow-hidden rounded-lg border border-border/60 bg-background">
-          <img
-            src={project.data.cover}
-            alt={project.data.coverAlt ?? `${project.data.title} cover image`}
-            loading="eager"
-            decoding="async"
-            class="aspect-video w-full object-cover"
-          />
-        </figure>
-      )}
-
-      <div class="prose max-w-none dark:prose-invert">
-        <Content />
-      </div>
-    </article>
+        <div class="prose max-w-none dark:prose-invert">
+          <Content />
+        </div>
+      </article>
+    </div>
   </ContentContainer>
 </Layout>
