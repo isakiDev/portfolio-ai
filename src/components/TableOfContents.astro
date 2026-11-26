@@ -18,7 +18,7 @@ const visibleHeadings = headings.filter(
 
 {visibleHeadings.length > 0 && (
   <details open class="group">
-    <summary class="mb-2 flex cursor-pointer list-none items-center gap-1 text-sm font-semibold text-fg-muted select-none transition-colors duration-200 hover:text-accent">
+    <summary class="mb-2 flex cursor-pointer list-none items-center gap-1 text-sm font-semibold text-muted-foreground select-none transition-colors duration-200 hover:text-accent">
       <span>Tabla de contenidos</span>
 
       <ChevronDown size={16} class="hidden group-open:block" />
@@ -31,7 +31,7 @@ const visibleHeadings = headings.filter(
           <li class:list={[depth === 3 && "pl-3"]}>
             <a
               href={`#${slug}`}
-              class="table-of-contents__link block py-0.5 text-fg-muted no-underline transition-colors duration-200"
+              class="table-of-contents__link block py-0.5 text-muted-foreground no-underline transition-colors duration-200"
             >
               {text}
             </a>

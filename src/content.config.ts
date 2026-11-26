@@ -23,7 +23,7 @@ const projects = defineCollection({
 		repoURL: z.url().optional(),
 		websiteURL: z.url().optional(),
 		technologies: z.array(z.string().min(1)).optional(),
-		cover: z.string().optional() || z.url().optional(),
+		cover: z.string().min(1).optional(),
 		coverAlt: z.string().optional(),
 		caseStudyURL: z.boolean().default(true)
 	}),

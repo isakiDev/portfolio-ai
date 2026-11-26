@@ -1,24 +1,23 @@
 ---
-import { getCollection } from "astro:content";
-
 import ContentContainer from "@components/ContentContainer.astro";
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@/components/SectionHeading.astro";
 import ProjectListItem from "@/features/projects/components/ProjectListItem.astro";
+import { getPublishedProjects } from "@/features/projects/utils/get-published-projects";
+import { absoluteUrl, buildPageTitle } from "@/utils/seo";
 
-const data = await getCollection("projects", ({ data }) => !data.draft);
-data.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const projects = await getPublishedProjects();
 ---
 
 <Layout
-  title={`Proyectos | Gaspar Castillo - Desarrollador de Software`}
-  url={`https://isakidev.vercel.app/blog`}
+  title={buildPageTitle("Proyectos")}
+  url={absoluteUrl("/projects")}
 >
   <ContentContainer>
     <main>
       <section>
         <SectionHeading label="Proyectos" />
-        {data.map((project) => (
+        {projects.map((project) => (
           <ProjectListItem entry={project} showMeta={false} />
         ))}
       </section>

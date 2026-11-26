@@ -1,34 +1,14 @@
 ---
 import SectionHeading from "@components/SectionHeading.astro";
 import GitHubIcon from "@components/icons/GitHub.astro";
+import { site } from "@/config/site";
+import { formatCommitDate } from "@/utils/format-date";
+import { getShortCommitHash } from "@/utils/github";
 
 import { getLatestCommits } from "../services/github.service";
 
 const repositories = await getLatestCommits();
-
-function formatCommitDate(dateStr: string): string {
-  const d = new Date(dateStr);
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  return `${months[d.getUTCMonth()]} ${String(d.getUTCDate()).padStart(2, "0")}`;
-}
-
-function shortHash(url: string): string {
-  const parts = url.split("/");
-  return parts[parts.length - 1]?.slice(0, 7) ?? "";
-}
+const githubUsername = site.socials.github.username;
 ---
 
 <section id="activity">
@@ -38,7 +18,7 @@ function shortHash(url: string): string {
     {repositories.map(({ repo, commits }) => (
       <article class="space-y-3 pt-1.5">
         <a
-          href={`https://github.com/isakidev/${repo}`}
+          href={`https://github.com/${githubUsername}/${repo}`}
           target="_blank"
           rel="noopener noreferrer"
           class="relative inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -68,7 +48,7 @@ function shortHash(url: string): string {
 
                 <div class="flex gap-1.5 min-w-0">
                   <span class="shrink-0 text-accent">
-                    [{shortHash(commit.url)}]
+                    [{getShortCommitHash(commit.url)}]
                   </span>
                   <span class="truncate text-foreground">{commit.message}</span>
                 </div>

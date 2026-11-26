@@ -8,7 +8,10 @@ import ContentContainer from "@components/ContentContainer.astro";
 import Layout from "@layouts/Layout.astro";
 
 import { formatDate } from "@/utils/format-date";
+import { absoluteUrl } from "@/utils/seo";
+import { site } from "@/config/site";
 import Badge from "@/components/Badge.astro";
+import LinkButton from "@/components/ui/LinkButton.astro";
 import TableOfContents from "@/components/TableOfContents.astro";
 import BackToPrev from "@components/BackToPrev.astro";
 
@@ -32,8 +35,8 @@ const { Content, headings } = await render(project);
 ---
 
 <Layout
-  title={`${project.data.title} | Proyectos - Gaspar Castillo - Desarrollador de Software`}
-  url={`https://isakidev.vercel.app/projects/${slug}/`}
+  title={`${project.data.title} | Proyectos | ${site.shortName}`}
+  url={absoluteUrl(`/projects/${slug}/`)}
 >
   <ContentContainer>
     <div class="xl:grid xl:grid-cols-[11rem_1fr] xl:gap-8">
@@ -78,27 +81,17 @@ const { Content, headings } = await render(project);
               aria-label={`Enlaces de ${project.data.title}`}
             >
               {project.data.websiteURL && (
-                <a
-                  href={project.data.websiteURL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
+                <LinkButton href={project.data.websiteURL} external variant="primary" size="sm" class="px-4 py-2 text-sm">
                   <ExternalLink size={14} />
                   Ver deploy
-                </a>
+                </LinkButton>
               )}
 
               {project.data.repoURL && (
-                <a
-                  href={project.data.repoURL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 rounded-md border border-border/60 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
+                <LinkButton href={project.data.repoURL} external variant="outline" size="sm" class="px-4 py-2 text-sm">
                   <GitHubIcon class="size-4" />
                   Ver código
-                </a>
+                </LinkButton>
               )}
             </nav>
           )}

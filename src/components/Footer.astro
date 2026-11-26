@@ -1,24 +1,12 @@
 ---
+import { site, socialLinks as siteSocialLinks } from "@/config/site";
+
 const year = new Date().getFullYear();
 
-export const socialLinks = [
-  {
-    name: "GitHub",
-    href: "https://github.com/isakiDev",
-  },
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/isakidev/",
-  },
-  {
-    name: "TikTok",
-    href: "https://www.tiktok.com/@isakidev",
-  },
-  {
-    name: "Coding Challenges",
-    href: "https://coding-challenges.dev/profile/isakidev",
-  },
-];
+export const socialLinks = siteSocialLinks.map(({ label, url }) => ({
+  name: label,
+  href: url,
+}));
 ---
 
 <footer class="w-full py-8 mt-20 border-t border-border">
@@ -38,7 +26,7 @@ export const socialLinks = [
 
     <p class="mt-1 font-mono text-xs text-muted-foreground">
       &copy; {year}
-      <span class="font-bold"> isakidev</span>
+      <span class="font-bold"> {site.handle}</span>
     </p>
   </div>
 </footer>

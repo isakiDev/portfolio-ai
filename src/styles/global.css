@@ -31,7 +31,7 @@
 
   /* Typography */
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
 }
 
 /* --------------------------------
@@ -71,16 +71,6 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
-}
-
-/* --------------------------------
-   Base styles
---------------------------------- */
-
-@layer base {
-  * {
-    @apply scrollbar-thumb-primary scrollbar-track-secondary;
-  }
 }
 
 /* --------------------------------

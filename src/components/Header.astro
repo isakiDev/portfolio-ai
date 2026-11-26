@@ -1,15 +1,9 @@
 ---
 import ThemeToggleButton from "@components/ThemeToggleButton.astro";
-import NowPlaying from "@features/portfolio/components/NowPlaying.astro";
-import NowPlayingSkeleton from "@features/portfolio/components/NowPlayingSkeleton.astro";
+import { NowPlaying, NowPlayingSkeleton } from "@features/portfolio";
+import { site } from "@/config/site";
 
-const navLinks = [
-  { href: "/#hero", label: "Inicio" },
-  { href: "/#projects", label: "Proyectos" },
-  { href: "/#experience", label: "Experiencia" },
-  { href: "/#activity", label: "Actividad" },
-  { href: "/#blog", label: "Blog" },
-];
+const navLinks = site.nav;
 ---
 
 <header

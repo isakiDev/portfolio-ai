@@ -3,9 +3,10 @@ type Variant = "primary" | "accent" | "secondary";
 
 export interface Props {
   variant?: Variant;
+  class?: string;
 }
 
-const { variant = "primary" } = Astro.props;
+const { variant = "primary", class: classProp } = Astro.props;
 
 const variantStyles: Record<Variant, string> = {
   primary: "border-primary/20 bg-primary/5 text-primary",
@@ -19,6 +20,7 @@ const variantStyles: Record<Variant, string> = {
     "inline-flex items-center rounded-md border px-2 py-0.5",
     "font-mono text-xs leading-5",
     variantStyles[variant],
+    classProp,
   ]}
 >
   <slot />

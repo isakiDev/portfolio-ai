@@ -3,15 +3,12 @@ import OpenCode from "@components/icons/OpenCode.astro";
 import Linux from "@components/icons/Linux.astro";
 import GitHub from "@components/icons/GitHub.astro";
 import DownloadCV from "../components/DownloadCV.astro";
+import { site } from "@/config/site";
 
-const PORTRAIT_ALT = "Gaspar Castillo Catrifol";
+const PORTRAIT_ALT = site.name;
 const PORTRAIT_SIZE = { width: 1024, height: 1024 };
 
-const portrait = {
-  light:
-    "https://res.cloudinary.com/dzn3nempv/image/upload/v1795182896/portfolio/logo-with-glasses_vddas8.png",
-  dark: "https://res.cloudinary.com/dzn3nempv/image/upload/v1787864719/portfolio/me-dark_st06ti.png",
-};
+const portrait = site.images.portrait;
 ---
 
 <section

@@ -1,16 +1,16 @@
-import type { NowPlayingResponse } from "@features/portfolio/types";
+import type {
+  NowPlayingResponse,
+  NowPlayingTrack,
+} from "@/features/portfolio/types/spotify";
 
-export interface NowPlayingAdapter {
-  albumImageUrl: string;
-  artist: string;
-  isPlaying: boolean;
-  title: string;
-}
+export type { NowPlayingTrack } from "@/features/portfolio/types/spotify";
+/** @deprecated Use NowPlayingTrack */
+export type NowPlayingAdapter = NowPlayingTrack;
 
 export const nowPlayingAdapter = (
   data: NowPlayingResponse,
-): NowPlayingAdapter => ({
-  albumImageUrl: data.item.album.images[0].url,
+): NowPlayingTrack => ({
+  albumImageUrl: data.item.album.images[0]?.url ?? "",
   artist: data.item.artists.map((artist) => artist.name).join(", "),
   isPlaying: data.is_playing,
   title: data.item.name,

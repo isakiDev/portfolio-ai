@@ -1,3 +1,12 @@
-<div class="mx-auto max-w-5xl pt-16">
+---
+interface Props {
+  class?: string;
+  as?: "div" | "section" | "main" | "article";
+}
+
+const { class: classProp, as: Tag = "div" }: Props = Astro.props;
+---
+
+<Tag class:list={["mx-auto max-w-5xl", classProp]}>
   <slot />
-</div>
+</Tag>

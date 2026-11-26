@@ -1,19 +1,24 @@
 ---
-type Props = {
+interface Props {
   href: string;
-};
+  class?: string;
+}
 
-const { href } = Astro.props;
+const { href, class: classProp } = Astro.props;
 ---
 
 <a
   href={href}
-  class="group relative flex w-fit flex-nowrap rounded-sm border border-black/15 py-1.5 pr-3 pl-7 no-underline transition-all duration-100 ease-in-out hover:bg-black/5 hover:text-black active:translate-y-0.5 dark:border-white/20 dark:hover:bg-white/5 dark:hover:text-white"
+  class:list={[
+    "group relative flex w-fit flex-nowrap rounded-sm border border-border py-1.5 pr-3 pl-7 text-muted-foreground no-underline transition-all duration-100 ease-in-out hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:translate-y-0.5",
+    classProp,
+  ]}
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     class="absolute top-1/2 left-2 size-4 -translate-y-1/2 fill-none stroke-current stroke-2"
+    aria-hidden="true"
   >
     <line
       x1="5"
