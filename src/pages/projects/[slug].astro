@@ -1,19 +1,22 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
 
-import { Calendar, ExternalLink } from "@lucide/astro";
+import { Calendar, Clock, ExternalLink } from "@lucide/astro";
 
-import GitHubIcon from "@components/icons/GitHub.astro";
 import ContentContainer from "@components/ContentContainer.astro";
+import GitHubIcon from "@components/icons/GitHub.astro";
 import Layout from "@layouts/Layout.astro";
 
-import { formatDate } from "@/utils/format-date";
-import { absoluteUrl } from "@/utils/seo";
-import { site } from "@/config/site";
 import Badge from "@/components/Badge.astro";
-import LinkButton from "@/components/ui/LinkButton.astro";
 import TableOfContents from "@/components/TableOfContents.astro";
+import LinkButton from "@/components/ui/LinkButton.astro";
 import BackToPrev from "@components/BackToPrev.astro";
+
+import { formatDate } from "@/utils/format-date";
+import { getReadingTime } from "@/utils/reading-time";
+import { absoluteUrl } from "@/utils/seo";
+
+import { site } from "@/config/site";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects", ({ data }) => !data.draft);
@@ -32,6 +35,8 @@ if (!project) {
 }
 
 const { Content, headings } = await render(project);
+
+const readingTime = getReadingTime(project.body!);
 ---
 
 <Layout
@@ -65,6 +70,11 @@ const { Content, headings } = await render(project);
               </time>
             </div>
 
+            <div class="flex gap-1 items-center">
+              <Clock size={14} />
+              <span>{readingTime}</span>
+            </div>
+
             {project.data.technologies &&
               project.data.technologies.length > 0 && (
                 <div class="flex flex-wrap gap-1.5">
@@ -81,14 +91,26 @@ const { Content, headings } = await render(project);
               aria-label={`Enlaces de ${project.data.title}`}
             >
               {project.data.websiteURL && (
-                <LinkButton href={project.data.websiteURL} external variant="primary" size="sm" class="px-4 py-2 text-sm">
+                <LinkButton
+                  href={project.data.websiteURL}
+                  external
+                  variant="primary"
+                  size="sm"
+                  class="px-4 py-2 text-sm"
+                >
                   <ExternalLink size={14} />
                   Ver deploy
                 </LinkButton>
               )}
 
               {project.data.repoURL && (
-                <LinkButton href={project.data.repoURL} external variant="outline" size="sm" class="px-4 py-2 text-sm">
+                <LinkButton
+                  href={project.data.repoURL}
+                  external
+                  variant="outline"
+                  size="sm"
+                  class="px-4 py-2 text-sm"
+                >
                   <GitHubIcon class="size-4" />
                   Ver código
                 </LinkButton>
