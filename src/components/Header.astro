@@ -103,12 +103,9 @@ const navLinks = site.nav;
 
   if (menuToggle && mobileMenu) {
     const toggleMenu = () => {
-      mobileMenu.classList.toggle("hidden");
+      const isHidden = mobileMenu.classList.toggle("hidden");
       mobileMenu.toggleAttribute("inert");
-      menuToggle.setAttribute(
-        "aria-expanded",
-        !mobileMenu.hasAttribute("hidden"),
-      );
+      menuToggle.setAttribute("aria-expanded", String(!isHidden));
     };
 
     menuToggle.addEventListener("click", toggleMenu);
