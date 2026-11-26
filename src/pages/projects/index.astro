@@ -7,18 +7,18 @@ import { getPublishedProjects } from "@/features/projects/utils/get-published-pr
 import { absoluteUrl, buildPageTitle } from "@/utils/seo";
 
 const projects = await getPublishedProjects();
+const projectsWithCaseStudy = projects.filter(
+  (project) => project.data.caseStudyURL,
+);
 ---
 
-<Layout
-  title={buildPageTitle("Proyectos")}
-  url={absoluteUrl("/projects")}
->
+<Layout title={buildPageTitle("Proyectos")} url={absoluteUrl("/projects")}>
   <ContentContainer>
     <main>
       <section>
         <SectionHeading label="Proyectos" />
-        {projects.map((project) => (
-          <ProjectListItem entry={project} showMeta={false} />
+        {projectsWithCaseStudy.map((project) => (
+          <ProjectListItem entry={project} showMeta={false} class="py-3" />
         ))}
       </section>
     </main>

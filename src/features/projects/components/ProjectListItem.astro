@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { Book, ExternalLink, FolderGit } from "@lucide/astro";
+
+import { ArrowRight, Book, ExternalLink, FolderGit } from "@lucide/astro";
 
 import Badge from "@/components/Badge.astro";
 import LinkButton from "@/components/ui/LinkButton.astro";
@@ -30,15 +31,23 @@ const caseStudyHref = caseStudyURL ? `/projects/${entry.id}/` : undefined;
 
 <article
   class:list={[
-    "group flex flex-col gap-5 py-6 sm:flex-row sm:items-start sm:gap-5 sm:py-5 border-b last:border-b-0 border-border",
+    "relative flex flex-col border-b border-border last:border-b-0",
+    showMeta
+      ? "group"
+      : [
+          "group border-l-2 border-l-transparent",
+          "transition-[padding-left,border-color,background-color] duration-200 ease-in-out",
+          "hover:border-l-primary hover:bg-surface/30 hover:pl-2",
+        ],
     classProp,
   ]}
 >
-  {showMeta && cover && (
-    caseStudyHref ? (
+  {showMeta &&
+    cover &&
+    (caseStudyHref ? (
       <a
         href={caseStudyHref}
-        class="block w-full shrink-0 overflow-hidden rounded-md border border-border bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-70"
+        class="group/cover block w-full shrink-0 overflow-hidden rounded-md border border-border bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-70"
         aria-label={`Leer sobre ${title}`}
       >
         <img
@@ -46,7 +55,7 @@ const caseStudyHref = caseStudyURL ? `/projects/${entry.id}/` : undefined;
           alt={imageAlt}
           loading="lazy"
           decoding="async"
-          class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          class="aspect-video w-full object-cover transition-transform duration-300 group-hover/cover:scale-[1.03]"
         />
       </a>
     ) : (
@@ -59,65 +68,79 @@ const caseStudyHref = caseStudyURL ? `/projects/${entry.id}/` : undefined;
           class="aspect-video w-full object-cover"
         />
       </div>
-    )
-  )}
+    ))}
 
-  <div class="min-w-0 flex-1 p-4 md:p-0">
-    <div class="flex items-start justify-between gap-3">
+  {showMeta ? (
+    <div class="min-w-0 flex-1 p-4 md:p-0">
       <h3 class="text-sm font-semibold tracking-tight text-foreground sm:text-base">
-        {caseStudyHref ? (
-          <a
-            href={caseStudyHref}
-            class="transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            {title}
-          </a>
-        ) : (
-          <span>{title}</span>
-        )}
+        {title}
       </h3>
+
+      {description && (
+        <p class="mt-1 text-sm leading-relaxed text-muted-foreground line-clamp-2">
+          {description}
+        </p>
+      )}
+
+      {technologies && technologies.length > 0 && (
+        <div class="mt-3 flex flex-wrap gap-1.5">
+          {technologies.map((tag) => (
+            <Badge variant="accent">{tag}</Badge>
+          ))}
+        </div>
+      )}
+
+      {(caseStudyHref || websiteURL || repoURL) && (
+        <nav
+          class="mt-4 flex flex-wrap items-center gap-2"
+          aria-label={`Acciones para ${title}`}
+        >
+          {caseStudyHref && (
+            <LinkButton href={caseStudyHref} variant="outline" size="sm">
+              <Book size={14} />
+              Cómo lo hice
+            </LinkButton>
+          )}
+
+          {websiteURL && (
+            <LinkButton href={websiteURL} variant="outline" size="sm" external>
+              <ExternalLink size={14} />
+              Ver deploy
+            </LinkButton>
+          )}
+
+          {repoURL && (
+            <LinkButton href={repoURL} variant="outline" size="sm" external>
+              <FolderGit size={14} />
+              Ver código
+            </LinkButton>
+          )}
+        </nav>
+      )}
     </div>
+  ) : (
+    // caseStudyHref && (
+    <a
+      href={caseStudyHref}
+      class="group/link relative block min-w-0 flex-1 pr-8 pl-0 no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      aria-label={`Leer sobre ${title}`}
+    >
+      <span class="text-sm font-semibold tracking-tight text-foreground transition-colors duration-200 group-hover/link:text-primary sm:text-base">
+        {title}
+      </span>
 
-    {description && (
-      <p class="mt-2 text-sm leading-relaxed text-muted-foreground line-clamp-2 sm:mt-1.5">
-        {description}
-      </p>
-    )}
+      {description && (
+        <p class="mt-1 text-sm leading-relaxed text-muted-foreground line-clamp-2">
+          {description}
+        </p>
+      )}
 
-    {showMeta && technologies && technologies.length > 0 && (
-      <div class="mt-4 flex flex-wrap gap-1.5 sm:mt-3">
-        {technologies.map((tag) => (
-          <Badge variant="accent">{tag}</Badge>
-        ))}
-      </div>
-    )}
-
-    {showMeta && (caseStudyHref || websiteURL || repoURL) && (
-      <nav
-        class="mt-5 flex flex-wrap items-center gap-2.5 sm:mt-4 sm:gap-2"
-        aria-label={`Acciones para ${title}`}
-      >
-        {caseStudyHref && (
-          <LinkButton href={caseStudyHref} variant="outline" size="sm">
-            <Book size={14} />
-            Cómo lo hice
-          </LinkButton>
-        )}
-
-        {websiteURL && (
-          <LinkButton href={websiteURL} variant="outline" size="sm" external>
-            <ExternalLink size={14} />
-            Ver deploy
-          </LinkButton>
-        )}
-
-        {repoURL && (
-          <LinkButton href={repoURL} variant="outline" size="sm" external>
-            <FolderGit size={14} />
-            Ver código
-          </LinkButton>
-        )}
-      </nav>
-    )}
-  </div>
+      <ArrowRight
+        size={18}
+        aria-hidden="true"
+        class="absolute top-1/2 right-0 -translate-y-1/2 text-muted-foreground opacity-0 transition-[opacity,transform,color] duration-300 ease-in-out group-hover/link:translate-x-0 group-hover/link:text-primary group-hover/link:opacity-100"
+      />
+    </a>
+    // )
+  )}
 </article>
