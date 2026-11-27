@@ -1,7 +1,7 @@
 ---
 title: "Patrón Repository"
 description: "Aprende a desacoplar tu lógica de negocio de la persistencia de datos utilizando el patrón Repository."
-date: 2024-01-24
+date: 2026-01-24
 tags: ["patrones-de-diseno", "arquitectura", "typescript"]
 draft: false
 ---
