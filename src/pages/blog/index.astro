@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import ContentContainer from "@components/ContentContainer.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import PostList from "@/features/blog/components/PostList.astro";
+import Layout from "@layouts/Layout.astro";
+
+import { absoluteUrl, buildPageTitle } from "@/utils/seo";
+import { getPublishedEntries } from "@/utils/get-published-entries";
+
+const data = await getPublishedEntries("blog");
+
+const entriesByYear = new Map<string, CollectionEntry<"blog">[]>();
+
+data.forEach((entry) => {
+  const year = entry.data.date.getFullYear().toString();
+  entriesByYear.set(year, [...(entriesByYear.get(year) ?? []), entry]);
+});
+---
+
+<Layout title={buildPageTitle("Blog")} url={absoluteUrl("/blog")}>
+  <ContentContainer>
+    <section>
+      <SectionHeading label="Notas" />
+
+      {Array.from(entriesByYear.keys()).map((year) => (
+        <>
+          <div class="my-2 flex items-center gap-3">
+            <span
+              class="font-mono text-xs text-muted-foreground"
+              aria-hidden="true"
+            >
+              {year}
+            </span>
+            <hr class="border-border/40 flex-1" />
+          </div>
+
+          <PostList items={entriesByYear.get(year)!} showMeta={false} />
+        </>
+      ))}
+    </section>
+  </ContentContainer>
+</Layout>

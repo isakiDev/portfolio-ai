@@ -1,0 +1,61 @@
+---
+type Variant = "primary" | "secondary" | "outline" | "link";
+type Size = "sm" | "md";
+
+interface Props {
+  href: string;
+  variant?: Variant;
+  size?: Size;
+  external?: boolean;
+  class?: string;
+  title?: string;
+  ariaLabel?: string;
+  download?: boolean | string;
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  external = false,
+  class: className,
+  title,
+  ariaLabel,
+  download,
+} = Astro.props;
+
+const variantStyles: Record<Variant, string> = {
+  primary:
+    "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20",
+  secondary:
+    "border border-border bg-card text-foreground hover:bg-muted hover:text-primary",
+  outline:
+    "border border-border/60 text-foreground hover:border-primary/40 hover:bg-primary/5 hover:text-primary",
+  link: "text-foreground hover:text-primary underline underline-offset-3 px-0!",
+};
+
+const sizeStyles: Record<Size, string> = {
+  sm: "gap-1.5 px-3 py-2 text-xs sm:py-1.5",
+  md: "gap-2 px-5 py-2.5 text-sm font-medium",
+};
+
+const externalAttrs = external
+  ? { target: "_blank", rel: "noopener noreferrer" }
+  : {};
+---
+
+<a
+  href={href}
+  title={title}
+  aria-label={ariaLabel}
+  download={download}
+  class:list={[
+    "inline-flex items-center rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background",
+    variantStyles[variant],
+    sizeStyles[size],
+    className,
+  ]}
+  {...externalAttrs}
+>
+  <slot />
+</a>

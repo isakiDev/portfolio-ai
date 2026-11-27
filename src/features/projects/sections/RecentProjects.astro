@@ -1,0 +1,27 @@
+---
+import SectionHeading from "@/components/SectionHeading.astro";
+import ProjectListItem from "@/features/projects/components/ProjectListItem.astro";
+import { getPublishedEntries } from "@/utils/get-published-entries";
+import LinkButton from "@/components/ui/LinkButton.astro";
+
+const projects = await getPublishedEntries("projects");
+const recentProjects = projects.slice(0, 4);
+---
+
+<section id="projects">
+  <div class="flex items-center justify-between">
+    <SectionHeading label="Proyectos" class="mb-0" />
+    <LinkButton href="/projects" variant="link">
+      Ver proyectos documentados
+    </LinkButton>
+  </div>
+
+  <div>
+    {recentProjects.map((project) => (
+      <ProjectListItem
+        entry={project}
+        class="gap-5 sm:flex-row sm:gap-5 py-4 first:pt-0 first:mt-10"
+      />
+    ))}
+  </div>
+</section>

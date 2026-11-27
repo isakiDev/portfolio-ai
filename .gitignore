@@ -1,9 +1,20 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
 
+# Environment
 .env
-.astro/
 *.local
-.DS_Store
+
+# Framework / tooling
+.astro/
 .opencode
 .vercel
+
+# OS
+.DS_Store
+
+# Project
+docs

@@ -17,10 +17,7 @@ const spinAnimationClass = "animate-spin [animation-duration:7s]";
     isPlaying && spinAnimationClass,
   ]}
 >
-  <!-- lines -->
   <div class="absolute inset-0 rounded-full vinyl-lines"></div>
-
-  {/* orifice */}
   <div class="absolute size-2 rounded-full bg-foreground/80 z-10"></div>
 
   <Image
@@ -28,7 +25,7 @@ const spinAnimationClass = "animate-spin [animation-duration:7s]";
     width={20}
     height={20}
     src={imageUrl}
-    alt="Album Image"
+    alt="Album cover"
   />
 </div>
 
@@ -37,21 +34,18 @@ const spinAnimationClass = "animate-spin [animation-duration:7s]";
     background: repeating-radial-gradient(
       circle,
       transparent 3px,
-      rgba(255, 255, 255, 0.035) 3.5px,
+      rgba(0, 0, 0, 0.08) 3.5px,
       transparent 5px
     );
-
     mask-image: radial-gradient(circle, black 0 60%, transparent 61%);
   }
 
-  @media (prefers-color-scheme: light) {
-    .vinyl-lines {
-      background: repeating-radial-gradient(
-        circle,
-        transparent 3px,
-        rgba(0, 0, 0, 0.08) 3.5px,
-        transparent 5px
-      );
-    }
+  :global(.dark) .vinyl-lines {
+    background: repeating-radial-gradient(
+      circle,
+      transparent 3px,
+      rgba(255, 255, 255, 0.035) 3.5px,
+      transparent 5px
+    );
   }
 </style>

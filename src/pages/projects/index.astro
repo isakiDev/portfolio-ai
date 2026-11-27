@@ -1,0 +1,25 @@
+---
+import ContentContainer from "@components/ContentContainer.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import ProjectListItem from "@/features/projects/components/ProjectListItem.astro";
+import Layout from "@layouts/Layout.astro";
+
+import { getPublishedEntries } from "@/utils/get-published-entries";
+import { absoluteUrl, buildPageTitle } from "@/utils/seo";
+
+const projects = await getPublishedEntries("projects");
+const projectsWithCaseStudy = projects.filter(
+  (project) => project.data.caseStudyURL,
+);
+---
+
+<Layout title={buildPageTitle("Proyectos")} url={absoluteUrl("/projects")}>
+  <ContentContainer>
+    <section>
+      <SectionHeading label="Proyectos" />
+      {projectsWithCaseStudy.map((project) => (
+        <ProjectListItem entry={project} showMeta={false} class="py-3" />
+      ))}
+    </section>
+  </ContentContainer>
+</Layout>

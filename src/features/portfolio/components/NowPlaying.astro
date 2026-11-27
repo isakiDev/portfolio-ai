@@ -5,12 +5,21 @@ import {
   SPOTIFY_REFRESH_TOKEN,
 } from "astro:env/server";
 
-import { getNowPlaying } from "../services/now-playing.service";
+import { CirclePause, EarbudsOff } from "@lucide/astro";
 
-import Offline from "@components/icons/Offline.astro";
-import Vinyl from "./Vinyl.astro";
+import SoundBar from "@components/icons/Soundbar.astro";
+import Vinyl from "@features/portfolio/components/Vinyl.astro";
 
-import { nowPlayingAdapter } from "../adapters/now-playing.adapter";
+import { nowPlayingAdapter } from "@features/portfolio/adapters/now-playing.adapter";
+import { getNowPlaying } from "@features/portfolio/services/now-playing.service";
+
+const fallbackTrack = {
+  albumImageUrl:
+    "https://res.cloudinary.com/dzn3nempv/image/upload/v1760909384/portfolio/albumCover_bractr.png",
+  title: "Usuario",
+  artist: "desconectado",
+  isPlaying: undefined,
+};
 
 const nowPlaying = await getNowPlaying({
   clientId: SPOTIFY_CLIENT_ID,
@@ -18,50 +27,45 @@ const nowPlaying = await getNowPlaying({
   refreshToken: SPOTIFY_REFRESH_TOKEN,
 });
 
-const {
-  albumImageUrl,
-  title,
-  artist,
-  icon: Icon,
-  isPlaying,
-} = nowPlaying
-  ? nowPlayingAdapter(nowPlaying)
-  : {
-      albumImageUrl:
-        "https://res.cloudinary.com/dzn3nempv/image/upload/v1760909384/portfolio/albumCover_bractr.png",
-      title: "Usuario",
-      artist: "desconectado",
-      icon: Offline,
-    };
+const track = nowPlaying ? nowPlayingAdapter(nowPlaying) : fallbackTrack;
+
+const { albumImageUrl, title, artist, isPlaying } = track;
+
+const PlayerIcon =
+  isPlaying === undefined ? EarbudsOff : isPlaying ? SoundBar : CirclePause;
 ---
 
-<aside
+<article
   class:list={[
-    "group flex w-fit items-center gap-3 rounded-xl border bg-card px-2 py-1 transition-all duration-300",
+    "group flex w-fit items-center gap-3 rounded-xl outline bg-card px-2 py-1",
     {
-      "border-primary/40 bg-primary/5 shadow-[0_0_20px_-5px_rgba(168,120,235,0.2)]":
-        isPlaying,
+      "outline-primary/40 bg-primary/5 shadow-lg shadow-primary/20": isPlaying,
     },
-    { "border-border hover:border-primary/30": !isPlaying },
+    { "outline-border hover:outline-primary/30": !isPlaying },
   ]}
+  aria-label="Reproducción actual"
 >
   <Vinyl imageUrl={albumImageUrl} isPlaying={!!isPlaying} />
 
-  <div class="flex flex-col justify-center min-w-0">
+  <div class="flex flex-col justify-center text-xs">
     <p
-      class="text-sm font-semibold text-foreground max-w-28 truncate leading-tight"
+      class="max-w-28 truncate font-semibold leading-tight text-foreground"
       title={title}
     >
       {title}
     </p>
 
     <p
-      class="text-xs text-muted-foreground max-w-28 truncate leading-tight"
+      class="max-w-28 truncate leading-tight text-muted-foreground"
       title={artist}
     >
       {artist}
     </p>
   </div>
 
-  <Icon class="size-4 text-muted-foreground ml-auto" />
-</aside>
+  <PlayerIcon
+    size={20}
+    class="ml-auto text-muted-foreground"
+    aria-hidden="true"
+  />
+</article>

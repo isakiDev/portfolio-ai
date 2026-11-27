@@ -1,0 +1,58 @@
+---
+import { ChevronRight, ChevronDown } from "@lucide/astro";
+
+type Props = {
+  headings: {
+    depth: number;
+    slug: string;
+    text: string;
+  }[];
+};
+
+const { headings } = Astro.props;
+
+const visibleHeadings = headings.filter(
+  ({ depth }) => depth === 2 || depth === 3,
+);
+---
+
+{visibleHeadings.length > 0 && (
+  <details open class="group">
+    <summary class="mb-2 flex cursor-pointer list-none items-center gap-1 text-sm font-semibold text-muted-foreground select-none transition-colors duration-200 hover:text-accent">
+      <span>Tabla de contenidos</span>
+
+      <ChevronDown size={16} class="hidden group-open:block" />
+      <ChevronRight size={16} class="group-open:hidden" />
+    </summary>
+
+    <nav aria-label="Tabla de contenidos">
+      <ul class="flex list-none flex-col gap-0.5 pl-0 text-xs">
+        {visibleHeadings.map(({ depth, slug, text }) => (
+          <li class:list={[depth === 3 && "pl-3"]}>
+            <a
+              href={`#${slug}`}
+              class="table-of-contents__link block py-0.5 text-muted-foreground no-underline transition-colors duration-200"
+            >
+              {text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </details>
+)}
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .table-of-contents__link:hover,
+  :global(.toc-active) {
+    color: var(--color-accent);
+  }
+
+  :global(.toc-active) {
+    font-weight: 600;
+  }
+</style>

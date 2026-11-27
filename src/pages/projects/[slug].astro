@@ -1,0 +1,151 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+
+import { ArrowLeft, Calendar, Clock, ExternalLink } from "@lucide/astro";
+
+import ContentContainer from "@components/ContentContainer.astro";
+import GitHubIcon from "@components/icons/GitHub.astro";
+import Layout from "@layouts/Layout.astro";
+
+import Badge from "@/components/Badge.astro";
+import BackToTop from "@/components/BackToTop.astro";
+import TableOfContents from "@/components/TableOfContents.astro";
+import LinkButton from "@/components/ui/LinkButton.astro";
+
+import { formatDate } from "@/utils/format-date";
+import { getReadingTime } from "@/utils/reading-time";
+import { absoluteUrl, buildPageTitle } from "@/utils/seo";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects", ({ data }) => !data.draft);
+
+  return projects.map((project) => ({
+    params: { slug: project.id },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const project = await getEntry("projects", slug);
+
+if (!project) {
+  return Astro.redirect("/404");
+}
+
+const { Content, headings } = await render(project);
+
+const readingTime = getReadingTime(project.body!);
+---
+
+<Layout
+  title={buildPageTitle(project.data.title, "Proyectos")}
+  url={absoluteUrl(`/projects/${slug}/`)}
+>
+  <ContentContainer>
+    <div class="xl:grid xl:grid-cols-[11rem_1fr] xl:gap-8">
+      <aside class="hidden xl:block">
+        <div class="sticky top-20 flex flex-col gap-6">
+          <LinkButton
+            size="sm"
+            variant="outline"
+            href="/projects"
+            class="relative w-fit group"
+          >
+            <ArrowLeft
+              size={16}
+              class="group-hover:-translate-x-0.5 duration-200"
+            />
+            Volver a proyectos
+          </LinkButton>
+          <TableOfContents headings={headings} />
+        </div>
+      </aside>
+
+      <article class="mb-8">
+        <header class="mb-8 border-b border-border pb-8">
+          <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
+            {project.data.title}
+          </h1>
+
+          <p class="mb-5 max-w-3xl text-base leading-relaxed text-muted-foreground">
+            {project.data.description}
+          </p>
+
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-3 text-sm text-muted-foreground">
+            <div class="flex items-center gap-1.5">
+              <Calendar size={14} />
+              <time datetime={project.data.date.toISOString()}>
+                {formatDate(project.data.date)}
+              </time>
+            </div>
+
+            <div class="flex gap-1 items-center">
+              <Clock size={14} />
+              <span>{readingTime}</span>
+            </div>
+
+            {project.data.technologies &&
+              project.data.technologies.length > 0 && (
+                <div class="flex flex-wrap gap-1.5">
+                  {project.data.technologies.map((tag) => (
+                    <Badge variant="primary">{tag}</Badge>
+                  ))}
+                </div>
+              )}
+          </div>
+
+          {(project.data.repoURL || project.data.websiteURL) && (
+            <nav
+              class="mt-6 flex flex-wrap gap-3"
+              aria-label={`Enlaces de ${project.data.title}`}
+            >
+              {project.data.websiteURL && (
+                <LinkButton
+                  href={project.data.websiteURL}
+                  external
+                  variant="primary"
+                  size="sm"
+                  class="px-4 py-2 text-sm"
+                >
+                  <ExternalLink size={14} />
+                  Ver deploy
+                </LinkButton>
+              )}
+
+              {project.data.repoURL && (
+                <LinkButton
+                  href={project.data.repoURL}
+                  external
+                  variant="outline"
+                  size="sm"
+                  class="px-4 py-2 text-sm"
+                >
+                  <GitHubIcon class="size-4" />
+                  Ver código
+                </LinkButton>
+              )}
+            </nav>
+          )}
+        </header>
+
+        {project.data.cover && (
+          <figure class="mb-8 overflow-hidden rounded-lg border border-border/60 bg-background">
+            <img
+              src={project.data.cover}
+              alt={project.data.coverAlt ?? `${project.data.title} cover image`}
+              loading="eager"
+              decoding="async"
+              class="aspect-video w-full object-cover"
+            />
+          </figure>
+        )}
+
+        <div class="prose max-w-none dark:prose-invert">
+          <Content />
+        </div>
+
+        <BackToTop />
+      </article>
+    </div>
+  </ContentContainer>
+</Layout>

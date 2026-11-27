@@ -1,43 +1,45 @@
 import { GITHUB_TOKEN } from "astro:env/server";
 
-import type { GithubRepo, GithubCommit, LatestCommits } from "../types";
+import { site } from "@/config/site";
+import type { GithubCommit, GithubRepo, LatestCommits } from "../types/github";
 
-const username = "isakidev";
-const token = GITHUB_TOKEN;
+const GITHUB_USERNAME = site.socials.github.username;
+const REPOS_LIMIT = 3;
+const COMMITS_LIMIT = 2;
 
 export async function getLatestCommits(): Promise<LatestCommits[]> {
   try {
-    const reposRes = await fetch(
-      `https://api.github.com/users/${username}/repos?sort=updated&per_page=3`,
+    const reposResponse = await fetch(
+      `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=${REPOS_LIMIT}`,
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${GITHUB_TOKEN}`,
         },
       },
     );
 
-    if (!reposRes.ok) {
+    if (!reposResponse.ok) {
       return [];
     }
 
-    const repos = (await reposRes.json()) as GithubRepo[];
+    const repos = (await reposResponse.json()) as GithubRepo[];
 
     const reposWithCommits = await Promise.all(
       repos.map(async (repo) => {
-        const res = await fetch(
-          `https://api.github.com/repos/${username}/${repo.name}/commits?per_page=2`,
+        const response = await fetch(
+          `https://api.github.com/repos/${GITHUB_USERNAME}/${repo.name}/commits?per_page=${COMMITS_LIMIT}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${GITHUB_TOKEN}`,
             },
           },
         );
 
-        if (!res.ok) {
+        if (!response.ok) {
           return null;
         }
 
-        const commits = (await res.json()) as GithubCommit[];
+        const commits = (await response.json()) as GithubCommit[];
 
         return {
           repo: repo.name,
@@ -46,7 +48,7 @@ export async function getLatestCommits(): Promise<LatestCommits[]> {
             date: commit.commit.author.date,
             url: commit.html_url,
           })),
-        };
+        } satisfies LatestCommits;
       }),
     );
 

@@ -1,7 +1,68 @@
+
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+
+/* --------------------------------
+   Theme configuration
+--------------------------------- */
+
+@theme {
+  /* Colors */
+  --color-background: #f5f5f2;
+  --color-foreground: #404640;
+
+  --color-card: #ebede8;
+  --color-secondary: #e8eae5;
+
+  --color-muted: #e8eae5;
+  --color-muted-foreground: #737a72;
+
+  --color-primary: #365c42;
+  --color-primary-foreground: #ffffff;
+
+  --color-accent: #987b58;
+
+  --color-border: #d9ddd5;
+  --color-input: #d9ddd5;
+  --color-ring: #527653;
+
+  /* Typography */
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+}
+
+/* --------------------------------
+   Dark theme
+--------------------------------- */
+
+.dark {
+  color-scheme: dark;
+
+  --color-background: #090b09;
+  --color-foreground: #d4d8d1;
+
+  --color-card: #111411;
+  --color-secondary: #171c17;
+
+  --color-muted: #171c17;
+  --color-muted-foreground: #929b90;
+
+  --color-primary: #8faf91;
+  --color-primary-foreground: #090b09;
+
+  --color-accent: #b49a75;
+
+  --color-border: #292f29;
+  --color-input: #292f29;
+  --color-ring: #8faf91;
+}
+
+/* --------------------------------
+   Global styles
+--------------------------------- */
 
 :root {
   color-scheme: light;
@@ -9,15 +70,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
-}
-
-.dark {
-  color-scheme: dark;
-}
-
-::selection {
-  background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+  scroll-padding-top: 128px;
 }
 
 @layer base {
@@ -26,52 +79,18 @@ html {
   }
 }
 
-@theme {
-  /* Catppuccin Latte */
+/* --------------------------------
+   Selection
+--------------------------------- */
 
-  --color-background: #eff1f5;
-  --color-foreground: #4c4f69;
-
-  --color-card: #e6e9ef;
-  --color-secondary: #dce0e8;
-
-  --color-muted: #e6e9ef;
-  --color-muted-foreground: #6c6f85;
-
-  --color-primary: #8839ef;
-  --color-primary-foreground: #ffffff;
-
-  --color-accent: #7287fd;
-
-  --color-border: #ccd0da;
-  --color-input: #ccd0da;
-  --color-ring: #8839ef;
-
-  /* Typography */
-
-  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono Variable", ui-monospace, "SFMono-Regular", monospace;
+::selection {
+  background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
 }
 
+/* --------------------------------
+   Mermaid styles
+--------------------------------- */
 
-/* Catppuccin Mocha */
-
-.dark {
-  --color-background: #1e1e2e;
-  --color-foreground: #cdd6f4;
-
-  --color-card: #181825;
-  --color-secondary: #313244;
-
-  --color-muted: #181825;
-  --color-muted-foreground: #a6adc8;
-
-  --color-primary: #cba6f7;
-  --color-primary-foreground: #1e1e2e;
-
-  --color-accent: #b4befe;
-  --color-border: #585b70;
-  /* --color-border: #313244; */
-  --color-input: #45475a;
-  --color-ring: #cba6f7;
+html.dark svg[id^="mermaid"] {
+	filter: invert(1) hue-rotate(180deg);
 }

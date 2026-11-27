@@ -1,15 +1,17 @@
 ---
-export interface Props {
+interface Props {
   label: string;
-  className?: string;
+  class?: string;
 }
 
-const { label, className } = Astro.props;
-const headingClass = className || "mb-10";
+const { label, class: className } = Astro.props;
 ---
 
 <h2
-  class={`font-mono text-xs sm:text-sm tracking-wider leading-none font-medium text-muted-foreground ${headingClass} border-l-2 border-primary pl-4`}
+  class:list={[
+    "font-mono text-base lg:text-lg tracking-wider leading-none font-semibold text-muted-foreground border-l-2 border-primary pl-3",
+    className ?? "mb-10",
+  ]}
 >
   {label}
 </h2>

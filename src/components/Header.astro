@@ -1,23 +1,18 @@
 ---
 import ThemeToggleButton from "@components/ThemeToggleButton.astro";
-import NowPlaying from "@features/portfolio/components/NowPlaying.astro";
-import NowPlayingSkeleton from "@features/portfolio/components/NowPlayingSkeleton.astro";
+import { NowPlaying, NowPlayingSkeleton } from "@features/portfolio";
+import { site } from "@/config/site";
 
-const navLinks = [
-  { href: "/#about", label: "Sobre mí" },
-  { href: "/#experience", label: "Experiencia" },
-  { href: "/#projects", label: "Proyectos" },
-  { href: "/#blog", label: "Blog" },
-];
+const navLinks = site.nav;
 ---
 
 <header
   transition:persist
-  class="fixed top-0 left-0 right-0 max-w-5xl mx-auto z-50 bg-background/80 backdrop-blur-xl border-b border-border"
+  class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl"
 >
   <!-- Desktop / Mobile header -->
   <nav
-    class="flex items-center px-4 sm:px-8 md:px-16 h-16"
+    class="flex items-center h-16 max-w-5xl mx-auto px-4"
     aria-label="Navegación principal"
   >
     <NowPlaying server:defer>
@@ -25,19 +20,27 @@ const navLinks = [
     </NowPlaying>
 
     <!-- Desktop navigation -->
-    <ul class="hidden sm:flex items-center gap-3 ml-auto">
-      {
-        navLinks.map((link) => (
-          <li>
+    <ul class="hidden sm:flex items-center ml-auto">
+      {navLinks.map((link, index) => {
+        const isLastLink = navLinks.length === index + 1;
+
+        return (
+          <li class="flex items-center">
             <a
               href={link.href}
-              class="text-muted-foreground hover:text-foreground transition-colors text-sm rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              class="text-muted-foreground hover:text-primary transition-colors text-sm rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {link.label}
             </a>
+
+            {!isLastLink && (
+              <p class="px-1.5 font-bold text-muted-foreground/40 text-sm select-none">
+                /
+              </p>
+            )}
           </li>
-        ))
-      }
+        );
+      })}
     </ul>
 
     <!-- Controls -->
@@ -76,22 +79,20 @@ const navLinks = [
   <nav
     id="mobile-menu"
     aria-label="Navegación móvil"
-    class="hidden px-4 sm:px-8 bg-background/95 backdrop-blur-xl"
+    class="hidden px-4 sm:px-8"
     inert
   >
     <ul class="flex flex-col text-sm text-center">
-      {
-        navLinks.map((link) => (
-          <li class="border-b border-border/40">
-            <a
-              href={link.href}
-              class="block text-muted-foreground hover:text-foreground transition-colors py-4 focus-visible:outline-none focus-visible:text-foreground"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))
-      }
+      {navLinks.map((link) => (
+        <li class="border-b border-border/40">
+          <a
+            href={link.href}
+            class="block text-muted-foreground hover:text-foreground transition-colors py-4 focus-visible:outline-none focus-visible:text-foreground"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
     </ul>
   </nav>
 </header>
@@ -102,12 +103,9 @@ const navLinks = [
 
   if (menuToggle && mobileMenu) {
     const toggleMenu = () => {
-      mobileMenu.classList.toggle("hidden");
+      const isHidden = mobileMenu.classList.toggle("hidden");
       mobileMenu.toggleAttribute("inert");
-      menuToggle.setAttribute(
-        "aria-expanded",
-        !mobileMenu.hasAttribute("hidden"),
-      );
+      menuToggle.setAttribute("aria-expanded", String(!isHidden));
     };
 
     menuToggle.addEventListener("click", toggleMenu);

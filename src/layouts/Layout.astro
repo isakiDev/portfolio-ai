@@ -9,25 +9,23 @@ import Footer from "@components/Footer.astro";
 
 import "../styles/global.css";
 
+import { site } from "@/config/site";
+
 interface Props {
-  title: string;
+  title?: string;
+  description?: string;
   url?: string;
+  image?: string;
 }
 
-const { title, url = "https://isakidev.vercel.app/" } = Astro.props;
+const {
+  title = site.title,
+  description = site.description,
+  url = site.url,
+  image = site.ogImage,
+} = Astro.props;
 
-const metadata = {
-  description:
-    "Hola, soy Gaspar Castillo. Me dedico al desarrollo de software y disfruto crear productos digitales bien pensados, claros y fáciles de mantener.",
-  author: "Gaspar Castillo Catrifol",
-  keywords:
-    "Portfolio, Ingeniero de Software, Node.js, React, Next.js, NestJS, Tailwind CSS, Docker, Astro, TypeScript, JavaScript",
-  image:
-    "https://res.cloudinary.com/dzn3nempv/image/upload/v1788131562/portfolio/me.jpg",
-  icon: "https://res.cloudinary.com/dzn3nempv/image/upload/c_lfill,h_50,w_50/v1795182896/portfolio/logo-with-glasses_vddas8.png",
-};
-
-const { description, author, keywords, image, icon } = metadata;
+const { author, keywords, icon } = site;
 ---
 
 <!doctype html>
@@ -51,7 +49,7 @@ const { description, author, keywords, image, icon } = metadata;
     <meta name="twitter:image" content={image} />
 
     <link rel="canonical" href={url} />
-    <link rel="icon" type="image/png+xml" href={icon} />
+    <link rel="icon" type="image/png" href={icon} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
@@ -82,10 +80,10 @@ const { description, author, keywords, image, icon } = metadata;
     <title>{title}</title>
   </head>
 
-  <body class="bg-background font-sans text-foreground antialiased">
+  <body class="min-h-screen flex flex-col mx-auto max-w-5xl bg-background font-sans text-foreground antialiased px-4">
     <Header />
 
-    <main class="pt-36">
+    <main class="space-y-16 flex-1 pt-28 pb-20">
       <slot />
     </main>
 

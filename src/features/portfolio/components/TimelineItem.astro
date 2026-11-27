@@ -13,19 +13,16 @@ const { period, title, subtitle, dotColor = "bg-secondary" } = Astro.props;
   <div
     class={`absolute -left-1.5 top-1.5 size-3 rounded-full ring-2 ring-background ${dotColor}`}
     aria-hidden="true"
-  >
-  </div>
+  ></div>
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8">
     <div class="lg:col-span-4 lg:pl-2">
-      <span class="font-mono text-xs tracking-wider leading-none font-medium text-primary"
-        >{period}</span
-      >
+      <span class="font-mono text-xs tracking-wider leading-none font-medium text-primary">
+        {period}
+      </span>
       <h4 class="text-lg sm:text-xl font-semibold tracking-tight mt-1.5 text-foreground">
         {title}
       </h4>
-      <p class="text-muted-foreground text-sm mt-1">
-        {subtitle}
-      </p>
+      <p class="text-muted-foreground text-sm mt-1">{subtitle}</p>
     </div>
     <div class="lg:col-span-8 space-y-4 lg:space-y-6">
       <slot />

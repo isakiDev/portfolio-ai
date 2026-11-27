@@ -1,19 +1,22 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
 
-import Calendar from "@components/icons/Calendar.astro";
-import Clock from "@components/icons/Clock.astro";
-import Breadcrumb from "@features/blog/components/Breadcrumb.astro";
-import ContentWrapper from "@features/blog/components/ContentWrapper.astro";
+import { ArrowLeft, Calendar, Clock } from "@lucide/astro";
+
+import ContentContainer from "@components/ContentContainer.astro";
 import Layout from "@layouts/Layout.astro";
 
-import { formatDate } from "@features/blog/utils/format-date.util";
-import { getReadingTime } from "@features/blog/utils/reading-time.util";
+import Badge from "@/components/Badge.astro";
+import BackToTop from "@/components/BackToTop.astro";
+import TableOfContents from "@/components/TableOfContents.astro";
+import LinkButton from "@/components/ui/LinkButton.astro";
+
+import { formatDate } from "@/utils/format-date";
+import { getReadingTime } from "@/utils/reading-time";
+import { absoluteUrl, buildPageTitle } from "@/utils/seo";
 
 export async function getStaticPaths() {
-  const articles = await getCollection("blog", ({ data }) => {
-    return !data.draft;
-  });
+  const articles = await getCollection("blog", ({ data }) => !data.draft);
 
   return articles.map((article) => ({
     params: { slug: article.id },
@@ -28,62 +31,75 @@ if (!article) {
   return Astro.redirect("/404");
 }
 
-const { Content } = await render(article);
-
-const breadcrumbs = [
-  { name: "Inicio", href: "/" },
-  { name: "Blog", href: "/blog/page/1" },
-  { name: article.data.title },
-];
+const { Content, headings } = await render(article);
 
 const readingTime = getReadingTime(article.body!);
 ---
 
 <Layout
-  title={`${article.data.title} | Blog - Gaspar Castillo - Desarrollador de Software`}
-  url={`https://isakidev.vercel.app/blog/${slug}/`}
+  title={buildPageTitle(article.data.title, "Blog")}
+  url={absoluteUrl(`/blog/${slug}/`)}
 >
-  <ContentWrapper>
-    <Breadcrumb breadcrumbs={breadcrumbs} />
+  <ContentContainer>
+    <div class="xl:grid xl:grid-cols-[11rem_1fr] xl:gap-8">
+      <aside class="hidden xl:block">
+        <div class="sticky top-20 flex flex-col gap-6">
+          <LinkButton
+            size="sm"
+            variant="outline"
+            href="/blog"
+            class="w-fit group"
+          >
+            <ArrowLeft
+              size={16}
+              class="group-hover:-translate-x-0.5 duration-200"
+            />
+            Volver al blog
+          </LinkButton>
 
-    <article class="mb-8">
-      <header class="mb-6 pb-6 border-b border-border">
-        <h1 class="text-3xl sm:text-4xl font-bold mb-4">
-          {article.data.title}
-        </h1>
+          <TableOfContents headings={headings} />
+        </div>
+      </aside>
 
-        <div
-          class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground"
-        >
-          <div class="flex gap-1 items-center">
-            <Calendar class={"size-4"} />
-            <time datetime={article.data.date.toISOString()}>
-              {formatDate(article.data.date)}
-            </time>
-          </div>
+      <article class="mb-8">
+        <header class="mb-8 border-b border-border pb-8">
+          <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
+            {article.data.title}
+          </h1>
 
-          <div class="flex gap-1 items-center">
-            <Clock class={"size-4"} />
-            <span>{readingTime}</span>
-          </div>
+          <p class="mb-5 max-w-3xl text-base leading-relaxed text-muted-foreground">
+            {article.data.description}
+          </p>
 
-          {
-            article.data.tags && article.data.tags.length > 0 && (
-              <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-3 text-sm text-muted-foreground">
+            <div class="flex items-center gap-1.5">
+              <Calendar size={14} />
+              <time datetime={article.data.date.toISOString()}>
+                {formatDate(article.data.date)}
+              </time>
+            </div>
+
+            <div class="flex items-center gap-1">
+              <Clock size={14} />
+              <span>{readingTime}</span>
+            </div>
+
+            {article.data.tags && article.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-1.5">
                 {article.data.tags.map((tag) => (
-                  <span class="px-2 py-1 bg-muted rounded-md text-xs border border-border">
-                    {tag}
-                  </span>
+                  <Badge variant="primary">{tag}</Badge>
                 ))}
               </div>
-            )
-          }
-        </div>
-      </header>
+            )}
+          </div>
+        </header>
 
-      <div class="prose dark:prose-invert max-w-none">
-        <Content />
-      </div>
-    </article>
-  </ContentWrapper>
+        <div class="prose max-w-none dark:prose-invert">
+          <Content />
+        </div>
+
+        <BackToTop />
+      </article>
+    </div>
+  </ContentContainer>
 </Layout>
