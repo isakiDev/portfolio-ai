@@ -1,14 +1,15 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
 
-import { Calendar, Clock } from "@lucide/astro";
+import { ArrowLeft, Calendar, Clock } from "@lucide/astro";
 
 import ContentContainer from "@components/ContentContainer.astro";
 import Layout from "@layouts/Layout.astro";
 
 import Badge from "@/components/Badge.astro";
+import BackToTop from "@/components/BackToTop.astro";
 import TableOfContents from "@/components/TableOfContents.astro";
-import BackToPrev from "@components/BackToPrev.astro";
+import LinkButton from "@/components/ui/LinkButton.astro";
 
 import { formatDate } from "@/utils/format-date";
 import { getReadingTime } from "@/utils/reading-time";
@@ -43,7 +44,19 @@ const readingTime = getReadingTime(article.body!);
     <div class="xl:grid xl:grid-cols-[11rem_1fr] xl:gap-8">
       <aside class="hidden xl:block">
         <div class="sticky top-20 flex flex-col gap-6">
-          <BackToPrev href="/blog">Volver al blog</BackToPrev>
+          <LinkButton
+            size="sm"
+            variant="outline"
+            href="/blog"
+            class="w-fit group"
+          >
+            <ArrowLeft
+              size={16}
+              class="group-hover:-translate-x-0.5 duration-200"
+            />
+            Volver al blog
+          </LinkButton>
+
           <TableOfContents headings={headings} />
         </div>
       </aside>
@@ -84,6 +97,8 @@ const readingTime = getReadingTime(article.body!);
         <div class="prose max-w-none dark:prose-invert">
           <Content />
         </div>
+
+        <BackToTop />
       </article>
     </div>
   </ContentContainer>

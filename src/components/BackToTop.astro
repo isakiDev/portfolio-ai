@@ -1,0 +1,28 @@
+---
+import { ArrowUp } from "@lucide/astro";
+---
+
+<div class="mt-10 flex justify-end">
+  <button
+    type="button"
+    class="back-to-top hover:cursor-pointer group inline-flex w-fit items-center gap-1.5 rounded-md border border-border/60 px-3 py-2 text-xs text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background sm:py-1.5"
+    aria-label="Volver arriba"
+  >
+    Volver arriba
+    <ArrowUp size={16} class="duration-200 group-hover:-translate-y-0.5" />
+  </button>
+</div>
+
+<script>
+  document.addEventListener("click", (e) => {
+    const target = e.target;
+
+    if (!(target instanceof Element)) return;
+
+    const btn = target.closest(".back-to-top");
+
+    if (btn) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+</script>
